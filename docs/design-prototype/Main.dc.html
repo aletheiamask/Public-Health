@@ -71,7 +71,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #F4A2
         <a href="PublicNews.dc.html" style="padding: 10px 16px; border-radius: 999px; text-decoration: none;">ข่าวสุขภาพ</a>
         <a href="#" style="padding: 10px 16px; border-radius: 999px; text-decoration: none;">บริการ</a>
         <a href="Jobs.dc.html" style="padding: 10px 16px; border-radius: 999px; text-decoration: none;">สมัครงาน</a>
-        <a href="#" style="padding: 10px 16px; border-radius: 999px; text-decoration: none;">หน่วยบริการใกล้บ้าน</a>
+        <a href="Clinics.dc.html" style="padding: 10px 16px; border-radius: 999px; text-decoration: none;">หน่วยบริการใกล้บ้าน</a>
         <a href="#" style="padding: 10px 16px; border-radius: 999px; text-decoration: none;">ความโปร่งใส</a>
       </nav>
       <div style="display: flex; gap: 8px; align-items: center;">
@@ -89,7 +89,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #F4A2
         <span class="ping" style="display: flex; gap: 8px; align-items: center; padding: 4px 14px 4px 10px; border-radius: 999px; background: #B3123F; color: #FFFFFF; font-size: 15px; font-weight: 700;"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #FFFFFF;"></span>เฝ้าระวัง</span>
         <span style="flex: 1 1 420px; font-weight: 500;">ไข้เลือดออกเพิ่มขึ้น 3 สัปดาห์ติด · คว่ำภาชนะทุก 7 วัน · มีไข้สูงเกิน 2 วันรีบไปหาหมอ</span>
         <button type="button" class="press" style="height: 40px; padding: 0 14px; border-radius: 999px; border: 0; background: #FFFFFF; color: #5B0920; font-size: 15px; font-weight: 700;">ฟังคำเตือน</button>
-        <a href="PublicNews.dc.html" style="font-weight: 700; font-size: 15px;">อ่านวิธีป้องกัน</a>
+        <a href="PublicDengue.dc.html" style="font-weight: 700; font-size: 15px;">อ่านวิธีป้องกัน</a>
       </div>
     </div>
   </sc-if>
@@ -177,7 +177,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #F4A2
             <div style="height: 200px; overflow: hidden;"><img class="zoom" src="{{n.img}}" alt="{{n.alt}}" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
             <div style="padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 8px; flex: 1;">
               <span style="display: flex; gap: 8px; align-items: center; font-size: 14px; color: {{c.muted}};"><span style="padding: 2px 10px; border-radius: 999px; background: {{n.tagBg}}; color: {{n.tagFg}}; font-weight: 700;">{{n.tag}}</span>{{n.date}}</span>
-              <h3 class="h" style="margin: 0; font-size: 22px; line-height: 1.4;"><a href="PublicNews.dc.html" style="text-decoration: none;">{{n.title}}</a></h3>
+              <h3 class="h" style="margin: 0; font-size: 22px; line-height: 1.4;"><a href="{{n.href}}" style="text-decoration: none;">{{n.title}}</a></h3>
               <p style="margin: 0; color: {{c.ink2}}; font-size: 16px; flex: 1;">{{n.sum}}</p>
               <div style="display: flex; gap: 8px; margin-top: 6px;">
                 <button type="button" class="press" style="height: 48px; padding: 0 16px; border-radius: 999px; border: 0; background: {{c.seaTint}}; color: {{c.seaInk}}; font-size: 15px; font-weight: 700;">ฟัง {{n.listen}}</button>
@@ -224,7 +224,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #F4A2
             <div style="padding: 12px 14px; border-radius: 18px; background: {{c.bg}}; display: flex; justify-content: space-between; align-items: baseline;"><span style="font-weight: 600; font-size: 16px;">{{d.name}}</span><span style="font-size: 14px; color: {{c.muted}}; font-variant-numeric: tabular-nums;">{{d.n}} แห่ง</span></div>
           </sc-for>
         </div>
-        <a href="#" class="press" style="align-self: flex-start; height: 52px; padding: 0 22px; border-radius: 999px; background: {{c.sea}}; color: #FFFFFF; text-decoration: none; font-weight: 700; display: flex; gap: 8px; align-items: center;"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>หาหน่วยบริการใกล้ฉัน</a>
+        <a href="Clinics.dc.html" class="press" style="align-self: flex-start; height: 52px; padding: 0 22px; border-radius: 999px; background: {{c.sea}}; color: #FFFFFF; text-decoration: none; font-weight: 700; display: flex; gap: 8px; align-items: center;"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>หาหน่วยบริการใกล้ฉัน</a>
       </div>
       <a href="Jobs.dc.html" class="lift" style="flex: 1 1 380px; border-radius: 32px; overflow: hidden; background: {{c.mangrove}}; color: #FFFFFF; text-decoration: none; display: flex; flex-direction: column;">
         <div style="height: 210px; overflow: hidden;"><img class="zoom" src="/_blob/447b77a9a7557419846a60895069258a" alt="ภาพประกอบ: บัณฑิตสาธารณสุขรุ่นใหม่ 3 คนหน้าอาคารสำนักงาน" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
@@ -300,9 +300,9 @@ class Component extends DCLogic {
     const tabDefs = [['all', 'ทั้งหมด'], ['warn', 'เตือนภัย'], ['svc', 'บริการ']];
     const tabs = tabDefs.map(([k, label]) => ({ label, isSel: this.state.tab === k, notSel: this.state.tab !== k, pick: () => this.setState({ tab: k }) }));
     const allNews = [
-      { k: 'warn', img: '/_blob/ca5e24f8d900eb93ce36fc4d4f70f815', alt: 'ภาพประกอบ: คว่ำโอ่งน้ำป้องกันยุงลาย', tag: 'เตือนภัย', tagBg: '#FBE4EA', tagFg: '#8C0E31', date: '4 พ.ย. 2569', title: 'ไข้เลือดออกมาแล้ว คว่ำภาชนะทุก 7 วัน', sum: 'มีไข้สูงลอย 2 วัน ห้ามกินยาแอสไพรินและไอบูโพรเฟน ให้รีบไป รพ.สต.', listen: '1 นาที' },
-      { k: 'svc', img: '/_blob/9c7774222f58fc55f7808c40ff040db3', alt: 'ภาพประกอบ: ตรวจน้ำตาลปลายนิ้วที่ลานกิจกรรม', tag: 'กิจกรรม', tagBg: '#E3EFE6', tagFg: '#1F4D3A', date: '3 พ.ย. 2569', title: 'วันเบาหวานโลก ตรวจน้ำตาลฟรี 14 พ.ย.', sum: 'ลานหน้าศาลากลางจังหวัด 08:30–12:00 น. งดอาหารก่อนตรวจ 8 ชั่วโมง', listen: '1 นาที' },
-      { k: 'svc', img: '/_blob/82f577d8a729910fefc869e64d379570', alt: 'ภาพประกอบ: ฉีดวัคซีนไข้หวัดใหญ่', tag: 'บริการฟรี', tagBg: '#DDF1F1', tagFg: '#0A4B57', date: '2 พ.ย. 2569', title: 'วัคซีนไข้หวัดใหญ่ฟรี สำหรับผู้สูงอายุ', sum: 'เริ่ม 1 ธ.ค. ที่ รพ.สต. ทุกแห่ง ไม่ต้องจองคิว นำบัตรประชาชนไป', listen: '2 นาที' }
+      { k: 'warn', href: 'PublicDengue.dc.html', img: '/_blob/ca5e24f8d900eb93ce36fc4d4f70f815', alt: 'ภาพประกอบ: คว่ำโอ่งน้ำป้องกันยุงลาย', tag: 'เตือนภัย', tagBg: '#FBE4EA', tagFg: '#8C0E31', date: '4 พ.ย. 2569', title: 'ไข้เลือดออกมาแล้ว คว่ำภาชนะทุก 7 วัน', sum: 'มีไข้สูงลอย 2 วัน ห้ามกินยาแอสไพรินและไอบูโพรเฟน ให้รีบไป รพ.สต.', listen: '1 นาที' },
+      { k: 'svc', href: '#', img: '/_blob/9c7774222f58fc55f7808c40ff040db3', alt: 'ภาพประกอบ: ตรวจน้ำตาลปลายนิ้วที่ลานกิจกรรม', tag: 'กิจกรรม', tagBg: '#E3EFE6', tagFg: '#1F4D3A', date: '3 พ.ย. 2569', title: 'วันเบาหวานโลก ตรวจน้ำตาลฟรี 14 พ.ย.', sum: 'ลานหน้าศาลากลางจังหวัด 08:30–12:00 น. งดอาหารก่อนตรวจ 8 ชั่วโมง', listen: '1 นาที' },
+      { k: 'svc', href: 'PublicNews.dc.html', img: '/_blob/82f577d8a729910fefc869e64d379570', alt: 'ภาพประกอบ: ฉีดวัคซีนไข้หวัดใหญ่', tag: 'บริการฟรี', tagBg: '#DDF1F1', tagFg: '#0A4B57', date: '2 พ.ย. 2569', title: 'วัคซีนไข้หวัดใหญ่ฟรี สำหรับผู้สูงอายุ', sum: 'เริ่ม 1 ธ.ค. ที่ รพ.สต. ทุกแห่ง ไม่ต้องจองคิว นำบัตรประชาชนไป', listen: '2 นาที' }
     ];
     const news = this.state.tab === 'all' ? allNews : allNews.filter((x) => x.k === this.state.tab);
     const vals = [18, 22, 25, 24, 30, 33, 37, 42];
@@ -328,12 +328,12 @@ class Component extends DCLogic {
         { mark: 'โทร', label: 'ปรึกษาหมอ 1422', href: 'tel:1422', bg: '#DDF1F1', fg: '#0A4B57' },
         { mark: 'ฉีด', label: 'ฉีดวัคซีน', href: 'PublicNews.dc.html', bg: '#E3EFE6', fg: '#1F4D3A' },
         { mark: 'งาน', label: 'สมัครงาน', href: 'Jobs.dc.html', bg: '#FFF1DA', fg: '#7A4300' },
-        { mark: 'แจ้ง', label: 'ร้องเรียน', href: '#', bg: '#FBE4EA', fg: '#8C0E31' }
+        { mark: 'แจ้ง', label: 'ร้องเรียน', href: 'Complaint.dc.html', bg: '#FBE4EA', fg: '#8C0E31' }
       ],
       services: [
-        { title: 'หา รพ.สต. ใกล้บ้าน', desc: 'แผนที่ เบอร์โทร เวลาเปิด', href: '#', bg: '#DDF1F1', fg: '#0A4B57', icon: 'M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z M12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z' },
+        { title: 'หา รพ.สต. ใกล้บ้าน', desc: 'แผนที่ เบอร์โทร เวลาเปิด', href: 'Clinics.dc.html', bg: '#DDF1F1', fg: '#0A4B57', icon: 'M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z M12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z' },
         { title: 'ขออนุญาตร้านขายยา', desc: 'ยื่นออนไลน์ ติดตามสถานะได้', href: '#', bg: '#E3EFE6', fg: '#1F4D3A', icon: 'M10.5 20.5 3.5 13.5a5 5 0 0 1 7-7l7 7a5 5 0 0 1-7 7z M8.5 8.5l7 7' },
-        { title: 'ร้องเรียน / แจ้งเบาะแส', desc: 'พิมพ์หรือพูดก็ได้ ได้เลขติดตาม', href: '#', bg: '#FBE4EA', fg: '#8C0E31', icon: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z' },
+        { title: 'ร้องเรียน / แจ้งเบาะแส', desc: 'พิมพ์หรือพูดก็ได้ ได้เลขติดตาม', href: 'Complaint.dc.html', bg: '#FBE4EA', fg: '#8C0E31', icon: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z' },
         { title: 'ดาวน์โหลดแบบฟอร์ม', desc: '86 แบบฟอร์ม ค้นหาได้', href: '#', bg: '#FFF1DA', fg: '#7A4300', icon: 'M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z M14 3v6h6 M12 12v6 M9 15l3 3 3-3' }
       ],
       districts: [
