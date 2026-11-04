@@ -30,7 +30,7 @@ a:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid #F
   <header style="padding: 12px 12px 4px; display: flex; align-items: center; gap: 8px;">
     <a href="StaffMobile.dc.html" class="press" style="height: 48px; padding: 0 16px 0 10px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; text-decoration: none; font-weight: 700; display: flex; gap: 4px; align-items: center;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>กลับ</a>
     <span style="flex: 1;"></span>
-    <span style="display: flex; gap: 6px; align-items: center; font-size: 14px; color: #56696E;"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"></path></svg>บันทึกร่างแล้ว</span>
+    <span style="display: flex; gap: 6px; align-items: center; font-size: 16px; color: #56696E;"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"></path></svg>บันทึกร่างแล้ว</span>
   </header>
 
   <sc-if value="{{notSent}}" hint-placeholder-val="{{ true }}">
@@ -41,9 +41,9 @@ a:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid #F
       </div>
 
       <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
-        <div style="padding: 10px 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; line-height: 1.3;"><span style="display: block; font-size: 14px; color: #56696E;">ป่วย ใช้ไป</span><span class="h" style="font-size: 22px; font-weight: 700;">3</span><span style="font-size: 14px;"> / 60 วัน</span></div>
-        <div style="padding: 10px 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; line-height: 1.3;"><span style="display: block; font-size: 14px; color: #56696E;">พักผ่อน เหลือ</span><span class="h" style="font-size: 22px; font-weight: 700;">11</span><span style="font-size: 14px;"> วัน</span></div>
-        <div style="padding: 10px 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; line-height: 1.3;"><span style="display: block; font-size: 14px; color: #56696E;">กิจ ใช้ไป</span><span class="h" style="font-size: 22px; font-weight: 700;">1</span><span style="font-size: 14px;"> / 45 วัน</span></div>
+        <div style="padding: 10px 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; line-height: 1.3;"><span style="display: block; font-size: 16px; color: #56696E;">ป่วย ใช้ไป</span><span class="h" style="font-size: 22px; font-weight: 700;">3</span><span style="font-size: 16px;"> / 60 วัน</span></div>
+        <div style="padding: 10px 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; line-height: 1.3;"><span style="display: block; font-size: 16px; color: #56696E;">พักผ่อน เหลือ</span><span class="h" style="font-size: 22px; font-weight: 700;">11</span><span style="font-size: 16px;"> วัน</span></div>
+        <div style="padding: 10px 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; line-height: 1.3;"><span style="display: block; font-size: 16px; color: #56696E;">กิจ ใช้ไป</span><span class="h" style="font-size: 22px; font-weight: 700;">1</span><span style="font-size: 16px;"> / 45 วัน</span></div>
       </div>
 
       <fieldset style="border: 0; margin: 0; padding: 0;">
@@ -60,27 +60,32 @@ a:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid #F
         <legend class="h" style="font-weight: 700; font-size: 20px; margin-bottom: 10px;">วันไหน</legend>
         <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
           <sc-for list="{{days}}" as="d" hint-placeholder-count="3">
-            <sc-if value="{{d.isSel}}" hint-placeholder-val="{{ false }}"><button type="button" aria-pressed="true" class="chip press" onClick="{{d.pick}}" style="min-height: 64px; border-radius: 18px; border: 0; background: #0E6E7E; color: #FFFFFF; font-size: 16px; font-weight: 700; line-height: 1.25; cursor: pointer;">{{d.label}}<br><span style="font-size: 13px; font-weight: 500;">{{d.sub}}</span></button></sc-if>
-            <sc-if value="{{d.notSel}}" hint-placeholder-val="{{ true }}"><button type="button" aria-pressed="false" class="chip press" onClick="{{d.pick}}" style="min-height: 64px; border-radius: 18px; border: 0; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; color: #10242A; font-size: 16px; font-weight: 600; line-height: 1.25; cursor: pointer;">{{d.label}}<br><span style="font-size: 13px; font-weight: 500; color: #56696E;">{{d.sub}}</span></button></sc-if>
+            <sc-if value="{{d.isSel}}" hint-placeholder-val="{{ false }}"><button type="button" aria-pressed="true" class="chip press" onClick="{{d.pick}}" style="min-height: 64px; border-radius: 18px; border: 0; background: #0E6E7E; color: #FFFFFF; font-size: 16px; font-weight: 700; line-height: 1.25; cursor: pointer;">{{d.label}}<br><span style="font-size: 15px; font-weight: 500;">{{d.sub}}</span></button></sc-if>
+            <sc-if value="{{d.notSel}}" hint-placeholder-val="{{ true }}"><button type="button" aria-pressed="false" class="chip press" onClick="{{d.pick}}" style="min-height: 64px; border-radius: 18px; border: 0; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; color: #10242A; font-size: 16px; font-weight: 600; line-height: 1.25; cursor: pointer;">{{d.label}}<br><span style="font-size: 15px; font-weight: 500; color: #56696E;">{{d.sub}}</span></button></sc-if>
           </sc-for>
         </div>
         <sc-if value="{{showCal}}" hint-placeholder-val="{{ false }}">
           <div class="rise" style="margin-top: 10px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; padding: 14px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;"><strong>พฤศจิกายน 2569</strong><span style="font-size: 15px; color: #56696E;">แตะวันเริ่ม แล้วแตะวันสุดท้าย</span></div>
-            <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; text-align: center; font-size: 14px; color: #56696E; margin-bottom: 4px;"><span>อา</span><span>จ</span><span>อ</span><span>พ</span><span>พฤ</span><span>ศ</span><span>ส</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;"><strong>พฤศจิกายน 2569</strong><span style="font-size: 16px; color: #56696E;">แตะวันเริ่ม แล้วแตะวันสุดท้าย</span></div>
+            <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; text-align: center; font-size: 16px; color: #56696E; margin-bottom: 4px;"><span>อา</span><span>จ</span><span>อ</span><span>พ</span><span>พฤ</span><span>ศ</span><span>ส</span></div>
             <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px;">
               <sc-for list="{{cells}}" as="c" hint-placeholder-count="35">
                 <button type="button" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}" aria-label="{{c.aria}}" style="height: 44px; border-radius: {{c.radius}}; border: 0; background: {{c.bg}}; color: {{c.fg}}; font-weight: {{c.weight}}; font-size: 16px; padding: 0; cursor: pointer; font-variant-numeric: tabular-nums;">{{c.day}}</button>
               </sc-for>
             </div>
+            <p style="margin: 8px 0 0; font-size: 16px; color: #3B5157;">{{calNote}}</p>
+            <div style="display: flex; justify-content: space-between; margin-top: 6px;">
+              <button type="button" disabled style="height: 44px; padding: 0 14px; border-radius: 12px; border: 0; background: #F3EDE2; color: #56696E; font-size: 16px; font-weight: 700;">‹ ต.ค.</button>
+              <button type="button" style="height: 44px; padding: 0 14px; border-radius: 12px; border: 0; background: #F3EDE2; color: #10242A; font-size: 16px; font-weight: 700;">ธ.ค. ›</button>
+            </div>
           </div>
         </sc-if>
-        <p role="status" style="margin: 10px 0 0; padding: 10px 14px; border-radius: 16px; background: #DDF1F1; color: #0A4B57; font-size: 16px;"><strong>{{dayText}}</strong> · นับ {{nDays}} วันทำการ</p>
+        <p role="status" style="margin: 10px 0 0; padding: 10px 14px; border-radius: 16px; background: #DDF1F1; color: #0A4B57; font-size: 16px;"><strong>{{dayText}}</strong> · นับ {{nDays}} วันทำการ{{remainText}}</p>
       </fieldset>
 
       <section aria-labelledby="h-cert">
         <h2 id="h-cert" class="h" style="margin: 0 0 4px; font-size: 20px;">ใบรับรองแพทย์</h2>
-        <p style="margin: 0 0 10px; font-size: 15px; color: #56696E;">{{certHint}}</p>
+        <p style="margin: 0 0 10px; font-size: 16px; color: #56696E;">{{certHint}}</p>
         <sc-if value="{{noCert}}" hint-placeholder-val="{{ true }}">
           <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;">
             <button type="button" class="press" onClick="{{attach}}" style="min-height: 92px; border-radius: 20px; border: 2px dashed #9FC6C9; background: #FFFFFF; color: #0A4B57; font-size: 16px; font-weight: 700; display: flex; flex-direction: column; gap: 4px; align-items: center; justify-content: center; cursor: pointer;"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>ถ่ายรูป</button>
@@ -90,21 +95,21 @@ a:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid #F
         <sc-if value="{{hasCert}}" hint-placeholder-val="{{ false }}">
           <div class="rise" style="display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #9FD7B8;">
             <span aria-hidden="true" style="width: 60px; height: 72px; flex: none; border-radius: 10px; background: #F3EDE2; display: flex; flex-direction: column; gap: 4px; padding: 10px 8px;"><span style="height: 4px; border-radius: 2px; background: #C9BFAE;"></span><span style="height: 4px; width: 70%; border-radius: 2px; background: #C9BFAE;"></span><span style="height: 4px; border-radius: 2px; background: #C9BFAE;"></span><span style="margin-top: auto; height: 10px; width: 50%; border-radius: 3px; background: #0E6E7E;"></span></span>
-            <span style="flex: 1; display: flex; flex-direction: column; line-height: 1.4;"><span style="font-weight: 700; font-size: 16px;">ใบรับรองแพทย์ รพ.ตราด</span><span style="font-size: 14px; color: #1A7A50; font-weight: 600;">แนบแล้ว · เห็นเฉพาะผู้อนุมัติและงานบุคคล</span></span>
-            <button type="button" class="press" onClick="{{detach}}" style="height: 40px; padding: 0 12px; border-radius: 12px; border: 0; background: #F3EDE2; font-size: 14px; font-weight: 700; color: #10242A;">ลบ</button>
+            <span style="flex: 1; display: flex; flex-direction: column; line-height: 1.4;"><span style="font-weight: 700; font-size: 16px;">ใบรับรองแพทย์ รพ.ตราด</span><span style="font-size: 16px; color: #1A7A50; font-weight: 600;">แนบแล้ว · เห็นเฉพาะผู้อนุมัติและงานบุคคล</span></span>
+            <button type="button" class="press" onClick="{{detach}}" style="height: 40px; padding: 0 12px; border-radius: 12px; border: 0; background: #F3EDE2; font-size: 16px; font-weight: 700; color: #10242A;">ลบ</button>
           </div>
         </sc-if>
       </section>
 
       <div style="display: flex; flex-direction: column; gap: 6px;">
-        <label for="note" class="h" style="font-weight: 700; font-size: 20px;">หมายเหตุ <span style="font-weight: 500; font-size: 15px; color: #56696E;">ไม่ต้องกรอกก็ได้</span></label>
-        <textarea id="note" rows="2" style="padding: 14px 16px; font-size: 17px; border: 0; box-shadow: 0 0 0 1.5px #E8E1D4; border-radius: 18px; background: #FFFFFF; resize: vertical;">มีไข้ หมอให้พัก 1 วัน</textarea>
+        <label for="note" class="h" style="font-weight: 700; font-size: 20px;">หมายเหตุ <span style="font-weight: 500; font-size: 16px; color: #56696E;">ไม่ต้องกรอกก็ได้</span></label>
+        <textarea id="note" rows="2" style="padding: 14px 16px; font-size: 17px; border: 0; box-shadow: 0 0 0 1.5px #E8E1D4; border-radius: 18px; background: #FFFFFF; resize: vertical;" placeholder="{{notePh}}"></textarea>
       </div>
 
-      <div style="padding: 14px 16px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; display: flex; flex-direction: column; gap: 8px; font-size: 15px;">
+      <div style="padding: 14px 16px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; display: flex; flex-direction: column; gap: 8px; font-size: 16px;">
         <span class="h" style="font-weight: 700; font-size: 17px;">ส่งถึงใคร</span>
-        <span style="display: flex; gap: 10px; align-items: center;"><span style="width: 24px; height: 24px; border-radius: 50%; background: #10242A; color: #FFFFFF; font-size: 13px; display: flex; align-items: center; justify-content: center;">1</span>วันเพ็ญ ศรีสุข · ผอ.รพ.สต.บ้านท่าเรือ</span>
-        <span style="display: flex; gap: 10px; align-items: center;"><span style="width: 24px; height: 24px; border-radius: 50%; background: #E8E1D4; color: #10242A; font-size: 13px; display: flex; align-items: center; justify-content: center;">2</span>สสอ.เมืองตราด (รับทราบ)</span>
+        <span style="display: flex; gap: 10px; align-items: center;"><span style="width: 24px; height: 24px; border-radius: 50%; background: #10242A; color: #FFFFFF; font-size: 15px; display: flex; align-items: center; justify-content: center;">1</span>วันเพ็ญ ศรีสุข · ผอ.รพ.สต.บ้านท่าเรือ</span>
+        <span style="display: flex; gap: 10px; align-items: center;"><span style="width: 24px; height: 24px; border-radius: 50%; background: #E8E1D4; color: #10242A; font-size: 15px; display: flex; align-items: center; justify-content: center;">2</span>สสอ.เมืองตราด (รับทราบ)</span>
         <span style="color: #56696E;">ผู้ปฏิบัติงานแทน: ณัฐวุฒิ แก้วมณี (ใช้คนเดิมจากครั้งก่อน)</span>
       </div>
     </div>
@@ -119,7 +124,7 @@ a:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid #F
       <span aria-hidden="true" style="width: 112px; height: 112px; border-radius: 50%; background: #E3EFE6; display: flex; align-items: center; justify-content: center;"><span style="width: 72px; height: 72px; border-radius: 50%; background: #1A7A50; display: flex; align-items: center; justify-content: center;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path class="draw" d="m5 12 5 5L20 7"></path></svg></span></span>
       <h2 class="h" style="margin: 0; font-size: 30px;">ส่งใบลาแล้ว</h2>
       <p style="margin: 0; color: #3B5157;">ลา{{typeLabel}} {{dayText}} · {{nDays}} วันทำการ<br>แจ้ง ผอ.วันเพ็ญ แล้ว<br>จะแจ้งผลกลับมาที่มือถือของพี่</p>
-      <div style="width: 100%; padding: 12px 16px; border-radius: 18px; background: #FFF1DA; color: #7A4300; font-size: 15px; text-align: left;">ถ้าเน็ตหลุด ไม่ต้องกังวล ระบบเก็บไว้และส่งให้อัตโนมัติเมื่อกลับมาออนไลน์</div>
+      <div style="width: 100%; padding: 12px 16px; border-radius: 18px; background: #FFF1DA; color: #7A4300; font-size: 16px; text-align: left;">ถ้าเน็ตหลุด ไม่ต้องกังวล ระบบเก็บไว้และส่งให้อัตโนมัติเมื่อกลับมาออนไลน์</div>
       <a href="StaffMobile.dc.html" class="press" style="width: 100%; height: 60px; border-radius: 20px; background: #10242A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; text-decoration: none; font-weight: 700;">กลับหน้างานของฉัน</a>
       <button type="button" class="press" onClick="{{reset}}" style="height: 48px; padding: 0 20px; border-radius: 999px; border: 0; background: transparent; font-size: 17px; font-weight: 700; color: #0E6E7E;">แก้ไขใบลานี้</button>
     </div>
@@ -141,12 +146,13 @@ class Component extends DCLogic {
       if (day > 30) { cells.push({ day: '', pick: () => {}, pressed: 'false', aria: 'ว่าง', bg: 'transparent', fg: '#10242A', weight: '400', radius: '12px' }); continue; }
       const inR = day >= rs && day <= re, wk = isWeekend(day), past = day < 4;
       cells.push({
-        day, pressed: inR ? 'true' : 'false', aria: day + ' พฤศจิกายน' + (wk ? ' วันหยุด' : ''),
+        day, pressed: inR ? 'true' : 'false', aria: day + ' พฤศจิกายน' + (wk ? ' วันหยุด' : '') + (past && this.state.type !== 'sick' ? ' ผ่านมาแล้ว เลือกไม่ได้' : ''),
         bg: inR ? (wk ? '#9FC6C9' : '#0E6E7E') : day === 4 ? '#FFF1DA' : 'transparent',
         fg: inR ? '#FFFFFF' : (wk || past) ? '#56696E' : '#10242A',
         weight: inR || day === 4 ? '700' : '400',
         radius: day === rs && day === re ? '14px' : day === rs ? '14px 4px 4px 14px' : day === re ? '4px 14px 14px 4px' : inR ? '4px' : '12px',
         pick: () => {
+          if (past && this.state.type !== 'sick') return;
           const s = this.state;
           if (s.re !== null && s.re !== undefined) this.setState({ rs: day, re: null });
           else if (day < s.rs) this.setState({ rs: day, re: s.rs });
@@ -167,6 +173,9 @@ class Component extends DCLogic {
     return {
       types, days, cells,
       showCal: isCustom,
+      calNote: this.state.type === 'sick' ? 'ลาป่วยย้อนหลังได้ · เดือนนี้ไม่มีวันหยุดราชการ' : 'เลือกวันที่ผ่านมาแล้วไม่ได้ · เดือนนี้ไม่มีวันหยุดราชการ (ระบบดึงวันหยุดจากปฏิทินราชการ)',
+      remainText: this.state.type === 'vac' ? ' · พักผ่อนเหลือ 11 → ' + (11 - (isCustom ? custom : 1)) + ' วัน' : '',
+      notePh: ({ sick: 'เช่น มีไข้ หมอให้พัก 1 วัน', biz: 'เช่น ไปทำธุระที่อำเภอ', vac: 'ไม่ต้องกรอกก็ได้', other: 'ระบุประเภทและเหตุผล' })[this.state.type],
       nDays: isCustom ? custom : 1,
       dayText: isCustom ? customText : ddefs.find((d) => d[0] === this.state.day)[3],
       typeLabel: tdefs.find((t) => t[0] === this.state.type)[1],

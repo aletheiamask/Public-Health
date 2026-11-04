@@ -35,13 +35,13 @@ a:focus-visible,button:focus-visible{outline:3px solid #F4A23C;outline-offset:3p
       <div style="margin-top: -24px; position: relative; border-radius: 26px 26px 0 0; background: #FBF7F0; padding: 20px 16px 40px; display: flex; flex-direction: column; gap: 14px;">
         <h1 class="h" style="margin: 0; font-size: 30px; line-height: 1.25;">สมัครงาน</h1>
         <p style="margin: 0; color: #3B5157;">4 ตำแหน่ง 19 อัตรา · สมัครออนไลน์ได้ทั้งหมด</p>
-        <a href="Jobs.dc.html" class="press" style="height: 54px; border-radius: 18px; background: #1F4D3A; color: #FFFFFF; text-decoration: none; font-weight: 700; display: flex; gap: 8px; align-items: center; justify-content: center;"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"></path></svg>แจ้งฉันเมื่อมีตำแหน่งใหม่</a>
+        <button type="button" class="press" onClick="{{openSheet}}" style="height: 54px; border-radius: 18px; border: 0; background: #1F4D3A; color: #FFFFFF; font-size: 17px; font-weight: 700; display: flex; gap: 8px; align-items: center; justify-content: center; cursor: pointer;"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"></path></svg>{{alertBtn}}</button>
         <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px;">
           <sc-for list="{{jobs}}" as="j" hint-placeholder-count="4">
             <li>
               <button type="button" class="press" onClick="{{j.open}}" style="width: 100%; text-align: left; padding: 16px; border-radius: 24px; border: 0; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; display: flex; gap: 14px; align-items: center; color: #10242A; cursor: pointer;">
                 <svg role="img" aria-label="เหลืออีก {{j.left}} วัน" width="62" height="62" viewBox="0 0 48 48" style="flex: none;"><circle cx="24" cy="24" r="21" fill="none" stroke="#F3EDE2" stroke-width="5"></circle><circle class="ring" cx="24" cy="24" r="21" fill="none" stroke="{{j.color}}" stroke-width="5" stroke-linecap="round" stroke-dasharray="132" stroke-dashoffset="{{j.offset}}" transform="rotate(-90 24 24)"></circle><text x="24" y="23" text-anchor="middle" font-size="13" font-weight="700" fill="#10242A" font-family="Anuphan, sans-serif">{{j.left}}</text><text x="24" y="34" text-anchor="middle" font-size="8" fill="#56696E" font-family="Noto Sans Thai Looped, sans-serif">วัน</text></svg>
-                <span style="flex: 1; display: flex; flex-direction: column; line-height: 1.4;"><span class="h" style="font-size: 19px; font-weight: 700;">{{j.title}}</span><span style="font-size: 15px; color: #56696E;">{{j.place}} · {{j.seats}} อัตรา</span><span style="font-size: 15px; font-weight: 700; color: {{j.color}};">ปิดรับ {{j.close}}</span></span>
+                <span style="flex: 1; display: flex; flex-direction: column; line-height: 1.4;"><span class="h" style="font-size: 19px; font-weight: 700;">{{j.title}}</span><span style="font-size: 16px; color: #56696E;">{{j.place}} · {{j.seats}} อัตรา</span><span style="font-size: 16px; font-weight: 700; color: {{j.color}};">ปิดรับ {{j.close}}</span></span>
               </button>
             </li>
           </sc-for>
@@ -56,12 +56,12 @@ a:focus-visible,button:focus-visible{outline:3px solid #F4A23C;outline-offset:3p
         <button type="button" class="press" onClick="{{back}}" style="height: 48px; padding: 0 16px 0 10px; border-radius: 999px; border: 0; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; font-size: 17px; font-weight: 700; display: flex; gap: 4px; align-items: center; color: #10242A; cursor: pointer;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>ตำแหน่งทั้งหมด</button>
       </header>
       <div style="padding: 4px 16px 150px; display: flex; flex-direction: column; gap: 16px;">
-        <span style="align-self: flex-start; padding: 2px 12px; border-radius: 999px; background: {{s.bg}}; color: {{s.fg}}; font-size: 15px; font-weight: 700;">ปิดรับ {{s.close}} · เหลือ {{s.left}} วัน</span>
+        <span style="align-self: flex-start; padding: 2px 12px; border-radius: 999px; background: {{s.bg}}; color: {{s.fg}}; font-size: 16px; font-weight: 700;">ปิดรับ {{s.close}} · เหลือ {{s.left}} วัน</span>
         <h1 class="h" style="margin: 0; font-size: 30px; line-height: 1.25;">{{s.title}}</h1>
         <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
-          <div style="padding: 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; line-height: 1.35;"><span style="display: block; font-size: 14px; color: #56696E;">เงินเดือน</span><strong>{{s.salary}}</strong></div>
-          <div style="padding: 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; line-height: 1.35;"><span style="display: block; font-size: 14px; color: #56696E;">รับ</span><strong>{{s.seats}} อัตรา</strong></div>
-          <div style="padding: 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; line-height: 1.35;"><span style="display: block; font-size: 14px; color: #56696E;">ประเภท</span><strong style="font-size: 15px;">{{s.type}}</strong></div>
+          <div style="padding: 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; line-height: 1.35;"><span style="display: block; font-size: 16px; color: #56696E;">เงินเดือน</span><strong>{{s.salary}}</strong></div>
+          <div style="padding: 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; line-height: 1.35;"><span style="display: block; font-size: 16px; color: #56696E;">รับ</span><strong>{{s.seats}} อัตรา</strong></div>
+          <div style="padding: 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; line-height: 1.35;"><span style="display: block; font-size: 16px; color: #56696E;">ประเภท</span><strong style="font-size: 16px;">{{s.type}}</strong></div>
         </div>
         <section>
           <h2 class="h" style="margin: 0 0 6px; font-size: 21px;">คุณสมบัติ</h2>
@@ -79,13 +79,51 @@ a:focus-visible,button:focus-visible{outline:3px solid #F4A23C;outline-offset:3p
       </div>
     </div>
   </sc-if>
+
+  <sc-if value="{{sheetOpen}}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{closeSheet}}" style="position: absolute; inset: 0; background: rgba(10,30,34,.45);"></div>
+    <div role="dialog" aria-label="ตั้งแจ้งเตือนตำแหน่งงาน" class="slide" style="position: absolute; left: 0; right: 0; bottom: 0; border-radius: 30px 30px 0 0; background: #FFFFFF; padding: 14px 18px 26px; display: flex; flex-direction: column; gap: 14px;">
+      <span aria-hidden="true" style="align-self: center; width: 44px; height: 5px; border-radius: 999px; background: #E8E1D4;"></span>
+      <sc-if value="{{st1}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <h2 class="h" style="margin: 0; font-size: 22px;">แจ้งเตือนตำแหน่งใหม่</h2>
+          <span style="font-weight: 700; font-size: 17px;">1. สายงานที่สนใจ</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <sc-for list="{{fields}}" as="f" hint-placeholder-count="4"><button type="button" aria-pressed="{{f.pressed}}" class="press" onClick="{{f.toggle}}" style="height: 44px; padding: 0 14px; border-radius: 999px; border: 0; background: {{f.bg}}; color: {{f.fg}}; box-shadow: 0 0 0 1.5px {{f.ring}}; font-size: 16px; font-weight: 700; cursor: pointer;">{{f.label}}</button></sc-for>
+          </div>
+          <span style="font-weight: 700; font-size: 17px;">2. แจ้งทาง</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <sc-for list="{{chans}}" as="c" hint-placeholder-count="3"><button type="button" aria-pressed="{{c.pressed}}" aria-disabled="{{c.disabled}}" class="press" onClick="{{c.pick}}" style="height: 44px; padding: 0 14px; border-radius: 999px; border: 0; background: {{c.bg}}; color: {{c.fg}}; box-shadow: 0 0 0 1.5px {{c.ring}}; font-size: 16px; font-weight: 700; cursor: pointer;">{{c.label}}</button></sc-for>
+          </div>
+          <sc-if value="{{isEmail}}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 6px;"><label for="em" style="font-weight: 700; font-size: 16px;">อีเมลของคุณ</label><input id="em" type="email" inputmode="email" placeholder="name@example.com" style="height: 54px; padding: 0 14px; border-radius: 16px; border: 0; box-shadow: 0 0 0 1.5px #E8E1D4; font-size: 18px; font-family: inherit;"></div>
+          </sc-if>
+          <button type="button" class="press" onClick="{{next}}" style="height: 58px; border-radius: 18px; border: 0; background: #0E6E7E; color: #FFFFFF; font-size: 18px; font-weight: 700; cursor: pointer;">ถัดไป</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{st2}}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <h2 class="h" style="margin: 0; font-size: 22px;">อนุญาตการแจ้งเตือน</h2>
+          <div style="border-radius: 18px; background: #F3EDE2; padding: 14px; font-size: 16px;">เบราว์เซอร์จะถามว่า <strong>“trathealth ต้องการส่งการแจ้งเตือน”</strong> ให้กด <strong>อนุญาต</strong></div>
+          <button type="button" class="press" onClick="{{allow}}" style="height: 58px; border-radius: 18px; border: 0; background: #0E6E7E; color: #FFFFFF; font-size: 18px; font-weight: 700; cursor: pointer;">ขออนุญาตจากเครื่อง</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{st3}}" hint-placeholder-val="{{ false }}">
+        <div role="status" style="display: flex; flex-direction: column; gap: 12px;">
+          <h2 class="h" style="margin: 0; font-size: 22px;">{{doneTitle}}</h2>
+          <p style="margin: 0; color: #3B5157; font-size: 17px;">{{doneText}}</p>
+          <button type="button" class="press" onClick="{{closeSheet}}" style="height: 54px; border-radius: 18px; border: 0; background: #10242A; color: #FFFFFF; font-size: 17px; font-weight: 700; cursor: pointer;">เสร็จ</button>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1900}}'>
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { open: -1 };
+    this.state = { open: -1, sheet: 0, fields: ['สาธารณสุข'], chan: 'push', done: false };
   }
   renderVals() {
     const all = [
@@ -102,7 +140,26 @@ class Component extends DCLogic {
     const o = this.state.open;
     const s = o >= 0 ? all[o] : all[0];
     const urgent = s.left <= 7;
+    const sh = this.state.sheet, chan = this.state.chan;
+    const fields = ['สาธารณสุข', 'พยาบาล', 'ธุรการ', 'คอมพิวเตอร์'].map((label) => {
+      const on = this.state.fields.indexOf(label) >= 0;
+      return { label, pressed: on ? 'true' : 'false', bg: on ? '#10242A' : '#FFFFFF', fg: on ? '#FFFFFF' : '#10242A', ring: on ? '#10242A' : '#E8E1D4', toggle: () => this.setState({ fields: on ? this.state.fields.filter((x) => x !== label) : this.state.fields.concat([label]) }) };
+    });
+    const chans = [['push', 'แจ้งเตือนมือถือ'], ['email', 'อีเมล'], ['line', 'LINE (เปิดใช้เร็ว ๆ นี้)']].map(([k, label]) => {
+      const on = chan === k, soon = k === 'line';
+      return { label, pressed: on ? 'true' : 'false', disabled: soon ? 'true' : 'false', bg: on ? '#0E6E7E' : soon ? '#F3EDE2' : '#FFFFFF', fg: on ? '#FFFFFF' : soon ? '#56696E' : '#10242A', ring: on ? '#0E6E7E' : '#E8E1D4', pick: () => { if (!soon) this.setState({ chan: k }); } };
+    });
+    const fieldText = this.state.fields.join(' / ') || 'ทุกสายงาน';
     return {
+      sheetOpen: sh > 0, st1: sh === 1, st2: sh === 2, st3: sh === 3,
+      fields, chans, isEmail: chan === 'email',
+      alertBtn: this.state.done ? 'แจ้งเตือนเปิดอยู่ · ' + fieldText : 'แจ้งฉันเมื่อมีตำแหน่งใหม่',
+      openSheet: () => this.setState({ sheet: 1 }),
+      closeSheet: () => this.setState({ sheet: 0 }),
+      next: () => this.setState(chan === 'push' ? { sheet: 2 } : { sheet: 3, done: true }),
+      allow: () => this.setState({ sheet: 3, done: true }),
+      doneTitle: chan === 'push' ? 'เปิดแจ้งเตือนแล้ว' : 'เกือบเสร็จแล้ว',
+      doneText: chan === 'push' ? 'จะแจ้งบนมือถือนี้เมื่อมีตำแหน่ง ' + fieldText + ' ใน จ.ตราด' : 'ส่งลิงก์ยืนยันไปที่อีเมลของคุณแล้ว กดยืนยันในอีเมลเพื่อเริ่มรับแจ้งเตือนตำแหน่ง ' + fieldText,
       jobs, list: o < 0, detail: o >= 0,
       s: Object.assign({}, s, { bg: urgent ? '#FBE4EA' : '#DDF1F1', fg: urgent ? '#8C0E31' : '#0A4B57' }),
       back: () => this.setState({ open: -1 })

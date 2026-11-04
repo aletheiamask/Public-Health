@@ -71,13 +71,16 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #F4A2
                 <button type="button" aria-pressed="{{ch.pressed}}" class="press" onClick="{{ch.pick}}" style="height: 44px; padding: 0 14px; border-radius: 999px; border: 0; background: {{ch.bg}}; color: {{ch.fg}}; font-size: 15px; font-weight: 700; cursor: pointer;">{{ch.label}}</button>
               </sc-for>
             </div>
+            <sc-if value="{{isEmail}}" hint-placeholder-val="{{ true }}">
+              <div style="display: flex; flex-direction: column; gap: 6px;"><label for="jem" style="font-weight: 700;">อีเมลของคุณ</label><input id="jem" type="email" placeholder="name@example.com" style="height: 52px; max-width: 360px; padding: 0 14px; border-radius: 14px; border: 0; font-size: 17px; font-family: inherit;"></div>
+            </sc-if>
             <button type="button" class="press" onClick="{{confirm}}" style="align-self: flex-start; height: 52px; padding: 0 22px; border-radius: 999px; border: 0; background: #F4A23C; color: #10242A; font-size: 16px; font-weight: 700; cursor: pointer;">ยืนยัน</button>
           </div>
         </sc-if>
         <sc-if value="{{step2}}" hint-placeholder-val="{{ false }}">
           <div role="status" class="rise" style="align-self: flex-start; margin-top: 6px; padding: 12px 18px; border-radius: 20px; background: rgba(255,255,255,.12); display: flex; gap: 10px; align-items: center;">
             <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F4A23C" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg>
-            <span>เปิดแจ้งเตือนแล้ว จะส่ง{{chanText}} เมื่อมีตำแหน่ง <strong>{{fieldText}}</strong></span>
+            <span>{{doneText}} <strong>{{fieldText}}</strong></span>
           </div>
         </sc-if>
       </div>
@@ -194,7 +197,8 @@ class Component extends DCLogic {
         const on = this.state.chan === k, soon = k === 'line';
         return { label, pressed: on ? 'true' : 'false', bg: on ? '#FFFFFF' : 'rgba(255,255,255,.12)', fg: on ? '#1F4D3A' : soon ? '#A9C9B6' : '#FFFFFF', pick: () => { if (!soon) this.setState({ chan: k }); } };
       }),
-      chanText: this.state.chan === 'email' ? 'ทางอีเมล' : 'เป็นแจ้งเตือนบนมือถือ',
+      isEmail: this.state.chan === 'email',
+      doneText: this.state.chan === 'email' ? 'ส่งลิงก์ยืนยันไปที่อีเมลแล้ว กดยืนยันในอีเมลเพื่อเริ่มรับแจ้งเตือนตำแหน่ง' : 'เครื่องอนุญาตแล้ว · จะแจ้งบนมือถือเมื่อมีตำแหน่ง',
       fieldText: (this.state.fields.join(' / ') || 'ทุกสายงาน') + ' ใน จ.ตราด'
     };
   }
