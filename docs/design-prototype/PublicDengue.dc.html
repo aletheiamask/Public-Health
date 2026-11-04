@@ -8,32 +8,32 @@
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@500;600;700&amp;family=Noto+Sans+Thai+Looped:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700&amp;family=Noto+Sans+Thai+Looped:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0}
 *{box-sizing:border-box}
 button{font-family:inherit}
 a{color:inherit}
-.h{font-family:'Anuphan','Noto Sans Thai Looped',sans-serif;letter-spacing:-0.01em}
+.h{font-family:'Kanit','Noto Sans Thai Looped',sans-serif;letter-spacing:-0.01em}
 .press{transition:transform .12s}.press:active{transform:scale(.96)}
 .chk{transition:background .2s,box-shadow .2s}
 @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .rise{animation:rise .35s cubic-bezier(.2,.7,.2,1) both}
-a:focus-visible,button:focus-visible{outline:3px solid #F4A23C;outline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid #FFC83D;outline-offset:3px}
 @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
 </style>
 </helmet>
-<div style="width: 390px; height: 2100px; position: relative; overflow: hidden; background: #FBF7F0; font-family: 'Noto Sans Thai Looped', system-ui, sans-serif; font-size: 18px; line-height: 1.7; color: #10242A;">
+<div style="width: 390px; height: 2100px; position: relative; overflow: hidden; background: #F4F7FF; font-family: 'Noto Sans Thai Looped', system-ui, sans-serif; font-size: 18px; line-height: 1.7; color: #0B1533;">
   <div style="position: relative;">
     <img src="/_blob/ca5e24f8d900eb93ce36fc4d4f70f815" alt="ภาพประกอบ: ชาวบ้านกับ อสม. คว่ำโอ่งน้ำป้องกันยุงลาย" style="width: 100%; height: 260px; object-fit: cover; display: block;">
     <a href="HomeMobile.dc.html" class="press" style="position: absolute; left: 14px; top: 14px; height: 48px; padding: 0 16px 0 10px; border-radius: 999px; background: #FFFFFF; text-decoration: none; font-weight: 700; display: flex; gap: 4px; align-items: center; box-shadow: 0 8px 20px -8px rgba(0,0,0,.35);"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>กลับ</a>
   </div>
 
-  <article style="zoom: {{zoom}}; margin-top: -28px; position: relative; border-radius: 28px 28px 0 0; background: #FBF7F0; padding: 22px 18px 150px; display: flex; flex-direction: column; gap: 18px;">
-    <span style="align-self: flex-start; padding: 2px 12px; border-radius: 999px; background: #B3123F; color: #FFFFFF; font-size: 16px; font-weight: 700;">เฝ้าระวัง · อัปเดต 4 พ.ย. 2569</span>
+  <article style="zoom: {{zoom}}; margin-top: -28px; position: relative; border-radius: 28px 28px 0 0; background: #F4F7FF; padding: 22px 18px 150px; display: flex; flex-direction: column; gap: 18px;">
+    <span style="align-self: flex-start; padding: 2px 12px; border-radius: 999px; background: #D61F4A; color: #FFFFFF; font-size: 16px; font-weight: 700;">เฝ้าระวัง · อัปเดต 4 พ.ย. 2569</span>
     <h1 class="h" style="margin: 0; font-size: 32px; line-height: 1.25;">ไข้เลือดออกกำลังระบาด ป้องกันได้ใน 10 นาทีต่อสัปดาห์</h1>
 
-    <section aria-labelledby="h-level" style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px;">
+    <section aria-labelledby="h-level" style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E3E8F5; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px;">
       <h2 id="h-level" class="h" style="margin: 0; font-size: 19px;">ระดับความเสี่ยงในอำเภอของคุณ</h2>
       <div style="display: flex; gap: 6px; flex-wrap: wrap;">
         <sc-for list="{{districts}}" as="d" hint-placeholder-count="4">
@@ -46,42 +46,42 @@ a:focus-visible,button:focus-visible{outline:3px solid #F4A23C;outline-offset:3p
       </div>
     </section>
 
-    <button type="button" class="press" onClick="{{toggleListen}}" aria-pressed="{{listenPressed}}" style="height: 58px; border-radius: 18px; border: 0; background: #0A3640; color: #FFFFFF; font-size: 17px; font-weight: 700; display: flex; gap: 10px; align-items: center; justify-content: center; cursor: pointer;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>{{listenLabel}}</button>
+    <button type="button" class="press" onClick="{{toggleListen}}" aria-pressed="{{listenPressed}}" style="height: 58px; border-radius: 18px; border: 0; background: #0B1533; color: #FFFFFF; font-size: 17px; font-weight: 700; display: flex; gap: 10px; align-items: center; justify-content: center; cursor: pointer;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>{{listenLabel}}</button>
 
     <section aria-labelledby="h-do">
       <h2 id="h-do" class="h" style="margin: 0 0 10px; font-size: 22px;">ทำ 3 อย่าง ทุก 7 วัน</h2>
       <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px;">
-        <li style="display: flex; gap: 14px; align-items: center; padding: 14px 16px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4;"><span class="h" style="width: 44px; height: 44px; flex: none; border-radius: 50%; background: #0E6E7E; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 20px;">1</span><span><strong>คว่ำภาชนะ</strong> กะลา ยางรถ กระถาง ที่มีน้ำขัง</span></li>
-        <li style="display: flex; gap: 14px; align-items: center; padding: 14px 16px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4;"><span class="h" style="width: 44px; height: 44px; flex: none; border-radius: 50%; background: #0E6E7E; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 20px;">2</span><span><strong>ปิดฝาโอ่ง</strong> ให้สนิท หรือใส่ทรายกำจัดลูกน้ำ</span></li>
-        <li style="display: flex; gap: 14px; align-items: center; padding: 14px 16px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4;"><span class="h" style="width: 44px; height: 44px; flex: none; border-radius: 50%; background: #0E6E7E; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 20px;">3</span><span><strong>เปลี่ยนน้ำ</strong> แจกันและจานรองขาตู้</span></li>
+        <li style="display: flex; gap: 14px; align-items: center; padding: 14px 16px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E3E8F5;"><span class="h" style="width: 44px; height: 44px; flex: none; border-radius: 50%; background: #2457FF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 20px;">1</span><span><strong>คว่ำภาชนะ</strong> กะลา ยางรถ กระถาง ที่มีน้ำขัง</span></li>
+        <li style="display: flex; gap: 14px; align-items: center; padding: 14px 16px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E3E8F5;"><span class="h" style="width: 44px; height: 44px; flex: none; border-radius: 50%; background: #2457FF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 20px;">2</span><span><strong>ปิดฝาโอ่ง</strong> ให้สนิท หรือใส่ทรายกำจัดลูกน้ำ</span></li>
+        <li style="display: flex; gap: 14px; align-items: center; padding: 14px 16px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E3E8F5;"><span class="h" style="width: 44px; height: 44px; flex: none; border-radius: 50%; background: #2457FF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 20px;">3</span><span><strong>เปลี่ยนน้ำ</strong> แจกันและจานรองขาตู้</span></li>
       </ol>
     </section>
 
-    <section aria-labelledby="h-sym" style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; padding: 18px; display: flex; flex-direction: column; gap: 10px;">
+    <section aria-labelledby="h-sym" style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E3E8F5; padding: 18px; display: flex; flex-direction: column; gap: 10px;">
       <h2 id="h-sym" class="h" style="margin: 0; font-size: 21px;">มีอาการแบบนี้ไหม</h2>
-      <p style="margin: 0; font-size: 16px; color: #3B5157;">แตะข้อที่ตรงกับคนในบ้าน ระบบจะบอกว่าควรทำอะไร</p>
+      <p style="margin: 0; font-size: 16px; color: #3A4664;">แตะข้อที่ตรงกับคนในบ้าน ระบบจะบอกว่าควรทำอะไร</p>
       <sc-for list="{{symptoms}}" as="s" hint-placeholder-count="4">
-        <button type="button" role="checkbox" aria-checked="{{s.checked}}" class="chk press" onClick="{{s.toggle}}" style="min-height: 56px; padding: 8px 14px; border-radius: 16px; border: 0; background: {{s.bg}}; box-shadow: 0 0 0 1.5px {{s.ring}}; display: flex; gap: 12px; align-items: center; text-align: left; font-size: 17px; color: #10242A; cursor: pointer;"><span aria-hidden="true" style="width: 28px; height: 28px; flex: none; border-radius: 8px; background: {{s.box}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700;">{{s.tick}}</span>{{s.label}}</button>
+        <button type="button" role="checkbox" aria-checked="{{s.checked}}" class="chk press" onClick="{{s.toggle}}" style="min-height: 56px; padding: 8px 14px; border-radius: 16px; border: 0; background: {{s.bg}}; box-shadow: 0 0 0 1.5px {{s.ring}}; display: flex; gap: 12px; align-items: center; text-align: left; font-size: 17px; color: #0B1533; cursor: pointer;"><span aria-hidden="true" style="width: 28px; height: 28px; flex: none; border-radius: 8px; background: {{s.box}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700;">{{s.tick}}</span>{{s.label}}</button>
       </sc-for>
       <sc-if value="{{danger}}" hint-placeholder-val="{{ false }}">
-        <div role="alert" class="rise" style="border-radius: 18px; background: #FBE4EA; padding: 14px; display: flex; flex-direction: column; gap: 10px; color: #5B0920;">
+        <div role="alert" class="rise" style="border-radius: 18px; background: #FFE4EA; padding: 14px; display: flex; flex-direction: column; gap: 10px; color: #7A0F2C;">
           <strong>มีสัญญาณอันตราย ไปโรงพยาบาลทันที</strong>
-          <a href="tel:1669" class="press" style="height: 56px; border-radius: 16px; background: #B3123F; color: #FFFFFF; text-decoration: none; font-weight: 700; display: flex; align-items: center; justify-content: center;">โทรเรียกรถพยาบาล 1669</a>
+          <a href="tel:1669" class="press" style="height: 56px; border-radius: 16px; background: #D61F4A; color: #FFFFFF; text-decoration: none; font-weight: 700; display: flex; align-items: center; justify-content: center;">โทรเรียกรถพยาบาล 1669</a>
         </div>
       </sc-if>
       <sc-if value="{{fever}}" hint-placeholder-val="{{ false }}">
-        <div role="status" class="rise" style="border-radius: 18px; background: #FFF1DA; padding: 14px; display: flex; flex-direction: column; gap: 10px; color: #5C3300;">
+        <div role="status" class="rise" style="border-radius: 18px; background: #FFF6CC; padding: 14px; display: flex; flex-direction: column; gap: 10px; color: #5A3E00;">
           <strong>ควรไปตรวจที่อนามัย (รพ.สต.) วันนี้</strong>
           <span style="font-size: 16px;">กินยาลดไข้ได้แค่พาราเซตามอล ห้ามกินแอสไพรินและไอบูโพรเฟน</span>
-          <a href="Clinics.dc.html" class="press" style="height: 52px; border-radius: 16px; background: #0E6E7E; color: #FFFFFF; text-decoration: none; font-weight: 700; display: flex; align-items: center; justify-content: center;">หาอนามัยใกล้บ้าน</a>
+          <a href="Clinics.dc.html" class="press" style="height: 52px; border-radius: 16px; background: #2457FF; color: #FFFFFF; text-decoration: none; font-weight: 700; display: flex; align-items: center; justify-content: center;">หาอนามัยใกล้บ้าน</a>
         </div>
       </sc-if>
     </section>
-    <p style="margin: 0; font-size: 16px; color: #3B5157;">ข้อมูลจาก กลุ่มงานควบคุมโรคติดต่อ สสจ.ตราด · สงสัยโทร <a href="tel:1422" style="font-weight: 700; color: #0E6E7E;">1422</a></p>
+    <p style="margin: 0; font-size: 16px; color: #3A4664;">ข้อมูลจาก กลุ่มงานควบคุมโรคติดต่อ สสจ.ตราด · สงสัยโทร <a href="tel:1422" style="font-weight: 700; color: #2457FF;">1422</a></p>
   </article>
 
-  <div style="position: absolute; left: 12px; right: 12px; bottom: 16px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 8px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4, 0 20px 40px -20px rgba(10,54,64,.45);">
-    <a href="tel:1422" class="press" style="height: 58px; border-radius: 20px; background: #DDF1F1; color: #0A4B57; text-decoration: none; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center;">โทรปรึกษา 1422</a>
+  <div style="position: absolute; left: 12px; right: 12px; bottom: 16px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 8px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E3E8F5, 0 20px 40px -20px rgba(20,40,120,.45);">
+    <a href="tel:1422" class="press" style="height: 58px; border-radius: 20px; background: #E6EDFF; color: #1D3FD1; text-decoration: none; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center;">โทรปรึกษา 1422</a>
     <button type="button" class="press" onClick="{{share}}" style="height: 58px; border-radius: 20px; border: 0; background: #05803A; color: #FFFFFF; font-size: 17px; font-weight: 700; cursor: pointer;">{{shareLabel}}</button>
   </div>
 </div>
@@ -96,17 +96,17 @@ class Component extends DCLogic {
   }
   renderVals() {
     const lv = {
-      'เมือง': ['สูง', '#FBE4EA', '#8C0E31', '18 ราย สัปดาห์นี้ เพิ่มขึ้นต่อเนื่อง'],
-      'เขาสมิง': ['สูง', '#FBE4EA', '#8C0E31', '11 ราย สัปดาห์นี้'],
-      'บ่อไร่': ['ปานกลาง', '#FFF1DA', '#7A4300', '6 ราย สัปดาห์นี้'],
-      'คลองใหญ่': ['ปานกลาง', '#FFF1DA', '#7A4300', '4 ราย สัปดาห์นี้'],
-      'แหลมงอบ': ['ต่ำ', '#E3EFE6', '#1F4D3A', '2 ราย สัปดาห์นี้'],
-      'เกาะช้าง': ['ต่ำ', '#E3EFE6', '#1F4D3A', '1 ราย สัปดาห์นี้'],
-      'เกาะกูด': ['ต่ำ', '#E3EFE6', '#1F4D3A', 'ยังไม่พบผู้ป่วย']
+      'เมือง': ['สูง', '#FFE4EA', '#B0123C', '18 ราย สัปดาห์นี้ เพิ่มขึ้นต่อเนื่อง'],
+      'เขาสมิง': ['สูง', '#FFE4EA', '#B0123C', '11 ราย สัปดาห์นี้'],
+      'บ่อไร่': ['ปานกลาง', '#FFF6CC', '#6B4A00', '6 ราย สัปดาห์นี้'],
+      'คลองใหญ่': ['ปานกลาง', '#FFF6CC', '#6B4A00', '4 ราย สัปดาห์นี้'],
+      'แหลมงอบ': ['ต่ำ', '#D9F7EA', '#0E6B52', '2 ราย สัปดาห์นี้'],
+      'เกาะช้าง': ['ต่ำ', '#D9F7EA', '#0E6B52', '1 ราย สัปดาห์นี้'],
+      'เกาะกูด': ['ต่ำ', '#D9F7EA', '#0E6B52', 'ยังไม่พบผู้ป่วย']
     };
     const districts = Object.keys(lv).map((name) => {
       const on = this.state.d === name;
-      return { name, pressed: on ? 'true' : 'false', bg: on ? '#10242A' : '#FFFFFF', fg: on ? '#FFFFFF' : '#10242A', ring: on ? '#10242A' : '#E8E1D4', pick: () => this.setState({ d: name }) };
+      return { name, pressed: on ? 'true' : 'false', bg: on ? '#0B1533' : '#FFFFFF', fg: on ? '#FFFFFF' : '#0B1533', ring: on ? '#0B1533' : '#E3E8F5', pick: () => this.setState({ d: name }) };
     });
     const l = lv[this.state.d];
     const syms = [
@@ -119,7 +119,7 @@ class Component extends DCLogic {
       const on = this.state.s.indexOf(k) >= 0;
       return {
         label, checked: on ? 'true' : 'false', tick: on ? '✓' : '',
-        bg: on ? (dangerous ? '#FBE4EA' : '#FFF1DA') : '#FBF7F0', ring: on ? (dangerous ? '#B3123F' : '#E0912B') : '#E8E1D4', box: on ? (dangerous ? '#B3123F' : '#A85A00') : '#D8CFBF',
+        bg: on ? (dangerous ? '#FFE4EA' : '#FFF6CC') : '#F4F7FF', ring: on ? (dangerous ? '#D61F4A' : '#F59E0B') : '#E3E8F5', box: on ? (dangerous ? '#D61F4A' : '#A85A00') : '#C3CBE0',
         toggle: () => this.setState({ s: on ? this.state.s.filter((x) => x !== k) : this.state.s.concat([k]) })
       };
     });

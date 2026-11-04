@@ -8,105 +8,105 @@
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@500;600;700&amp;family=Noto+Sans+Thai+Looped:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700&amp;family=Noto+Sans+Thai+Looped:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
-body{margin:0;background:#F4EFE6}
+body{margin:0;background:#EEF2FB}
 *{box-sizing:border-box}
 button,input,textarea{font-family:inherit}
 a{color:inherit}
-.h{font-family:'Anuphan','Noto Sans Thai Looped',sans-serif;letter-spacing:-0.01em}
+.h{font-family:'Kanit','Noto Sans Thai Looped',sans-serif;letter-spacing:-0.01em}
 .press{transition:transform .12s}.press:active{transform:scale(.97)}
 .chip{transition:background .2s,color .2s,box-shadow .2s}
 @keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.15)}100%{transform:scale(1)}}
 .bump{display:inline-block;animation:bump .35s}
-a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #F4A23C;outline-offset:2px}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #FFC83D;outline-offset:2px}
 @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
 </style>
 </helmet>
-<div style="font-family: 'Noto Sans Thai Looped', system-ui, sans-serif; font-size: 16px; line-height: 1.6; color: #10242A; background: #F4EFE6; min-height: 100vh;">
-  <header style="position: sticky; top: 0; z-index: 2; background: rgba(244,239,230,.92); border-bottom: 1px solid #E8E1D4;">
+<div style="font-family: 'Noto Sans Thai Looped', system-ui, sans-serif; font-size: 16px; line-height: 1.6; color: #0B1533; background: #EEF2FB; min-height: 100vh;">
+  <header style="position: sticky; top: 0; z-index: 2; background: rgba(244,239,230,.92); border-bottom: 1px solid #E3E8F5;">
     <div style="max-width: 1320px; margin: 0 auto; padding: 12px 28px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
-      <a href="Inbox.dc.html" class="press" style="height: 42px; padding: 0 14px; border-radius: 12px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8E1D4; text-decoration: none; font-weight: 700; display: flex; align-items: center;">‹ ปิด</a>
+      <a href="Inbox.dc.html" class="press" style="height: 42px; padding: 0 14px; border-radius: 12px; background: #FFFFFF; box-shadow: 0 0 0 1px #E3E8F5; text-decoration: none; font-weight: 700; display: flex; align-items: center;">‹ ปิด</a>
       <span class="h" style="font-weight: 700; font-size: 18px;">เขียนหนังสือเวียน</span>
-      <span style="font-size: 14px; color: #56696E;">บันทึกร่างอัตโนมัติ 12:14 น.</span>
+      <span style="font-size: 14px; color: #5A6482;">บันทึกร่างอัตโนมัติ 12:14 น.</span>
       <span style="flex: 1;"></span>
-      <button type="button" class="press" onClick="{{toggleSched}}" aria-pressed="{{schedPressed}}" style="height: 44px; padding: 0 16px; border-radius: 12px; border: 0; background: #FFFFFF; box-shadow: 0 0 0 1px #E8E1D4; font-size: 15px; font-weight: 700; color: #10242A; cursor: pointer;">{{schedLabel}}</button>
-      <button type="button" class="press" style="height: 44px; padding: 0 18px; border-radius: 12px; border: 0; background: #0E6E7E; color: #FFFFFF; font-size: 15px; font-weight: 700;">ส่งขออนุมัติ · ด่วนที่สุด (ผู้อนุมัติ 3 ท่าน)</button>
+      <button type="button" class="press" onClick="{{toggleSched}}" aria-pressed="{{schedPressed}}" style="height: 44px; padding: 0 16px; border-radius: 12px; border: 0; background: #FFFFFF; box-shadow: 0 0 0 1px #E3E8F5; font-size: 15px; font-weight: 700; color: #0B1533; cursor: pointer;">{{schedLabel}}</button>
+      <button type="button" class="press" style="height: 44px; padding: 0 18px; border-radius: 12px; border: 0; background: #2457FF; color: #FFFFFF; font-size: 15px; font-weight: 700;">ส่งขออนุมัติ · ด่วนที่สุด (ผู้อนุมัติ 3 ท่าน)</button>
     </div>
   </header>
 
   <div style="max-width: 1320px; margin: 0 auto; padding: 22px 28px 48px; display: flex; flex-wrap: wrap; gap: 22px; align-items: flex-start;">
     <section aria-label="เนื้อหา" style="flex: 2 1 620px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
       <sc-if value="{{dup}}" hint-placeholder-val="{{ true }}">
-      <div role="status" style="border-radius: 18px; background: #FFF1DA; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; color: #5C3300;">
+      <div role="status" style="border-radius: 18px; background: #FFF6CC; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; color: #5A3E00;">
         <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path><path d="M12 9v4M12 17h.01"></path></svg>
         <span style="flex: 1 1 360px;"><strong>มีหนังสือเรื่องคล้ายกันรออนุมัติอยู่:</strong> “ขอความร่วมมือรายงานโรคมือเท้าปากในศูนย์เด็กเล็ก” โดย กมลชนก ทองดี (เมื่อวาน)</span>
         <a href="Inbox.dc.html" class="press" style="height: 40px; padding: 0 14px; border-radius: 12px; background: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 14px; display: flex; align-items: center;">เปิดดูฉบับนั้น</a>
-        <button type="button" class="press" onClick="{{dismissDup}}" style="height: 40px; padding: 0 14px; border-radius: 12px; border: 0; background: transparent; font-weight: 700; font-size: 14px; color: #5C3300; cursor: pointer;">เขียนต่อแยกฉบับ</button>
+        <button type="button" class="press" onClick="{{dismissDup}}" style="height: 40px; padding: 0 14px; border-radius: 12px; border: 0; background: transparent; font-weight: 700; font-size: 14px; color: #5A3E00; cursor: pointer;">เขียนต่อแยกฉบับ</button>
       </div>
       </sc-if>
       <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-        <span style="font-size: 14px; color: #56696E;">เริ่มจากแม่แบบ</span>
-        <span style="height: 36px; padding: 0 14px; border-radius: 999px; background: #10242A; color: #FFFFFF; font-size: 14px; font-weight: 700; display: flex; align-items: center;">หนังสือเวียนด่วน</span>
-        <span style="height: 36px; padding: 0 14px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8E1D4; font-size: 14px; display: flex; align-items: center;">เตือนภัยโรค</span>
-        <span style="height: 36px; padding: 0 14px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8E1D4; font-size: 14px; display: flex; align-items: center;">ข่าวประชาสัมพันธ์</span>
-        <span style="height: 36px; padding: 0 14px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8E1D4; font-size: 14px; display: flex; align-items: center;">ขอข้อมูล + แบบฟอร์ม</span>
+        <span style="font-size: 14px; color: #5A6482;">เริ่มจากแม่แบบ</span>
+        <span style="height: 36px; padding: 0 14px; border-radius: 999px; background: #0B1533; color: #FFFFFF; font-size: 14px; font-weight: 700; display: flex; align-items: center;">หนังสือเวียนด่วน</span>
+        <span style="height: 36px; padding: 0 14px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 0 0 1px #E3E8F5; font-size: 14px; display: flex; align-items: center;">เตือนภัยโรค</span>
+        <span style="height: 36px; padding: 0 14px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 0 0 1px #E3E8F5; font-size: 14px; display: flex; align-items: center;">ข่าวประชาสัมพันธ์</span>
+        <span style="height: 36px; padding: 0 14px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 0 0 1px #E3E8F5; font-size: 14px; display: flex; align-items: center;">ขอข้อมูล + แบบฟอร์ม</span>
       </div>
-      <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8E1D4; padding: 24px 28px; display: flex; flex-direction: column; gap: 14px;">
+      <div style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E3E8F5; padding: 24px 28px; display: flex; flex-direction: column; gap: 14px;">
         <label for="ttl" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">ชื่อเรื่อง</label>
-        <input id="ttl" type="text" value="ขอความร่วมมือเฝ้าระวังโรคมือเท้าปากในศูนย์พัฒนาเด็กเล็ก" class="h" style="border: 0; outline: none; font-size: 28px; font-weight: 700; color: #10242A; padding: 0;">
-        <div role="toolbar" aria-label="จัดรูปแบบ" style="display: flex; gap: 4px; padding: 6px; border-radius: 12px; background: #FBF7F0; align-self: flex-start;">
+        <input id="ttl" type="text" value="ขอความร่วมมือเฝ้าระวังโรคมือเท้าปากในศูนย์พัฒนาเด็กเล็ก" class="h" style="border: 0; outline: none; font-size: 28px; font-weight: 700; color: #0B1533; padding: 0;">
+        <div role="toolbar" aria-label="จัดรูปแบบ" style="display: flex; gap: 4px; padding: 6px; border-radius: 12px; background: #F4F7FF; align-self: flex-start;">
           <button type="button" aria-label="ตัวหนา" style="width: 36px; height: 34px; border-radius: 8px; border: 0; background: transparent; font-weight: 800;">B</button>
           <button type="button" aria-label="รายการลำดับ" style="width: 36px; height: 34px; border-radius: 8px; border: 0; background: transparent;">1.</button>
           <button type="button" aria-label="แทรกตาราง" style="width: 36px; height: 34px; border-radius: 8px; border: 0; background: transparent;">▦</button>
           <button type="button" aria-label="แนบแบบฟอร์ม" style="height: 34px; padding: 0 10px; border-radius: 8px; border: 0; background: transparent; font-size: 14px;">+ แบบฟอร์ม</button>
         </div>
-        <div style="font-size: 17px; line-height: 1.8; color: #22383E; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-size: 17px; line-height: 1.8; color: #3A4664; display: flex; flex-direction: column; gap: 10px;">
           <p style="margin: 0;">ตั้งแต่ 20 ต.ค. – 2 พ.ย. 2569 พบผู้ป่วยโรคมือเท้าปาก 11 ราย ในเด็กอายุต่ำกว่า 5 ปี จาก 3 ศูนย์พัฒนาเด็กเล็กใน อ.เมืองตราด และ อ.บ่อไร่</p>
           <p style="margin: 0;">ขอให้ รพ.สต. ทุกแห่งประสานศูนย์พัฒนาเด็กเล็กในพื้นที่ คัดกรองเด็กทุกเช้า และรายงานผู้ป่วยสงสัยภายใน 24 ชั่วโมง</p>
         </div>
-        <div style="padding: 14px 16px; border-radius: 16px; background: #0A3640; color: #EAF6F5;">
-          <span style="font-size: 13px; font-weight: 700; color: #7FD3D6;">สรุปสำหรับมือถือ (แสดงบนสุด)</span>
+        <div style="padding: 14px 16px; border-radius: 16px; background: #0B1533; color: #EEF3FF;">
+          <span style="font-size: 13px; font-weight: 700; color: #7FE3EE;">สรุปสำหรับมือถือ (แสดงบนสุด)</span>
           <ol style="margin: 4px 0 0; padding-left: 20px; font-size: 15px;"><li>คัดกรองเด็กในศูนย์ทุกเช้า</li><li>รายงานผู้ป่วยสงสัยภายใน 24 ชม.</li><li>ปิดห้องเรียนเมื่อพบตั้งแต่ 2 ราย</li></ol>
         </div>
         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-          <span style="display: flex; gap: 8px; align-items: center; padding: 8px 12px; border-radius: 12px; background: #FBF7F0; font-size: 14px;"><span style="padding: 0 5px; border-radius: 4px; background: #B3123F; color: #FFFFFF; font-size: 10px; font-weight: 700;">PDF</span>หนังสือเวียน ว 1302.pdf · ตรวจไวรัสแล้ว</span>
-          <span style="display: flex; gap: 8px; align-items: center; padding: 8px 12px; border-radius: 12px; background: #DDF1F1; color: #0A4B57; font-size: 14px; font-weight: 600;">แบบรายงานผู้ป่วย HFMD (ออนไลน์)</span>
+          <span style="display: flex; gap: 8px; align-items: center; padding: 8px 12px; border-radius: 12px; background: #F4F7FF; font-size: 14px;"><span style="padding: 0 5px; border-radius: 4px; background: #D61F4A; color: #FFFFFF; font-size: 10px; font-weight: 700;">PDF</span>หนังสือเวียน ว 1302.pdf · ตรวจไวรัสแล้ว</span>
+          <span style="display: flex; gap: 8px; align-items: center; padding: 8px 12px; border-radius: 12px; background: #E6EDFF; color: #1D3FD1; font-size: 14px; font-weight: 600;">แบบรายงานผู้ป่วย HFMD (ออนไลน์)</span>
         </div>
       </div>
     </section>
 
     <aside aria-label="การส่ง" style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 14px;">
-      <section style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8E1D4; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
-        <div style="display: flex; justify-content: space-between; align-items: baseline;"><h2 class="h" style="margin: 0; font-size: 18px;">ส่งถึง</h2><span style="font-size: 14px; color: #3B5157;">รวม <strong class="bump" style="font-size: 18px; color: #0E6E7E;">{{people}}</strong> คน</span></div>
+      <section style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E3E8F5; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;"><h2 class="h" style="margin: 0; font-size: 18px;">ส่งถึง</h2><span style="font-size: 14px; color: #3A4664;">รวม <strong class="bump" style="font-size: 18px; color: #2457FF;">{{people}}</strong> คน</span></div>
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
           <sc-for list="{{aud}}" as="a" hint-placeholder-count="5">
-            <sc-if value="{{a.on}}" hint-placeholder-val="{{ false }}"><button type="button" aria-pressed="true" class="chip press" onClick="{{a.toggle}}" style="height: 40px; padding: 0 14px; border-radius: 999px; border: 0; background: #0E6E7E; color: #FFFFFF; font-size: 14px; font-weight: 700; cursor: pointer;">✓ {{a.label}}</button></sc-if>
-            <sc-if value="{{a.off}}" hint-placeholder-val="{{ true }}"><button type="button" aria-pressed="false" class="chip press" onClick="{{a.toggle}}" style="height: 40px; padding: 0 14px; border-radius: 999px; border: 0; background: #FBF7F0; box-shadow: 0 0 0 1px #E8E1D4; color: #10242A; font-size: 14px; font-weight: 600; cursor: pointer;">{{a.label}}</button></sc-if>
+            <sc-if value="{{a.on}}" hint-placeholder-val="{{ false }}"><button type="button" aria-pressed="true" class="chip press" onClick="{{a.toggle}}" style="height: 40px; padding: 0 14px; border-radius: 999px; border: 0; background: #2457FF; color: #FFFFFF; font-size: 14px; font-weight: 700; cursor: pointer;">✓ {{a.label}}</button></sc-if>
+            <sc-if value="{{a.off}}" hint-placeholder-val="{{ true }}"><button type="button" aria-pressed="false" class="chip press" onClick="{{a.toggle}}" style="height: 40px; padding: 0 14px; border-radius: 999px; border: 0; background: #F4F7FF; box-shadow: 0 0 0 1px #E3E8F5; color: #0B1533; font-size: 14px; font-weight: 600; cursor: pointer;">{{a.label}}</button></sc-if>
           </sc-for>
         </div>
-        <span style="font-size: 13px; color: #56696E;">กลุ่มที่บันทึกไว้: “รพ.สต. + สสอ. ทั้งจังหวัด”</span>
+        <span style="font-size: 13px; color: #5A6482;">กลุ่มที่บันทึกไว้: “รพ.สต. + สสอ. ทั้งจังหวัด”</span>
       </section>
 
-      <section style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8E1D4; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+      <section style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E3E8F5; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
         <h2 class="h" style="margin: 0; font-size: 18px;">ความด่วน</h2>
-        <div role="radiogroup" aria-label="ความด่วน" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 4px; border-radius: 14px; background: #FBF7F0;">
+        <div role="radiogroup" aria-label="ความด่วน" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 4px; border-radius: 14px; background: #F4F7FF;">
           <sc-for list="{{urg}}" as="u" hint-placeholder-count="3">
             <sc-if value="{{u.on}}" hint-placeholder-val="{{ false }}"><button type="button" role="radio" aria-checked="true" class="chip" onClick="{{u.pick}}" style="height: 40px; border-radius: 10px; border: 0; background: {{u.bg}}; color: #FFFFFF; font-size: 14px; font-weight: 700; cursor: pointer;">{{u.label}}</button></sc-if>
-            <sc-if value="{{u.off}}" hint-placeholder-val="{{ true }}"><button type="button" role="radio" aria-checked="false" class="chip" onClick="{{u.pick}}" style="height: 40px; border-radius: 10px; border: 0; background: transparent; color: #3B5157; font-size: 14px; font-weight: 600; cursor: pointer;">{{u.label}}</button></sc-if>
+            <sc-if value="{{u.off}}" hint-placeholder-val="{{ true }}"><button type="button" role="radio" aria-checked="false" class="chip" onClick="{{u.pick}}" style="height: 40px; border-radius: 10px; border: 0; background: transparent; color: #3A4664; font-size: 14px; font-weight: 600; cursor: pointer;">{{u.label}}</button></sc-if>
           </sc-for>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding-top: 6px; border-top: 1px solid #F0EADF;"><span style="display: flex; flex-direction: column; line-height: 1.4;"><span style="font-weight: 700;">ต้องรับทราบ</span><span style="font-size: 14px; color: #56696E;">ภายใน 12 พ.ย. 2569 · เตือนอัตโนมัติ</span></span><span aria-hidden="true" style="width: 52px; height: 30px; border-radius: 999px; background: #0E6E7E; padding: 3px;"><span style="display: block; width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF; transform: translateX(22px);"></span></span></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding-top: 6px; border-top: 1px solid #EDF1FA;"><span style="display: flex; flex-direction: column; line-height: 1.4;"><span style="font-weight: 700;">ต้องรับทราบ</span><span style="font-size: 14px; color: #5A6482;">ภายใน 12 พ.ย. 2569 · เตือนอัตโนมัติ</span></span><span aria-hidden="true" style="width: 52px; height: 30px; border-radius: 999px; background: #2457FF; padding: 3px;"><span style="display: block; width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF; transform: translateX(22px);"></span></span></div>
       </section>
 
-      <section style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8E1D4; padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+      <section style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px #E3E8F5; padding: 20px; display: flex; flex-direction: column; gap: 10px;">
         <h2 class="h" style="margin: 0; font-size: 18px;">แจ้งเตือนทาง</h2>
         <span style="display: flex; justify-content: space-between;"><span>ในเว็บ + แจ้งเตือนมือถือ (Push)</span><strong style="color: #1A7A50;">เปิด</strong></span>
         <span style="display: flex; justify-content: space-between;"><span>อีเมล</span><strong style="color: #1A7A50;">เปิด</strong></span>
-        <span style="display: flex; justify-content: space-between; color: #56696E;"><span>LINE OA</span><span style="font-size: 13px; padding: 0 8px; border-radius: 999px; background: #F3EDE2;">ระบบพร้อม รอเปิดใช้</span></span>
+        <span style="display: flex; justify-content: space-between; color: #5A6482;"><span>LINE OA</span><span style="font-size: 13px; padding: 0 8px; border-radius: 999px; background: #EEF2FB;">ระบบพร้อม รอเปิดใช้</span></span>
       </section>
 
-      <section style="border-radius: 24px; background: #FFF1DA; padding: 16px 18px; display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: #5C3300;">
+      <section style="border-radius: 24px; background: #FFF6CC; padding: 16px 18px; display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: #5A3E00;">
         <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 2px;"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16h.01"></path></svg>
         <span>ทุกข่าวต้องผ่านการอนุมัติ และห้ามอนุมัติข่าวที่ตัวเองเขียน · <strong>ช่องทางด่วนที่สุด:</strong> แจ้งผู้อนุมัติทุกคนพร้อมกัน (นพ.ธนากร วงศ์สุข และ รอง นพ.สสจ. 2 ท่าน) ใครอนุมัติก่อนก็เผยแพร่ทันที</span>
       </section>
@@ -127,7 +127,7 @@ class Component extends DCLogic {
       return { label, on, off: !on, toggle: () => this.setState({ on: on ? this.state.on.filter((x) => x !== k) : this.state.on.concat([k]) }) };
     });
     const people = defs.filter((d) => this.state.on.indexOf(d[0]) >= 0).reduce((s, d) => s + d[2], 0);
-    const udefs = [['norm', 'ปกติ', '#3B5157'], ['fast', 'ด่วน', '#A85A00'], ['top', 'ด่วนที่สุด', '#B3123F']];
+    const udefs = [['norm', 'ปกติ', '#3A4664'], ['fast', 'ด่วน', '#A85A00'], ['top', 'ด่วนที่สุด', '#D61F4A']];
     const urg = udefs.map(([k, label, bg]) => ({ label, bg, on: this.state.urg === k, off: this.state.urg !== k, pick: () => this.setState({ urg: k }) }));
     return {
       aud, urg, people: people.toLocaleString('th-TH'),

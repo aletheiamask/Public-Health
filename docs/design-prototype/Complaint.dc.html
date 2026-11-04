@@ -8,13 +8,13 @@
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@500;600;700&amp;family=Noto+Sans+Thai+Looped:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700&amp;family=Noto+Sans+Thai+Looped:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0}
 *{box-sizing:border-box}
 button,input,textarea{font-family:inherit}
 a{color:inherit}
-.h{font-family:'Anuphan','Noto Sans Thai Looped',sans-serif;letter-spacing:-0.01em}
+.h{font-family:'Kanit','Noto Sans Thai Looped',sans-serif;letter-spacing:-0.01em}
 .press{transition:transform .12s}.press:active{transform:scale(.96)}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(179,18,63,.45)}100%{box-shadow:0 0 0 22px rgba(179,18,63,0)}}
 .rec{animation:pulse 1.6s ease-out 2}
@@ -22,20 +22,20 @@ a{color:inherit}
 .eq{transform-origin:center;animation:eq .8s ease-in-out infinite}
 @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .rise{animation:rise .35s cubic-bezier(.2,.7,.2,1) both}
-a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #F4A23C;outline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #FFC83D;outline-offset:3px}
 @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
 </style>
 </helmet>
-<div style="width: 390px; height: 1900px; position: relative; overflow: hidden; background: #FBF7F0; font-family: 'Noto Sans Thai Looped', system-ui, sans-serif; font-size: 18px; line-height: 1.65; color: #10242A;">
+<div style="width: 390px; height: 1900px; position: relative; overflow: hidden; background: #F4F7FF; font-family: 'Noto Sans Thai Looped', system-ui, sans-serif; font-size: 18px; line-height: 1.65; color: #0B1533;">
   <header style="padding: 12px 12px 4px; display: flex; align-items: center; gap: 8px;">
-    <a href="HomeMobile.dc.html" class="press" style="height: 48px; padding: 0 16px 0 10px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; text-decoration: none; font-weight: 700; display: flex; gap: 4px; align-items: center;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>กลับ</a>
+    <a href="HomeMobile.dc.html" class="press" style="height: 48px; padding: 0 16px 0 10px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E3E8F5; text-decoration: none; font-weight: 700; display: flex; gap: 4px; align-items: center;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>กลับ</a>
   </header>
 
   <sc-if value="{{notSent}}" hint-placeholder-val="{{ true }}">
     <div style="zoom: {{zoom}}; padding: 8px 16px 150px; display: flex; flex-direction: column; gap: 20px;">
       <div>
         <h1 class="h" style="margin: 0; font-size: 32px; line-height: 1.25;">ร้องเรียน / แจ้งปัญหา</h1>
-        <p style="margin: 4px 0 0; color: #3B5157; font-size: 17px;">พูดหรือพิมพ์ก็ได้ ได้เลขติดตามทันที ตอบกลับภายใน 15 วัน</p>
+        <p style="margin: 4px 0 0; color: #3A4664; font-size: 17px;">พูดหรือพิมพ์ก็ได้ ได้เลขติดตามทันที ตอบกลับภายใน 15 วัน</p>
       </div>
 
       <fieldset style="border: 0; margin: 0; padding: 0;">
@@ -47,74 +47,74 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
         </div>
       </fieldset>
 
-      <section aria-labelledby="h-voice" style="border-radius: 26px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; padding: 22px 18px; display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center;">
+      <section aria-labelledby="h-voice" style="border-radius: 26px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E3E8F5; padding: 22px 18px; display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center;">
         <h2 id="h-voice" class="h" style="margin: 0; font-size: 20px;">เล่าให้ฟังได้เลย</h2>
         <sc-if value="{{idle}}" hint-placeholder-val="{{ true }}">
-          <button type="button" class="press" onClick="{{startRec}}" aria-label="เริ่มอัดเสียง" style="width: 112px; height: 112px; border-radius: 50%; border: 0; background: #B3123F; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer;"><svg aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg></button>
-          <span style="font-size: 16px; color: #3B5157;">แตะปุ่มแดง แล้วพูดได้เลย ไม่เกิน 3 นาที</span>
+          <button type="button" class="press" onClick="{{startRec}}" aria-label="เริ่มอัดเสียง" style="width: 112px; height: 112px; border-radius: 50%; border: 0; background: #D61F4A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer;"><svg aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg></button>
+          <span style="font-size: 16px; color: #3A4664;">แตะปุ่มแดง แล้วพูดได้เลย ไม่เกิน 3 นาที</span>
         </sc-if>
         <sc-if value="{{recording}}" hint-placeholder-val="{{ false }}">
-          <button type="button" class="press rec" onClick="{{stopRec}}" aria-label="หยุดอัดเสียง" style="width: 112px; height: 112px; border-radius: 50%; border: 0; background: #B3123F; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer;"><span aria-hidden="true" style="width: 34px; height: 34px; border-radius: 8px; background: #FFFFFF;"></span></button>
-          <span aria-hidden="true" style="display: flex; gap: 4px; align-items: center; height: 36px;"><span class="eq" style="width: 5px; height: 36px; border-radius: 3px; background: #B3123F;"></span><span class="eq" style="width: 5px; height: 36px; border-radius: 3px; background: #B3123F; animation-delay: .15s;"></span><span class="eq" style="width: 5px; height: 36px; border-radius: 3px; background: #B3123F; animation-delay: .3s;"></span><span class="eq" style="width: 5px; height: 36px; border-radius: 3px; background: #B3123F; animation-delay: .45s;"></span><span class="eq" style="width: 5px; height: 36px; border-radius: 3px; background: #B3123F; animation-delay: .6s;"></span></span>
-          <span role="status" style="font-weight: 700; color: #8C0E31;">กำลังอัดเสียง 0:24 · แตะเพื่อหยุด</span>
+          <button type="button" class="press rec" onClick="{{stopRec}}" aria-label="หยุดอัดเสียง" style="width: 112px; height: 112px; border-radius: 50%; border: 0; background: #D61F4A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer;"><span aria-hidden="true" style="width: 34px; height: 34px; border-radius: 8px; background: #FFFFFF;"></span></button>
+          <span aria-hidden="true" style="display: flex; gap: 4px; align-items: center; height: 36px;"><span class="eq" style="width: 5px; height: 36px; border-radius: 3px; background: #D61F4A;"></span><span class="eq" style="width: 5px; height: 36px; border-radius: 3px; background: #D61F4A; animation-delay: .15s;"></span><span class="eq" style="width: 5px; height: 36px; border-radius: 3px; background: #D61F4A; animation-delay: .3s;"></span><span class="eq" style="width: 5px; height: 36px; border-radius: 3px; background: #D61F4A; animation-delay: .45s;"></span><span class="eq" style="width: 5px; height: 36px; border-radius: 3px; background: #D61F4A; animation-delay: .6s;"></span></span>
+          <span role="status" style="font-weight: 700; color: #B0123C;">กำลังอัดเสียง 0:24 · แตะเพื่อหยุด</span>
         </sc-if>
         <sc-if value="{{recorded}}" hint-placeholder-val="{{ false }}">
-          <div class="rise" style="width: 100%; display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 18px; background: #FBF7F0;">
-            <span aria-hidden="true" style="width: 48px; height: 48px; flex: none; border-radius: 50%; background: #0E6E7E; color: #FFFFFF; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></span>
-            <span style="flex: 1; text-align: left; line-height: 1.4;"><strong>เสียงของคุณ 0:24</strong><br><span style="font-size: 16px; color: #3B5157;">ถอดความ: “รถเก็บขยะไม่มาสามอาทิตย์ ยุงเยอะมาก หมู่ 4 ต.วังกระแจะ”</span></span>
+          <div class="rise" style="width: 100%; display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 18px; background: #F4F7FF;">
+            <span aria-hidden="true" style="width: 48px; height: 48px; flex: none; border-radius: 50%; background: #2457FF; color: #FFFFFF; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></span>
+            <span style="flex: 1; text-align: left; line-height: 1.4;"><strong>เสียงของคุณ 0:24</strong><br><span style="font-size: 16px; color: #3A4664;">ถอดความ: “รถเก็บขยะไม่มาสามอาทิตย์ ยุงเยอะมาก หมู่ 4 ต.วังกระแจะ”</span></span>
           </div>
-          <button type="button" class="press" onClick="{{redo}}" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 0; background: #F3EDE2; font-size: 16px; font-weight: 700; color: #10242A;">อัดใหม่</button>
+          <button type="button" class="press" onClick="{{redo}}" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 0; background: #EEF2FB; font-size: 16px; font-weight: 700; color: #0B1533;">อัดใหม่</button>
         </sc-if>
         <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
-          <button type="button" class="press" onClick="{{toggleType}}" aria-pressed="{{typePressed}}" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 0; background: #F3EDE2; font-size: 16px; font-weight: 700; color: #10242A; cursor: pointer;">{{typeLabel}}</button>
-          <button type="button" class="press" onClick="{{togglePhoto}}" aria-pressed="{{photoPressed}}" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 0; background: #F3EDE2; font-size: 16px; font-weight: 700; color: #10242A; cursor: pointer;">{{photoLabel}}</button>
+          <button type="button" class="press" onClick="{{toggleType}}" aria-pressed="{{typePressed}}" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 0; background: #EEF2FB; font-size: 16px; font-weight: 700; color: #0B1533; cursor: pointer;">{{typeLabel}}</button>
+          <button type="button" class="press" onClick="{{togglePhoto}}" aria-pressed="{{photoPressed}}" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 0; background: #EEF2FB; font-size: 16px; font-weight: 700; color: #0B1533; cursor: pointer;">{{photoLabel}}</button>
         </div>
         <sc-if value="{{typing}}" hint-placeholder-val="{{ false }}">
           <div class="rise" style="width: 100%; display: flex; flex-direction: column; gap: 6px; text-align: left;">
             <label for="txt" style="font-weight: 700; font-size: 16px;">พิมพ์รายละเอียด</label>
-            <textarea id="txt" rows="3" style="padding: 12px 14px; border-radius: 16px; border: 0; box-shadow: 0 0 0 1.5px #E8E1D4; font-size: 17px; resize: vertical;">รถเก็บขยะไม่มาสามอาทิตย์ หมู่ 4 ต.วังกระแจะ ยุงเยอะมาก</textarea>
+            <textarea id="txt" rows="3" style="padding: 12px 14px; border-radius: 16px; border: 0; box-shadow: 0 0 0 1.5px #E3E8F5; font-size: 17px; resize: vertical;">รถเก็บขยะไม่มาสามอาทิตย์ หมู่ 4 ต.วังกระแจะ ยุงเยอะมาก</textarea>
           </div>
         </sc-if>
         <sc-if value="{{photo}}" hint-placeholder-val="{{ false }}">
-          <div class="rise" style="width: 100%; display: flex; gap: 12px; align-items: center; padding: 10px; border-radius: 16px; background: #FBF7F0; text-align: left;">
+          <div class="rise" style="width: 100%; display: flex; gap: 12px; align-items: center; padding: 10px; border-radius: 16px; background: #F4F7FF; text-align: left;">
             <img src="/_blob/ca5e24f8d900eb93ce36fc4d4f70f815" alt="รูปที่แนบ: ภาชนะมีน้ำขังหน้าบ้าน" style="width: 64px; height: 64px; border-radius: 12px; object-fit: cover;">
-            <span style="flex: 1; font-size: 16px;"><strong>แนบรูปแล้ว 1 รูป</strong><br><span style="color: #56696E;">ระบบลบตำแหน่ง GPS ออกจากรูปให้อัตโนมัติ</span></span>
+            <span style="flex: 1; font-size: 16px;"><strong>แนบรูปแล้ว 1 รูป</strong><br><span style="color: #5A6482;">ระบบลบตำแหน่ง GPS ออกจากรูปให้อัตโนมัติ</span></span>
           </div>
         </sc-if>
       </section>
 
       <sc-if value="{{notAnon}}" hint-placeholder-val="{{ true }}">
         <div style="display: flex; flex-direction: column; gap: 6px;">
-          <label for="ph" class="h" style="font-weight: 700; font-size: 20px;">เบอร์ของคุณ ให้เจ้าหน้าที่โทรกลับ <span style="font-weight: 500; font-size: 16px; color: #56696E;">ไม่ใส่ก็ได้</span></label>
-          <input id="ph" type="tel" inputmode="tel" placeholder="เช่น 08x-xxx-xxxx" style="height: 58px; padding: 0 16px; font-size: 19px; border: 0; box-shadow: 0 0 0 1.5px #E8E1D4; border-radius: 18px; background: #FFFFFF;">
+          <label for="ph" class="h" style="font-weight: 700; font-size: 20px;">เบอร์ของคุณ ให้เจ้าหน้าที่โทรกลับ <span style="font-weight: 500; font-size: 16px; color: #5A6482;">ไม่ใส่ก็ได้</span></label>
+          <input id="ph" type="tel" inputmode="tel" placeholder="เช่น 08x-xxx-xxxx" style="height: 58px; padding: 0 16px; font-size: 19px; border: 0; box-shadow: 0 0 0 1.5px #E3E8F5; border-radius: 18px; background: #FFFFFF;">
         </div>
       </sc-if>
 
-      <button type="button" role="switch" aria-checked="{{anonChecked}}" onClick="{{toggleAnon}}" style="display: flex; gap: 14px; align-items: center; padding: 14px 16px; border-radius: 20px; border: 0; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; text-align: left; color: #10242A; cursor: pointer;">
-        <span style="flex: 1; display: flex; flex-direction: column; line-height: 1.4;"><span style="font-weight: 700;">ไม่เปิดเผยชื่อ</span><span style="font-size: 16px; color: #56696E;">เจ้าหน้าที่จะไม่เห็นชื่อและเบอร์ของคุณ</span></span>
+      <button type="button" role="switch" aria-checked="{{anonChecked}}" onClick="{{toggleAnon}}" style="display: flex; gap: 14px; align-items: center; padding: 14px 16px; border-radius: 20px; border: 0; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E3E8F5; text-align: left; color: #0B1533; cursor: pointer;">
+        <span style="flex: 1; display: flex; flex-direction: column; line-height: 1.4;"><span style="font-weight: 700;">ไม่เปิดเผยชื่อ</span><span style="font-size: 16px; color: #5A6482;">เจ้าหน้าที่จะไม่เห็นชื่อและเบอร์ของคุณ</span></span>
         <span aria-hidden="true" style="width: 56px; height: 32px; flex: none; border-radius: 999px; background: {{anonBg}}; padding: 3px;"><span style="display: block; width: 26px; height: 26px; border-radius: 50%; background: #FFFFFF; transform: translateX({{anonX}}); transition: transform .2s;"></span></span>
       </button>
     </div>
-    <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 16px 22px; background: #FFFFFF; border-radius: 28px 28px 0 0; box-shadow: 0 -12px 30px -16px rgba(10,54,64,.35);">
-      <button type="button" class="press" onClick="{{send}}" style="width: 100%; height: 64px; border-radius: 20px; border: 0; background: #0E6E7E; color: #FFFFFF; font-size: 20px; font-weight: 700; cursor: pointer;">ส่งเรื่อง</button>
+    <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 16px 22px; background: #FFFFFF; border-radius: 28px 28px 0 0; box-shadow: 0 -12px 30px -16px rgba(20,40,120,.35);">
+      <button type="button" class="press" onClick="{{send}}" style="width: 100%; height: 64px; border-radius: 20px; border: 0; background: #2457FF; color: #FFFFFF; font-size: 20px; font-weight: 700; cursor: pointer;">ส่งเรื่อง</button>
     </div>
   </sc-if>
 
   <sc-if value="{{sent}}" hint-placeholder-val="{{ false }}">
     <div role="status" class="rise" style="zoom: {{zoom}}; padding: 24px 18px; display: flex; flex-direction: column; gap: 18px;">
       <div style="text-align: center; display: flex; flex-direction: column; gap: 8px; align-items: center;">
-        <span aria-hidden="true" style="width: 88px; height: 88px; border-radius: 50%; background: #E3EFE6; display: flex; align-items: center; justify-content: center;"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1A7A50" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg></span>
+        <span aria-hidden="true" style="width: 88px; height: 88px; border-radius: 50%; background: #D9F7EA; display: flex; align-items: center; justify-content: center;"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1A7A50" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg></span>
         <h2 class="h" style="margin: 0; font-size: 28px;">รับเรื่องแล้ว</h2>
-        <span style="color: #3B5157;">เลขติดตามของคุณ</span>
-        <span class="h" style="font-size: 34px; font-weight: 700; letter-spacing: .04em; padding: 6px 18px; border-radius: 16px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4;">TRT-6911-0482</span>
-        <span style="font-size: 16px; color: #56696E;">ส่งเลขนี้ทาง SMS ให้แล้ว</span>
+        <span style="color: #3A4664;">เลขติดตามของคุณ</span>
+        <span class="h" style="font-size: 34px; font-weight: 700; letter-spacing: .04em; padding: 6px 18px; border-radius: 16px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E3E8F5;">TRT-6911-0482</span>
+        <span style="font-size: 16px; color: #5A6482;">ส่งเลขนี้ทาง SMS ให้แล้ว</span>
       </div>
-      <ol style="list-style: none; margin: 0; padding: 18px; border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; display: flex; flex-direction: column; gap: 14px;">
-        <li style="display: flex; gap: 12px;"><span aria-hidden="true" style="width: 14px; height: 14px; margin-top: 6px; border-radius: 50%; background: #1A7A50; flex: none;"></span><span><strong>รับเรื่อง</strong><br><span style="font-size: 16px; color: #56696E;">วันนี้ 14:02 น.</span></span></li>
-        <li style="display: flex; gap: 12px;"><span aria-hidden="true" style="width: 14px; height: 14px; margin-top: 6px; border-radius: 50%; background: #F4A23C; flex: none;"></span><span><strong>ส่งให้ กลุ่มงานอนามัยสิ่งแวดล้อม</strong><br><span style="font-size: 16px; color: #56696E;">ภายในวันทำการถัดไป</span></span></li>
-        <li style="display: flex; gap: 12px;"><span aria-hidden="true" style="width: 14px; height: 14px; margin-top: 6px; border-radius: 50%; background: #E8E1D4; flex: none;"></span><span><strong>เจ้าหน้าที่โทรกลับ / แจ้งผล</strong><br><span style="font-size: 16px; color: #56696E;">ภายใน 19 พ.ย. 2569</span></span></li>
+      <ol style="list-style: none; margin: 0; padding: 18px; border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E3E8F5; display: flex; flex-direction: column; gap: 14px;">
+        <li style="display: flex; gap: 12px;"><span aria-hidden="true" style="width: 14px; height: 14px; margin-top: 6px; border-radius: 50%; background: #1A7A50; flex: none;"></span><span><strong>รับเรื่อง</strong><br><span style="font-size: 16px; color: #5A6482;">วันนี้ 14:02 น.</span></span></li>
+        <li style="display: flex; gap: 12px;"><span aria-hidden="true" style="width: 14px; height: 14px; margin-top: 6px; border-radius: 50%; background: #FFC83D; flex: none;"></span><span><strong>ส่งให้ กลุ่มงานอนามัยสิ่งแวดล้อม</strong><br><span style="font-size: 16px; color: #5A6482;">ภายในวันทำการถัดไป</span></span></li>
+        <li style="display: flex; gap: 12px;"><span aria-hidden="true" style="width: 14px; height: 14px; margin-top: 6px; border-radius: 50%; background: #E3E8F5; flex: none;"></span><span><strong>เจ้าหน้าที่โทรกลับ / แจ้งผล</strong><br><span style="font-size: 16px; color: #5A6482;">ภายใน 19 พ.ย. 2569</span></span></li>
       </ol>
-      <a href="HomeMobile.dc.html" class="press" style="height: 60px; border-radius: 20px; background: #10242A; color: #FFFFFF; text-decoration: none; font-weight: 700; display: flex; align-items: center; justify-content: center;">กลับหน้าแรก</a>
+      <a href="HomeMobile.dc.html" class="press" style="height: 60px; border-radius: 20px; background: #0B1533; color: #FFFFFF; text-decoration: none; font-weight: 700; display: flex; align-items: center; justify-content: center;">กลับหน้าแรก</a>
     </div>
   </sc-if>
 </div>
@@ -131,7 +131,7 @@ class Component extends DCLogic {
     const defs = [['svc', 'บริการไม่ดี'], ['env', 'ขยะ น้ำเสีย ยุง'], ['drug', 'ยา อาหาร เครื่องสำอาง'], ['other', 'เรื่องอื่น ๆ']];
     const topics = defs.map(([k, label]) => {
       const on = this.state.topic === k;
-      return { label, pressed: on ? 'true' : 'false', bg: on ? '#10242A' : '#FFFFFF', fg: on ? '#FFFFFF' : '#10242A', ring: on ? '#10242A' : '#E8E1D4', pick: () => this.setState({ topic: k }) };
+      return { label, pressed: on ? 'true' : 'false', bg: on ? '#0B1533' : '#FFFFFF', fg: on ? '#FFFFFF' : '#0B1533', ring: on ? '#0B1533' : '#E3E8F5', pick: () => this.setState({ topic: k }) };
     });
     const r = this.state.rec, anon = this.state.anon;
     return {
@@ -147,7 +147,7 @@ class Component extends DCLogic {
       startRec: () => this.setState({ rec: 'rec' }),
       stopRec: () => this.setState({ rec: 'done' }),
       redo: () => this.setState({ rec: 'idle' }),
-      anonChecked: anon ? 'true' : 'false', anonBg: anon ? '#0E6E7E' : '#C9BFAE', anonX: anon ? '24px' : '0px',
+      anonChecked: anon ? 'true' : 'false', anonBg: anon ? '#2457FF' : '#C3CBE0', anonX: anon ? '24px' : '0px',
       toggleAnon: () => this.setState({ anon: !anon }),
       sent: this.state.sent, notSent: !this.state.sent,
       send: () => this.setState({ sent: true })

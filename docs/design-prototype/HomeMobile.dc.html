@@ -8,98 +8,96 @@
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@500;600;700&amp;family=Noto+Sans+Thai+Looped:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700&amp;family=Noto+Sans+Thai+Looped:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0}
 *{box-sizing:border-box}
 button,input{font-family:inherit}
 a{color:inherit}
-.h{font-family:'Anuphan','Noto Sans Thai Looped',sans-serif;letter-spacing:-0.01em}
-@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.h{font-family:'Kanit','Noto Sans Thai Looped',sans-serif;letter-spacing:-0.005em}
+.glass{background:rgba(255,255,255,.2);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .rise{animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
-.d1{animation-delay:.08s}.d2{animation-delay:.16s}.d3{animation-delay:.24s}
-@keyframes ping{0%{box-shadow:0 0 0 0 rgba(179,18,63,.5)}80%,100%{box-shadow:0 0 0 10px rgba(179,18,63,0)}}
-.ping{animation:ping 2s ease-out 1}
+.d1{animation-delay:.08s}.d2{animation-delay:.16s}.d3{animation-delay:.24s}.d4{animation-delay:.32s}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(214,31,74,.55)}100%{box-shadow:0 0 0 10px rgba(214,31,74,0)}}
+.ping{animation:ping 1.8s ease-out 1}
 .press{transition:transform .12s}.press:active{transform:scale(.96)}
-a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #F4A23C;outline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #FFC83D;outline-offset:3px}
 @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
 </style>
 </helmet>
-<div style="width: 390px; height: 2150px; position: relative; overflow: hidden; background: #FBF7F0; font-family: 'Noto Sans Thai Looped', system-ui, sans-serif; color: #10242A;">
- <div style="zoom: {{zoom}}; font-size: 18px; line-height: 1.7;">
+<div style="width: 390px; height: 2150px; position: relative; overflow: hidden; background: #F4F7FF; font-family: 'Noto Sans Thai Looped', system-ui, sans-serif; color: #0B1533;">
+ <div style="zoom: {{zoom}}; font-size: 18px; line-height: 1.65;">
 
-  <header style="padding: 12px 16px; display: flex; align-items: center; gap: 10px;">
-    <svg aria-hidden="true" width="46" height="46" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="#0E6E7E"></circle><path d="M8 36c5 0 5-4 10-4s5 4 10 4 5-4 10-4 5 4 10 4v6c-5 0-5-4-10-4s-5 4-10 4-5-4-10-4-5 4-10 4z" fill="#7FD3D6"></path><path d="M24 12h8v7h7v8h-7v6h-8v-6h-7v-8h7z" fill="#FFFFFF"></path><circle cx="41" cy="15" r="4" fill="#F4A23C"></circle></svg>
-    <span class="h" style="flex: 1; font-weight: 700; font-size: 18px; line-height: 1.2;">สาธารณสุข<br>จังหวัดตราด</span>
-    <button type="button" class="press" onClick="{{toggleBig}}" aria-pressed="{{bigPressed}}" style="height: 48px; padding: 0 14px; border: 0; border-radius: 999px; background: #10242A; color: #FFFFFF; font-size: 16px; font-weight: 700; display: flex; gap: 6px; align-items: center; cursor: pointer;">
-      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10" cy="10" r="6"></circle><path d="m20 20-5.5-5.5M8 10h4M10 8v4"></path></svg>{{bigLabel}}
-    </button>
-  </header>
-
-  <div style="padding: 4px 16px 0;">
-    <div role="alert" class="rise" style="border-radius: 22px; background: #FBE4EA; color: #5B0920; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;">
-      <span class="ping" style="align-self: flex-start; display: flex; gap: 6px; align-items: center; padding: 2px 12px 2px 8px; border-radius: 999px; background: #B3123F; color: #FFFFFF; font-size: 16px; font-weight: 700;"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #FFFFFF;"></span>เฝ้าระวัง ไข้เลือดออก</span>
-      <span style="font-weight: 600;">คว่ำภาชนะทุก 7 วัน<br>มีไข้สูงเกิน 2 วัน รีบไปหาหมอ</span>
-      <button type="button" class="press" onClick="{{toggleAlert}}" aria-pressed="{{alertPressed}}" style="height: 52px; border-radius: 16px; border: 0; background: #FFFFFF; color: #5B0920; font-size: 17px; font-weight: 700; display: flex; gap: 8px; align-items: center; justify-content: center; cursor: pointer;">
-        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"></path></svg>{{alertLabel}}
-      </button>
-      <a href="PublicDengue.dc.html" style="font-weight: 700; font-size: 16px;">อ่านวิธีป้องกันไข้เลือดออก</a>
-    </div>
-  </div>
-
-  <section style="padding: 22px 16px 8px;">
-    <h1 class="h rise d1" style="margin: 0 0 14px; font-size: 34px; line-height: 1.2;">สวัสดีค่ะ<br>วันนี้ต้องการอะไร</h1>
-    <div class="rise d2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
-      <a href="tel:1422" class="press" style="grid-column: span 2; min-height: 76px; border-radius: 22px; background: #0E6E7E; color: #FFFFFF; text-decoration: none; display: flex; gap: 14px; align-items: center; padding: 0 18px;">
-        <span aria-hidden="true" style="width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,.18); display: flex; align-items: center; justify-content: center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"></path></svg></span>
-        <span style="display: flex; flex-direction: column; line-height: 1.25;"><span class="h" style="font-size: 22px; font-weight: 700;">โทรปรึกษาหมอ</span><span style="font-size: 16px; opacity: .9;">สายด่วน 1422 ฟรี 24 ชั่วโมง</span></span>
-      </a>
-      <a href="PublicNews.dc.html" class="press" style="min-height: 112px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; text-decoration: none; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
-        <span aria-hidden="true" style="width: 44px; height: 44px; border-radius: 14px; background: #E3EFE6; color: #1F4D3A; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 2 4 4M17 7l3-3M19 9l-8.5 8.5-4-4L15 5zM6.5 13.5 3 17l4 4 3.5-3.5"></path></svg></span>
-        <span class="h" style="font-size: 18px; font-weight: 700; line-height: 1.3;">ฉีดวัคซีนฟรี</span>
-      </a>
-      <a href="Clinics.dc.html" class="press" style="min-height: 112px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; text-decoration: none; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
-        <span aria-hidden="true" style="width: 44px; height: 44px; border-radius: 14px; background: #DDF1F1; color: #0A4B57; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span>
-        <span class="h" style="font-size: 18px; font-weight: 700; line-height: 1.3;">หาอนามัย<br>ใกล้บ้าน</span>
-      </a>
-      <a href="Complaint.dc.html" class="press" style="min-height: 112px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; text-decoration: none; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
-        <span aria-hidden="true" style="width: 44px; height: 44px; border-radius: 14px; background: #FBE4EA; color: #8C0E31; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg></span>
-        <span class="h" style="font-size: 18px; font-weight: 700; line-height: 1.3;">ร้องเรียน<br>พูดใส่ได้เลย</span>
-      </a>
-      <a href="JobsMobile.dc.html" class="press" style="min-height: 112px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; text-decoration: none; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
-        <span aria-hidden="true" style="width: 44px; height: 44px; border-radius: 14px; background: #FFF1DA; color: #7A4300; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path></svg></span>
-        <span class="h" style="font-size: 18px; font-weight: 700; line-height: 1.3;">สมัครงาน<br><span style="font-size: 16px; font-weight: 600; color: #7A4300;">เปิดรับ 4 ตำแหน่ง</span></span>
-      </a>
+  <section style="position: relative; height: 420px;">
+    <img src="/_blob/2da39800a1134908d1b7992f8ea91aa4" alt="ภาพประกอบ: พยาบาลและ อสม. เดินคุยกับผู้สูงอายุริมทะเลตราด มีเกาะช้างอยู่ไกล ๆ" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,21,51,.45) 0%, rgba(11,21,51,0) 30%, rgba(11,21,51,.15) 55%, rgba(8,18,60,.88) 100%);"></div>
+    <header style="position: absolute; left: 14px; right: 14px; top: 14px; display: flex; gap: 8px; align-items: center;">
+      <span class="glass h" style="flex: 1; height: 48px; padding: 0 16px; border-radius: 999px; color: #FFFFFF; font-weight: 600; font-size: 18px; display: flex; align-items: center; gap: 8px;"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #FFC83D;"></span>สาธารณสุขตราด</span>
+      <button type="button" class="glass press" onClick="{{toggleBig}}" aria-pressed="{{bigPressed}}" style="height: 48px; padding: 0 16px; border-radius: 999px; border: 0; color: #FFFFFF; font-size: 16px; font-weight: 700; cursor: pointer;">ก {{bigLabel}}</button>
+    </header>
+    <div class="rise" style="position: absolute; left: 20px; right: 20px; bottom: 54px; color: #FFFFFF;">
+      <span class="ping" style="display: inline-flex; gap: 6px; align-items: center; padding: 2px 12px 2px 8px; border-radius: 999px; background: #D61F4A; font-size: 15px; font-weight: 700;"><span aria-hidden="true" style="width: 7px; height: 7px; border-radius: 50%; background: #FFFFFF;"></span>เฝ้าระวังไข้เลือดออก</span>
+      <h1 class="h" style="margin: 10px 0 0; font-size: 38px; line-height: 1.12; font-weight: 600;">สุขภาพดี<br>ทุกเกาะ ทุกบ้าน</h1>
     </div>
   </section>
 
-  <section style="padding: 20px 16px 8px;">
-    <h2 class="h" style="margin: 0 0 12px; font-size: 24px;">ต้องรู้สัปดาห์นี้</h2>
-    <article class="rise d3" style="border-radius: 26px; overflow: hidden; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4;">
-      <img src="/_blob/82f577d8a729910fefc869e64d379570" alt="ภาพประกอบ: พยาบาลฉีดวัคซีนให้คุณตา" style="width: 100%; height: 200px; object-fit: cover; display: block;">
-      <div style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 10px;">
-        <h3 class="h" style="margin: 0; font-size: 22px; line-height: 1.35;"><a href="PublicNews.dc.html" style="text-decoration: none;">ผู้สูงอายุฉีดวัคซีนไข้หวัดใหญ่ฟรี</a></h3>
-        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 17px;">
-          <li style="display: flex; gap: 10px;"><strong style="width: 64px; flex: none; color: #0E6E7E;">วันไหน</strong>เริ่ม 1 ธันวาคม 2569</li>
-          <li style="display: flex; gap: 10px;"><strong style="width: 64px; flex: none; color: #0E6E7E;">ที่ไหน</strong>อนามัย (รพ.สต.) ใกล้บ้าน</li>
-          <li style="display: flex; gap: 10px;"><strong style="width: 64px; flex: none; color: #0E6E7E;">เอาไป</strong>บัตรประชาชนใบเดียว</li>
-        </ul>
-        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;">
-          <button type="button" class="press" onClick="{{toggleNews}}" aria-pressed="{{newsPressed}}" style="height: 52px; border-radius: 16px; border: 0; background: #DDF1F1; color: #0A4B57; font-size: 16px; font-weight: 700; cursor: pointer;">{{newsLabel}}</button>
-          <button type="button" class="press" onClick="{{share}}" style="height: 52px; border-radius: 16px; border: 0; background: #05803A; color: #FFFFFF; font-size: 16px; font-weight: 700; cursor: pointer;">{{shareLabel}}</button>
-        </div>
+  <form role="search" class="rise d1" style="margin: -30px 16px 0; position: relative; height: 62px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 16px 34px -16px rgba(20,40,120,.55); display: flex; align-items: center; padding: 0 7px 0 20px; gap: 8px;">
+    <label for="qm" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">ค้นหา</label>
+    <input id="qm" type="search" placeholder="อยากรู้เรื่องอะไร" style="flex: 1; min-width: 0; border: 0; outline: none; font-size: 18px; background: transparent; color: #0B1533;">
+    <button type="button" class="press" aria-label="ค้นหาด้วยเสียง" style="width: 48px; height: 48px; border-radius: 50%; border: 0; background: linear-gradient(135deg, #2457FF, #00C2D1); color: #FFFFFF; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg></button>
+  </form>
+
+  <section aria-label="บริการด่วน" style="padding: 22px 14px 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+    <a href="tel:1422" class="press rise d2" style="grid-column: span 2; min-height: 118px; border-radius: 30px; background: #2457FF; color: #FFFFFF; text-decoration: none; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 18px 30px -18px #2457FF;">
+      <span style="display: flex; flex-direction: column; line-height: 1.2;"><span class="h" style="font-size: 28px; font-weight: 600;">โทรหาหมอ</span><span style="font-size: 16px; opacity: .92;">สายด่วน 1422 ฟรี 24 ชั่วโมง</span></span>
+      <span aria-hidden="true" style="width: 66px; height: 66px; border-radius: 50%; background: #FFFFFF; color: #2457FF; display: flex; align-items: center; justify-content: center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"></path></svg></span>
+    </a>
+    <a href="PublicNews.dc.html" class="press rise d3" style="grid-row: span 2; min-height: 236px; border-radius: 30px; background: #B8F2D9; text-decoration: none; overflow: hidden; display: flex; flex-direction: column;">
+      <span style="padding: 16px 16px 0; display: flex; flex-direction: column; line-height: 1.15;"><span class="h" style="font-size: 23px; font-weight: 600;">วัคซีน<br>ไข้หวัดใหญ่ฟรี</span><span style="margin-top: 6px; font-size: 15px; font-weight: 600;">เริ่ม 1 ธ.ค.</span></span>
+      <img src="/_blob/82f577d8a729910fefc869e64d379570" alt="" style="margin-top: auto; width: 100%; height: 118px; object-fit: cover; border-radius: 24px 24px 0 0;">
+    </a>
+    <a href="Clinics.dc.html" class="press rise d3" style="min-height: 113px; border-radius: 30px; background: #FFE45C; text-decoration: none; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+      <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+      <span class="h" style="font-size: 20px; font-weight: 600; line-height: 1.1;">อนามัยใกล้บ้าน</span>
+    </a>
+    <a href="PublicDengue.dc.html" class="press rise d4" style="min-height: 113px; border-radius: 30px; background: #FF7A59; text-decoration: none; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+      <span style="font-size: 15px; font-weight: 700;">เฝ้าระวัง</span>
+      <span class="h" style="font-size: 19px; font-weight: 600; line-height: 1.05;">ไข้เลือดออก<br><span style="font-size: 30px;">42</span> <span style="font-size: 15px;">ราย/สัปดาห์</span></span>
+    </a>
+    <a href="Complaint.dc.html" class="press rise d4" style="min-height: 84px; border-radius: 26px; background: #FFFFFF; box-shadow: inset 0 0 0 1.5px #E3E8F5; text-decoration: none; padding: 14px 16px; display: flex; gap: 10px; align-items: center;">
+      <span aria-hidden="true" style="width: 44px; height: 44px; flex: none; border-radius: 14px; background: #FFE4EA; color: #B0123C; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg></span>
+      <span class="h" style="font-size: 18px; font-weight: 600; line-height: 1.15;">ร้องเรียน<br><span style="font-size: 15px; font-weight: 500; color: #5A6482;">พูดใส่ได้</span></span>
+    </a>
+    <a href="JobsMobile.dc.html" class="press rise d4" style="min-height: 84px; border-radius: 26px; background: #FFFFFF; box-shadow: inset 0 0 0 1.5px #E3E8F5; text-decoration: none; padding: 14px 16px; display: flex; gap: 10px; align-items: center;">
+      <span aria-hidden="true" style="width: 44px; height: 44px; flex: none; border-radius: 14px; background: #E6EDFF; color: #1D3FD1; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path></svg></span>
+      <span class="h" style="font-size: 18px; font-weight: 600; line-height: 1.15;">สมัครงาน<br><span style="font-size: 15px; font-weight: 500; color: #5A6482;">19 อัตรา</span></span>
+    </a>
+  </section>
+
+  <section aria-labelledby="h-know" style="padding: 26px 14px 0;">
+    <h2 id="h-know" class="h" style="margin: 0 0 12px 4px; font-size: 26px; font-weight: 600;">ต้องรู้สัปดาห์นี้</h2>
+    <article style="border-radius: 30px; background: #FFFFFF; box-shadow: 0 16px 34px -22px rgba(20,40,120,.45); padding: 18px; display: flex; flex-direction: column; gap: 12px;">
+      <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 17px;">
+        <li style="display: flex; gap: 12px; align-items: center;"><span class="h" style="width: 76px; flex: none; padding: 4px 0; border-radius: 12px; background: #E6EDFF; color: #1D3FD1; font-weight: 600; text-align: center;">วันไหน</span>เริ่ม 1 ธันวาคม 2569</li>
+        <li style="display: flex; gap: 12px; align-items: center;"><span class="h" style="width: 76px; flex: none; padding: 4px 0; border-radius: 12px; background: #D9F7EA; color: #0E6B52; font-weight: 600; text-align: center;">ที่ไหน</span>อนามัย (รพ.สต.) ใกล้บ้าน</li>
+        <li style="display: flex; gap: 12px; align-items: center;"><span class="h" style="width: 76px; flex: none; padding: 4px 0; border-radius: 12px; background: #FFF6CC; color: #6B4A00; font-weight: 600; text-align: center;">เอาไป</span>บัตรประชาชนใบเดียว</li>
+      </ul>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;">
+        <button type="button" class="press" onClick="{{toggleNews}}" aria-pressed="{{newsPressed}}" style="height: 54px; border-radius: 18px; border: 0; background: #0B1533; color: #FFFFFF; font-size: 16px; font-weight: 700; cursor: pointer;">{{newsLabel}}</button>
+        <button type="button" class="press" onClick="{{share}}" style="height: 54px; border-radius: 18px; border: 0; background: #05803A; color: #FFFFFF; font-size: 16px; font-weight: 700; cursor: pointer;">{{shareLabel}}</button>
       </div>
     </article>
   </section>
 
-  <section style="padding: 16px 16px 140px;">
-    <h2 class="h" style="margin: 0 0 12px; font-size: 24px;">ข่าวอื่น ๆ</h2>
+  <section aria-labelledby="h-news" style="padding: 26px 14px 150px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin: 0 4px 12px;"><h2 id="h-news" class="h" style="margin: 0; font-size: 26px; font-weight: 600;">ข่าวล่าสุด</h2><a href="PublicNews.dc.html" style="font-size: 16px; font-weight: 700; color: #2457FF;">ทั้งหมด</a></div>
     <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px;">
       <sc-for list="{{rows}}" as="r" hint-placeholder-count="3">
         <li>
-          <a href="{{r.href}}" class="press" style="display: flex; gap: 12px; align-items: center; padding: 10px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; text-decoration: none;">
-            <img src="{{r.img}}" alt="" style="width: 84px; height: 84px; border-radius: 16px; object-fit: cover; flex: none;">
-            <span style="flex: 1; display: flex; flex-direction: column; line-height: 1.45;"><span style="font-size: 16px; font-weight: 700; color: {{r.fg}};">{{r.tag}}</span><span style="font-weight: 600; font-size: 17px;">{{r.title}}</span></span>
+          <a href="{{r.href}}" class="press" style="display: flex; gap: 12px; align-items: center; padding: 10px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 10px 24px -18px rgba(20,40,120,.45); text-decoration: none;">
+            <img src="{{r.img}}" alt="" style="width: 86px; height: 86px; border-radius: 20px; object-fit: cover; flex: none;">
+            <span style="flex: 1; display: flex; flex-direction: column; line-height: 1.45;"><span style="align-self: flex-start; padding: 0 10px; border-radius: 999px; background: {{r.bg}}; color: {{r.fg}}; font-size: 15px; font-weight: 700;">{{r.tag}}</span><span style="font-weight: 600; font-size: 17px;">{{r.title}}</span></span>
           </a>
         </li>
       </sc-for>
@@ -107,11 +105,11 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #F4A2
   </section>
  </div>
 
-  <nav aria-label="เมนูหลัก" style="zoom: {{zoom}}; position: absolute; left: 12px; right: 12px; bottom: 16px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4, 0 20px 40px -20px rgba(10,54,64,.45); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 6px; font-family: 'Noto Sans Thai Looped', sans-serif;">
-    <a href="#" aria-current="page" style="min-height: 62px; border-radius: 20px; background: #DDF1F1; color: #0A4B57; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; font-size: 16px; font-weight: 700; line-height: 1.3;"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"></path><path d="M5 10v10h14V10"></path></svg>หน้าแรก</a>
-    <a href="PublicNews.dc.html" style="min-height: 62px; color: #3B5157; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; font-size: 16px; font-weight: 600; line-height: 1.3;"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>ข่าว</a>
-    <a href="Clinics.dc.html" style="min-height: 62px; color: #3B5157; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; font-size: 16px; font-weight: 600; line-height: 1.3;"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="2"></rect><rect x="14" y="3" width="7" height="7" rx="2"></rect><rect x="3" y="14" width="7" height="7" rx="2"></rect><rect x="14" y="14" width="7" height="7" rx="2"></rect></svg>บริการ</a>
-    <a href="tel:1422" style="min-height: 62px; border-radius: 20px; background: #0E6E7E; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; font-size: 16px; font-weight: 700; line-height: 1.3;"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"></path></svg>โทรหาหมอ</a>
+  <nav aria-label="เมนูหลัก" style="zoom: {{zoom}}; position: absolute; left: 14px; right: 14px; bottom: 16px; border-radius: 30px; background: rgba(11,21,51,.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 7px; font-family: 'Noto Sans Thai Looped', sans-serif; box-shadow: 0 20px 40px -18px rgba(11,21,51,.6);">
+    <a href="#" aria-current="page" style="min-height: 60px; border-radius: 24px; background: #FFFFFF; color: #0B1533; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; font-size: 15px; font-weight: 700; line-height: 1.3;"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"></path><path d="M5 10v10h14V10"></path></svg>หน้าแรก</a>
+    <a href="PublicNews.dc.html" style="min-height: 60px; color: #C3CBE0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; font-size: 15px; font-weight: 600; line-height: 1.3;"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"></rect><path d="M7 9h10M7 13h10M7 17h6"></path></svg>ข่าว</a>
+    <a href="Clinics.dc.html" style="min-height: 60px; color: #C3CBE0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; font-size: 15px; font-weight: 600; line-height: 1.3;"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>ใกล้ฉัน</a>
+    <a href="tel:1422" style="min-height: 60px; border-radius: 24px; background: linear-gradient(135deg, #2457FF, #00C2D1); color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; font-size: 15px; font-weight: 700; line-height: 1.3;"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"></path></svg>โทรหาหมอ</a>
   </nav>
 </div>
 </x-dc>
@@ -121,7 +119,7 @@ class Component extends DCLogic {
     super(props);
     let big = false;
     try { big = window.localStorage.getItem('trat-big-text') === '1'; } catch (e) {}
-    this.state = { big, alert: false, news: false, shared: false };
+    this.state = { big, news: false, shared: false };
   }
   renderVals() {
     const big = this.state.big;
@@ -133,18 +131,15 @@ class Component extends DCLogic {
         try { window.localStorage.setItem('trat-big-text', big ? '0' : '1'); } catch (e) {}
         this.setState({ big: !big });
       },
-      shareLabel: this.state.shared ? 'เปิด LINE แล้ว ✓' : 'ส่งให้ลูกหลาน',
-      share: () => this.setState({ shared: true }),
-      alertPressed: this.state.alert ? 'true' : 'false',
-      alertLabel: this.state.alert ? 'กำลังอ่านออกเสียง… แตะเพื่อหยุด' : 'กดฟังคำเตือน',
-      toggleAlert: () => this.setState({ alert: !this.state.alert, news: false }),
       newsPressed: this.state.news ? 'true' : 'false',
       newsLabel: this.state.news ? 'กำลังอ่าน… หยุด' : 'ฟังข่าวนี้',
-      toggleNews: () => this.setState({ news: !this.state.news, alert: false }),
+      toggleNews: () => this.setState({ news: !this.state.news }),
+      shareLabel: this.state.shared ? 'เปิด LINE แล้ว ✓' : 'ส่งให้ลูกหลาน',
+      share: () => this.setState({ shared: true }),
       rows: [
-        { href: 'PublicDengue.dc.html', img: '/_blob/ca5e24f8d900eb93ce36fc4d4f70f815', tag: 'เตือนภัย', fg: '#8C0E31', title: 'ไข้เลือดออกมาแล้ว คว่ำภาชนะทุก 7 วัน' },
-        { href: '#', img: '/_blob/9c7774222f58fc55f7808c40ff040db3', tag: 'กิจกรรม 14 พ.ย.', fg: '#1F4D3A', title: 'ตรวจน้ำตาลฟรี วันเบาหวานโลก' },
-        { href: 'JobsMobile.dc.html', img: '/_blob/447b77a9a7557419846a60895069258a', tag: 'สมัครงาน', fg: '#7A4300', title: 'รับนักวิชาการสาธารณสุข 12 อัตรา' }
+        { href: 'PublicDengue.dc.html', img: '/_blob/ca5e24f8d900eb93ce36fc4d4f70f815', tag: 'เตือนภัย', bg: '#FFE4EA', fg: '#B0123C', title: 'ไข้เลือดออกมาแล้ว คว่ำภาชนะทุก 7 วัน' },
+        { href: 'PublicNews.dc.html', img: '/_blob/82f577d8a729910fefc869e64d379570', tag: 'บริการฟรี', bg: '#D9F7EA', fg: '#0E6B52', title: 'ผู้สูงอายุฉีดวัคซีนไข้หวัดใหญ่ฟรี' },
+        { href: 'JobsMobile.dc.html', img: '/_blob/447b77a9a7557419846a60895069258a', tag: 'สมัครงาน', bg: '#E6EDFF', fg: '#1D3FD1', title: 'รับนักวิชาการสาธารณสุข 12 อัตรา' }
       ]
     };
   }
