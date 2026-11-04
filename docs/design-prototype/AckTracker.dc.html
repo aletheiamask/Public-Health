@@ -84,7 +84,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #F4A23C;outline-offset:2p
             </tbody>
           </table>
         </div>
-        <a href="#" style="display: inline-block; margin-top: 10px; font-size: 14px; font-weight: 700; color: #0E6E7E;">ดูอีก 12 หน่วยงาน</a>
+        <button type="button" class="press" onClick="{{toggleMore}}" aria-expanded="{{moreExpanded}}" style="margin-top: 10px; height: 44px; padding: 0 16px; border-radius: 12px; border: 0; background: #F3EDE2; font-size: 15px; font-weight: 700; color: #0E6E7E; cursor: pointer;">{{moreLabel}}</button>
       </section>
     </div>
   </div>
@@ -94,7 +94,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #F4A23C;outline-offset:2p
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { reminded: [], all: false, auto: true, pdf: false };
+    this.state = { reminded: [], all: false, auto: true, pdf: false, more: false };
   }
   renderVals() {
     const d = [['เมืองตราด', 17, 21], ['คลองใหญ่', 4, 8], ['เขาสมิง', 11, 16], ['บ่อไร่', 8, 10], ['แหลมงอบ', 6, 7], ['เกาะช้าง', 4, 5], ['เกาะกูด', 2, 4]];
@@ -108,7 +108,15 @@ class Component extends DCLogic {
       ['สสอ.คลองใหญ่', 'คลองใหญ่', 4, 7, '2 พ.ย.'],
       ['รพ.สต.วังกระแจะ', 'เมืองตราด', 5, 7, '3 พ.ย.']
     ];
-    const units = u.map(([name, district, done, total, last]) => {
+    const more = [
+      ['รพ.สต.บ้านคลองจาก', 'คลองใหญ่', 3, 5, '3 พ.ย.'], ['รพ.สต.เกาะหมาก', 'เกาะกูด', 1, 3, '3 พ.ย.'],
+      ['รพ.สต.วังตะเคียน', 'เขาสมิง', 4, 6, '3 พ.ย.'], ['รพ.สต.แสนตุ้ง', 'เขาสมิง', 4, 6, '3 พ.ย.'], ['รพ.สต.เทพนิมิต', 'เขาสมิง', 5, 7, '3 พ.ย.'],
+      ['รพ.สต.หนองเสม็ด', 'เมืองตราด', 4, 6, '3 พ.ย.'], ['รพ.สต.ห้วงน้ำขาว', 'เมืองตราด', 5, 7, '3 พ.ย.'], ['รพ.สต.ตะกาง', 'เมืองตราด', 5, 6, '3 พ.ย.'],
+      ['รพ.สต.ด่านชุมพล', 'บ่อไร่', 4, 6, '3 พ.ย.'], ['รพ.สต.หนองบอน', 'บ่อไร่', 5, 6, '3 พ.ย.'],
+      ['รพ.สต.น้ำเชี่ยว', 'แหลมงอบ', 3, 5, '3 พ.ย.'], ['รพ.สต.บ้านสลักเพชร', 'เกาะช้าง', 4, 6, '3 พ.ย.']
+    ];
+    const rows = this.state.more ? u.concat(more) : u;
+    const units = rows.map(([name, district, done, total, last]) => {
       const r = this.state.all || this.state.reminded.indexOf(name) >= 0;
       return {
         name, district, done, total, pct: Math.round(done / total * 100) + '%', color: done === 0 ? '#B3123F' : '#E0912B',
@@ -120,6 +128,9 @@ class Component extends DCLogic {
     const auto = this.state.auto;
     return {
       districts, units,
+      moreLabel: this.state.more ? 'ย่อรายการ' : 'ดูอีก 12 หน่วยงาน',
+      moreExpanded: this.state.more ? 'true' : 'false',
+      toggleMore: () => this.setState({ more: !this.state.more }),
       pdfLabel: this.state.pdf ? 'ดาวน์โหลดแล้ว ✓ ว1287-รายงาน.pdf' : 'ส่งออก PDF ให้ผู้บริหาร',
       exportPdf: () => this.setState({ pdf: true }),
       allLabel: this.state.all ? 'เตือนแล้ว 19 แห่ง ✓' : 'เตือนซ้ำทั้ง 19 แห่ง',

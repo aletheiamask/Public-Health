@@ -29,8 +29,8 @@ a:focus-visible,button:focus-visible{outline:3px solid #F4A23C;outline-offset:3p
     <a href="HomeMobile.dc.html" class="press" style="position: absolute; left: 14px; top: 14px; height: 48px; padding: 0 16px 0 10px; border-radius: 999px; background: #FFFFFF; text-decoration: none; font-weight: 700; display: flex; gap: 4px; align-items: center; box-shadow: 0 8px 20px -8px rgba(0,0,0,.35);"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>กลับ</a>
   </div>
 
-  <article style="margin-top: -28px; position: relative; border-radius: 28px 28px 0 0; background: #FBF7F0; padding: 22px 18px 150px; display: flex; flex-direction: column; gap: 18px;">
-    <span style="align-self: flex-start; padding: 2px 12px; border-radius: 999px; background: #B3123F; color: #FFFFFF; font-size: 15px; font-weight: 700;">เฝ้าระวัง · อัปเดต 4 พ.ย. 2569</span>
+  <article style="zoom: {{zoom}}; margin-top: -28px; position: relative; border-radius: 28px 28px 0 0; background: #FBF7F0; padding: 22px 18px 150px; display: flex; flex-direction: column; gap: 18px;">
+    <span style="align-self: flex-start; padding: 2px 12px; border-radius: 999px; background: #B3123F; color: #FFFFFF; font-size: 16px; font-weight: 700;">เฝ้าระวัง · อัปเดต 4 พ.ย. 2569</span>
     <h1 class="h" style="margin: 0; font-size: 32px; line-height: 1.25;">ไข้เลือดออกกำลังระบาด ป้องกันได้ใน 10 นาทีต่อสัปดาห์</h1>
 
     <section aria-labelledby="h-level" style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px;">
@@ -82,7 +82,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #F4A23C;outline-offset:3p
 
   <div style="position: absolute; left: 12px; right: 12px; bottom: 16px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 8px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4, 0 20px 40px -20px rgba(10,54,64,.45);">
     <a href="tel:1422" class="press" style="height: 58px; border-radius: 20px; background: #DDF1F1; color: #0A4B57; text-decoration: none; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center;">โทรปรึกษา 1422</a>
-    <button type="button" class="press" style="height: 58px; border-radius: 20px; border: 0; background: #05803A; color: #FFFFFF; font-size: 17px; font-weight: 700;">ส่งให้ลูกหลาน</button>
+    <button type="button" class="press" onClick="{{share}}" style="height: 58px; border-radius: 20px; border: 0; background: #05803A; color: #FFFFFF; font-size: 17px; font-weight: 700; cursor: pointer;">{{shareLabel}}</button>
   </div>
 </div>
 </x-dc>
@@ -90,7 +90,9 @@ a:focus-visible,button:focus-visible{outline:3px solid #F4A23C;outline-offset:3p
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { d: 'เมือง', s: [], listen: false };
+    let big = false;
+    try { big = window.localStorage.getItem('trat-big-text') === '1'; } catch (e) {}
+    this.state = { d: 'เมือง', s: [], listen: false, big, shared: false };
   }
   renderVals() {
     const lv = {
@@ -123,6 +125,9 @@ class Component extends DCLogic {
     });
     const danger = this.state.s.some((k) => k === 'b' || k === 'c');
     return {
+      zoom: this.state.big ? 1.3 : 1,
+      shareLabel: this.state.shared ? 'เปิด LINE แล้ว ✓' : 'ส่งให้ลูกหลาน',
+      share: () => this.setState({ shared: true }),
       districts, symptoms, danger,
       fever: !danger && this.state.s.length > 0,
       lvl: { label: l[0], bg: l[1], fg: l[2], desc: 'อ.' + this.state.d + ' · ' + l[3] },

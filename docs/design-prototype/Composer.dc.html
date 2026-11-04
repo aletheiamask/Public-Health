@@ -30,19 +30,21 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
       <span class="h" style="font-weight: 700; font-size: 18px;">เขียนหนังสือเวียน</span>
       <span style="font-size: 14px; color: #56696E;">บันทึกร่างอัตโนมัติ 12:14 น.</span>
       <span style="flex: 1;"></span>
-      <button type="button" class="press" style="height: 44px; padding: 0 16px; border-radius: 12px; border: 0; background: #FFFFFF; box-shadow: 0 0 0 1px #E8E1D4; font-size: 15px; font-weight: 700;">ตั้งเวลาส่ง</button>
-      <button type="button" class="press" style="height: 44px; padding: 0 18px; border-radius: 12px; border: 0; background: #0E6E7E; color: #FFFFFF; font-size: 15px; font-weight: 700;">ส่งให้ นพ.ธนากร อนุมัติ</button>
+      <button type="button" class="press" onClick="{{toggleSched}}" aria-pressed="{{schedPressed}}" style="height: 44px; padding: 0 16px; border-radius: 12px; border: 0; background: #FFFFFF; box-shadow: 0 0 0 1px #E8E1D4; font-size: 15px; font-weight: 700; color: #10242A; cursor: pointer;">{{schedLabel}}</button>
+      <button type="button" class="press" style="height: 44px; padding: 0 18px; border-radius: 12px; border: 0; background: #0E6E7E; color: #FFFFFF; font-size: 15px; font-weight: 700;">ส่งขออนุมัติ · ด่วนที่สุด (ผู้อนุมัติ 3 ท่าน)</button>
     </div>
   </header>
 
   <div style="max-width: 1320px; margin: 0 auto; padding: 22px 28px 48px; display: flex; flex-wrap: wrap; gap: 22px; align-items: flex-start;">
     <section aria-label="เนื้อหา" style="flex: 2 1 620px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+      <sc-if value="{{dup}}" hint-placeholder-val="{{ true }}">
       <div role="status" style="border-radius: 18px; background: #FFF1DA; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; color: #5C3300;">
         <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path><path d="M12 9v4M12 17h.01"></path></svg>
         <span style="flex: 1 1 360px;"><strong>มีหนังสือเรื่องคล้ายกันรออนุมัติอยู่:</strong> “ขอความร่วมมือรายงานโรคมือเท้าปากในศูนย์เด็กเล็ก” โดย กมลชนก ทองดี (เมื่อวาน)</span>
         <a href="Inbox.dc.html" class="press" style="height: 40px; padding: 0 14px; border-radius: 12px; background: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 14px; display: flex; align-items: center;">เปิดดูฉบับนั้น</a>
-        <button type="button" class="press" style="height: 40px; padding: 0 14px; border-radius: 12px; border: 0; background: transparent; font-weight: 700; font-size: 14px; color: #5C3300;">เขียนต่อแยกฉบับ</button>
+        <button type="button" class="press" onClick="{{dismissDup}}" style="height: 40px; padding: 0 14px; border-radius: 12px; border: 0; background: transparent; font-weight: 700; font-size: 14px; color: #5C3300; cursor: pointer;">เขียนต่อแยกฉบับ</button>
       </div>
+      </sc-if>
       <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
         <span style="font-size: 14px; color: #56696E;">เริ่มจากแม่แบบ</span>
         <span style="height: 36px; padding: 0 14px; border-radius: 999px; background: #10242A; color: #FFFFFF; font-size: 14px; font-weight: 700; display: flex; align-items: center;">หนังสือเวียนด่วน</span>
@@ -116,7 +118,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { on: ['rpst', 'sso'], urg: 'top' };
+    this.state = { on: ['rpst', 'sso'], urg: 'top', sched: false, dup: true };
   }
   renderVals() {
     const defs = [['rpst', 'รพ.สต. 64 แห่ง', 384], ['sso', 'สสอ. 7 แห่ง', 41], ['hosp', 'โรงพยาบาล 7 แห่ง', 96], ['dept', 'กลุ่มงานใน สสจ.', 62], ['public', 'ประชาชน (หน้าเว็บ)', 0]];
@@ -127,7 +129,13 @@ class Component extends DCLogic {
     const people = defs.filter((d) => this.state.on.indexOf(d[0]) >= 0).reduce((s, d) => s + d[2], 0);
     const udefs = [['norm', 'ปกติ', '#3B5157'], ['fast', 'ด่วน', '#A85A00'], ['top', 'ด่วนที่สุด', '#B3123F']];
     const urg = udefs.map(([k, label, bg]) => ({ label, bg, on: this.state.urg === k, off: this.state.urg !== k, pick: () => this.setState({ urg: k }) }));
-    return { aud, urg, people: people.toLocaleString('th-TH') };
+    return {
+      aud, urg, people: people.toLocaleString('th-TH'),
+      dup: this.state.dup, dismissDup: () => this.setState({ dup: false }),
+      schedPressed: this.state.sched ? 'true' : 'false',
+      schedLabel: this.state.sched ? 'ส่ง 5 พ.ย. 08:30 น. ✓ (แตะเพื่อยกเลิก)' : 'ตั้งเวลาส่ง',
+      toggleSched: () => this.setState({ sched: !this.state.sched })
+    };
   }
 }
 </script>

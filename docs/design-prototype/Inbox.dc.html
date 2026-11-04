@@ -137,7 +137,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
             </div>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
               <button type="button" class="press" onClick="{{returnSel}}" style="height: 48px; padding: 0 18px; border-radius: 14px; border: 0; background: #FBE4EA; color: #8C0E31; font-size: 15px; font-weight: 700; cursor: pointer;">ตีกลับ <kbd style="background: rgba(255,255,255,.6);">R</kbd></button>
-              <button type="button" class="press" style="height: 48px; padding: 0 18px; border-radius: 14px; border: 0; background: #F3EDE2; color: #10242A; font-size: 15px; font-weight: 700;">แก้เองก่อนอนุมัติ</button>
+              <button type="button" class="press" onClick="{{editSel}}" style="height: 48px; padding: 0 18px; border-radius: 14px; border: 0; background: #F3EDE2; color: #10242A; font-size: 15px; font-weight: 700; cursor: pointer;">แก้เองก่อนอนุมัติ</button>
               <button type="button" class="press" onClick="{{approveSel}}" style="margin-left: auto; height: 48px; padding: 0 22px; border-radius: 14px; border: 0; background: #0E6E7E; color: #FFFFFF; font-size: 15px; font-weight: 700; cursor: pointer;">{{sel.cta}} <kbd style="background: rgba(255,255,255,.2); color: #FFFFFF; box-shadow: none;">A</kbd></button>
             </div>
           </div>
@@ -211,6 +211,7 @@ class Component extends DCLogic {
       return { label, sel: on ? 'true' : 'false', bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#10242A' : '#3B5157', shadow: on ? '0 1px 2px rgba(0,0,0,.08)' : 'none', pick: () => this.setState({ tab: k }) };
     });
     return {
+      editSel: () => sel && this.setState({ toast: 'เปิดโหมดแก้ไข · บันทึกว่าแก้โดย พิมพ์ชนก (รอบที่ ' + (sel.rev + 1) + ')', lastRemoved: [] }),
       tabs,
       tabApprove: this.state.tab === 'approve', tabAck: this.state.tab === 'ack', tabFollow: this.state.tab === 'follow',
       bulkOk,
@@ -237,7 +238,7 @@ class Component extends DCLogic {
       approveSel: () => sel && remove([sel.id], 'อนุมัติแล้ว · แจ้ง ' + sel.who + ' แล้ว'),
       toast: !!this.state.toast,
       toastText: this.state.toast || '',
-      undo: () => this.setState({ removed: this.state.removed.filter((r) => this.state.lastRemoved.indexOf(r) < 0), toast: null, sel: this.state.lastRemoved[0] }),
+      undo: () => this.setState({ removed: this.state.removed.filter((r) => this.state.lastRemoved.indexOf(r) < 0), toast: null, sel: this.state.lastRemoved[0] || this.state.sel }),
       pal: this.state.pal,
       openPal: () => this.setState({ pal: true }),
       closePal: () => this.setState({ pal: false })
