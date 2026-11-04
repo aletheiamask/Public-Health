@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>งานของฉัน เจ้าหน้าที่ มือถือ</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@500;600;700&amp;family=Noto+Sans+Thai+Looped:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+button{font-family:inherit}
+a{color:inherit}
+.h{font-family:'Anuphan','Noto Sans Thai Looped',sans-serif;letter-spacing:-0.01em}
+.press{transition:transform .12s}.press:active{transform:scale(.96)}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.rise{animation:rise .45s cubic-bezier(.2,.7,.2,1) both}
+@keyframes toast{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.toast{animation:toast .3s cubic-bezier(.2,.8,.2,1) both}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.3)}100%{transform:scale(1)}}
+.bump{animation:bump .4s}
+a:focus-visible,button:focus-visible{outline:3px solid #F4A23C;outline-offset:3px}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 1800px; position: relative; overflow: hidden; background: #FBF7F0; font-family: 'Noto Sans Thai Looped', system-ui, sans-serif; font-size: 18px; line-height: 1.65; color: #10242A;">
+
+  <header style="background: #0A3640; color: #FFFFFF; padding: 14px 16px 64px; position: relative; overflow: hidden;">
+    <svg aria-hidden="true" width="390" height="60" viewBox="0 0 390 60" style="position: absolute; left: 0; bottom: 0;"><path d="M0 30c32-14 65 14 98 0s65-14 97 0 65 14 98 0 65-14 97 0v30H0z" fill="#FBF7F0"></path></svg>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span aria-hidden="true" style="width: 46px; height: 46px; border-radius: 50%; background: #F4A23C; color: #10242A; display: flex; align-items: center; justify-content: center; font-weight: 700;">สศ</span>
+      <span style="flex: 1; display: flex; flex-direction: column; line-height: 1.3;"><span style="font-size: 14px; color: #B9D8D6;">อรุณสวัสดิ์</span><span class="h" style="font-size: 20px; font-weight: 700;">พี่สมศรี ใจดี</span></span>
+      <span style="display: flex; gap: 6px; align-items: center; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.12); font-size: 13px;"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #5EE0A0;"></span>ออนไลน์</span>
+    </div>
+    <p style="margin: 14px 0 0; color: #DDF1F1; font-size: 16px;">รพ.สต.บ้านท่าเรือ · วันพุธที่ 4 พ.ย. 2569</p>
+  </header>
+
+  <section aria-label="สรุปวันนี้" style="margin: -44px 16px 0; position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
+    <div style="padding: 12px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 10px 24px -14px rgba(10,54,64,.4); text-align: center; line-height: 1.25;"><span class="h bump" style="display: block; font-size: 30px; font-weight: 700; color: #B3123F; font-variant-numeric: tabular-nums;">{{pending}}</span><span style="font-size: 14px;">ต้องรับทราบ</span></div>
+    <div style="padding: 12px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 10px 24px -14px rgba(10,54,64,.4); text-align: center; line-height: 1.25;"><span class="h" style="display: block; font-size: 30px; font-weight: 700; color: #7A4300;">1</span><span style="font-size: 14px;">รายงานค้าง</span></div>
+    <div style="padding: 12px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 10px 24px -14px rgba(10,54,64,.4); text-align: center; line-height: 1.25;"><span class="h" style="display: block; font-size: 30px; font-weight: 700; color: #0E6E7E;">11</span><span style="font-size: 14px;">วันลาเหลือ</span></div>
+  </section>
+
+  <section style="padding: 18px 16px 4px;">
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px;">
+      <a href="LeaveForm.dc.html" class="press" style="min-height: 84px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 14px; font-weight: 700;"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0E6E7E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 11h18"></path></svg>ขอลา</a>
+      <a href="#" class="press" style="min-height: 84px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 14px; font-weight: 700;"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0E6E7E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11h6M9 15h4"></path><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path></svg>ส่งรายงาน</a>
+      <a href="#" class="press" style="min-height: 84px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 14px; font-weight: 700;"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0E6E7E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><path d="M14 14h3v3M21 14v7h-7"></path></svg>สแกนเข้าประชุม</a>
+      <a href="#" class="press" style="min-height: 84px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 14px; font-weight: 700;"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0E6E7E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5 5L22 14l-8 8-2.3-2.3a4 4 0 0 0-5-5L2 10l8-8z"></path></svg>แจ้งซ่อม</a>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-todo" style="padding: 18px 16px 4px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px;">
+      <h2 id="h-todo" class="h" style="margin: 0; font-size: 24px;">ต้องทำวันนี้</h2>
+      <span style="font-size: 15px; color: #56696E;">เรียงตามความด่วน</span>
+    </div>
+    <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px;">
+      <sc-for list="{{todos}}" as="t" hint-placeholder-count="3">
+        <li class="rise" style="border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1.5px {{t.border}}; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px; font-weight: 700;">
+            <span style="padding: 2px 10px; border-radius: 999px; background: {{t.bg}}; color: {{t.fg}};">{{t.kind}}</span>
+            <span style="padding: 2px 10px; border-radius: 999px; background: #F3EDE2; color: #3B5157;">{{t.due}}</span>
+          </div>
+          <a href="{{t.href}}" class="h" style="font-size: 19px; font-weight: 700; line-height: 1.4; text-decoration: none;">{{t.title}}</a>
+          <span style="font-size: 15px; color: #56696E;">{{t.meta}}</span>
+          <a href="{{t.href}}" class="press" style="height: 54px; border-radius: 16px; background: #0E6E7E; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 17px; display: flex; align-items: center; justify-content: center;">{{t.action}}</a>
+        </li>
+      </sc-for>
+    </ul>
+    <sc-if value="{{allDone}}" hint-placeholder-val="{{ false }}">
+      <div class="rise" style="border-radius: 24px; background: #E3EFE6; color: #1F4D3A; padding: 20px; text-align: center; font-weight: 700;">เคลียร์งานด่วนครบแล้ว เยี่ยมมากค่ะ</div>
+    </sc-if>
+  </section>
+
+  <section aria-labelledby="h-inbox" style="padding: 22px 16px 160px;">
+    <h2 id="h-inbox" class="h" style="margin: 0 0 10px; font-size: 24px;">หนังสือถึง รพ.สต.ของฉัน</h2>
+    <div role="group" aria-label="ตัวกรองหนังสือ" style="display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
+      <sc-for list="{{chips}}" as="c" hint-placeholder-count="3">
+        <sc-if value="{{c.on}}" hint-placeholder-val="{{ false }}"><button type="button" aria-pressed="true" class="press" onClick="{{c.pick}}" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 0; background: #10242A; color: #FFFFFF; font-size: 16px; font-weight: 700; cursor: pointer;">{{c.label}}</button></sc-if>
+        <sc-if value="{{c.off}}" hint-placeholder-val="{{ true }}"><button type="button" aria-pressed="false" class="press" onClick="{{c.pick}}" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 0; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; color: #10242A; font-size: 16px; font-weight: 600; cursor: pointer;">{{c.label}}</button></sc-if>
+      </sc-for>
+    </div>
+    <ul style="list-style: none; margin: 0; padding: 0; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; overflow: hidden;">
+      <sc-for list="{{docs}}" as="d" hint-placeholder-count="2">
+        <li style="border-top: 1px solid #F0EADF;"><a href="CircularMobile.dc.html" style="padding: 14px 16px; display: flex; gap: 12px; align-items: center; text-decoration: none;"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: {{d.dot}}; flex: none;"></span><span style="flex: 1; display: flex; flex-direction: column; line-height: 1.45;"><span style="font-weight: 700; font-size: 16px;">{{d.title}}</span><span style="font-size: 15px; color: #56696E;">{{d.meta}}</span></span><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#56696E" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"></path></svg></a></li>
+      </sc-for>
+    </ul>
+  </section>
+
+  <sc-if value="{{toast}}" hint-placeholder-val="{{ false }}">
+    <div role="status" class="toast" style="position: absolute; left: 16px; right: 16px; bottom: 112px; border-radius: 18px; background: #10242A; color: #FFFFFF; padding: 12px 12px 12px 16px; display: flex; gap: 10px; align-items: center; font-size: 16px;">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5EE0A0" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg>
+      <span style="flex: 1;">{{toastText}}</span>
+      <button type="button" class="press" onClick="{{undo}}" style="height: 40px; padding: 0 14px; border-radius: 12px; border: 0; background: rgba(255,255,255,.14); color: #FFFFFF; font-size: 15px; font-weight: 700;">เลิกทำ</button>
+    </div>
+  </sc-if>
+
+  <nav aria-label="เมนูเจ้าหน้าที่" style="position: absolute; left: 12px; right: 12px; bottom: 16px; border-radius: 26px; background: #10242A; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 6px;">
+    <a href="#" aria-current="page" style="position: relative; min-height: 62px; border-radius: 20px; background: #FFFFFF; color: #10242A; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; font-size: 14px; font-weight: 700; line-height: 1.3;"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"></path><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"></path></svg>งานของฉัน<span style="position: absolute; top: 6px; right: 14px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: #B3123F; color: #FFFFFF; font-size: 12px; line-height: 22px; text-align: center;">{{pending}}</span></a>
+    <a href="CircularMobile.dc.html" style="min-height: 62px; color: #C9D8D7; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; font-size: 14px; font-weight: 600; line-height: 1.3;"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"></path><path d="m4 6 8 6 8-6"></path></svg>หนังสือ</a>
+    <a href="LeaveForm.dc.html" style="min-height: 62px; color: #C9D8D7; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; font-size: 14px; font-weight: 600; line-height: 1.3;"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 11h18"></path></svg>คำขอ</a>
+    <a href="#" style="min-height: 62px; color: #C9D8D7; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; font-size: 14px; font-weight: 600; line-height: 1.3;"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>ค้นหา</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1800}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { done: [], last: null, chip: 'unread' };
+  }
+  renderVals() {
+    const base = [
+      { id: 'c1', kind: 'ต้องรับทราบ · ด่วนที่สุด', bg: '#FBE4EA', fg: '#8C0E31', border: '#F3B7C6', due: 'ภายใน 11 พ.ย.', title: 'แนวทางเฝ้าระวังไข้เลือดออก ช่วงฤดูฝน', meta: 'จากกลุ่มงานควบคุมโรคติดต่อ · อ่าน 2 นาที', open: 'อ่าน', action: 'อ่านแล้วรับทราบ', href: 'CircularMobile.dc.html', ack: true },
+      { id: 'c2', kind: 'ต้องรับทราบ', bg: '#FFF1DA', fg: '#7A4300', border: '#E8E1D4', due: 'ภายใน 8 พ.ย.', title: 'นโยบายลดการใช้กระดาษ ปีงบ 2570', meta: 'จากกลุ่มงานบริหารทั่วไป · อ่าน 1 นาที', open: 'อ่าน', action: 'อ่านแล้วรับทราบ', href: 'CircularMobile.dc.html', ack: true },
+      { id: 'r1', kind: 'ส่งรายงาน', bg: '#DDF1F1', fg: '#0A4B57', border: '#E8E1D4', due: 'ภายใน 10 พ.ย.', title: 'รายงานค่าลูกน้ำยุงลาย HI/CI หมู่ 1–8', meta: 'กรอกออนไลน์ได้เลย ไม่ต้องส่ง Excel', open: 'ดูแบบฟอร์ม', action: 'กรอกเลย', href: '#', ack: false }
+    ];
+    const todos = base.filter((t) => this.state.done.indexOf(t.id) < 0).map((t) => Object.assign({}, t, {
+      done: () => { if (t.ack) this.setState({ done: this.state.done.concat([t.id]), last: t.id }); }
+    }));
+    const pending = base.filter((t) => t.ack && this.state.done.indexOf(t.id) < 0).length;
+    const allDocs = [
+      { title: 'แนวทางเฝ้าระวังไข้เลือดออก ว 1287', meta: '4 พ.ย. · ด่วนที่สุด · ยังไม่อ่าน', dot: '#B3123F', unread: true, form: true, recent: true },
+      { title: 'แบบรายงานค่าลูกน้ำยุงลาย HI/CI', meta: '29 ต.ค. · มีแบบฟอร์มออนไลน์ · ส่งภายใน 10 พ.ย.', dot: '#E8E1D4', unread: false, form: true, recent: true },
+      { title: 'นโยบายลดการใช้กระดาษ ปีงบ 2570', meta: '3 พ.ย. · ยังไม่อ่าน', dot: '#B3123F', unread: true, form: false, recent: true },
+      { title: 'กำหนดการอบรม อสม. รุ่นที่ 3', meta: '20 ต.ค. · อ่านแล้ว', dot: '#E8E1D4', unread: false, form: false, recent: false }
+    ];
+    const cdefs = [['unread', 'ยังไม่อ่าน'], ['form', 'มีแบบฟอร์ม'], ['recent', '7 วันล่าสุด']];
+    const chips = cdefs.map(([k, label]) => ({ label: label + ' ' + allDocs.filter((d) => d[k]).length, on: this.state.chip === k, off: this.state.chip !== k, pick: () => this.setState({ chip: k }) }));
+    return {
+      chips, docs: allDocs.filter((d) => d[this.state.chip]),
+      todos, pending,
+      allDone: pending === 0,
+      toast: !!this.state.last,
+      toastText: 'รับทราบแล้ว · บันทึกเวลา 12:05 น.',
+      undo: () => this.setState({ done: this.state.done.filter((d) => d !== this.state.last), last: null })
+    };
+  }
+}
+</script>
+</body>
+</html>

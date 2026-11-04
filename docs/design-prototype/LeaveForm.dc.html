@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>ยื่นใบลา มือถือ</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@500;600;700&amp;family=Noto+Sans+Thai+Looped:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+button,textarea{font-family:inherit}
+a{color:inherit}
+.h{font-family:'Anuphan','Noto Sans Thai Looped',sans-serif;letter-spacing:-0.01em}
+.press{transition:transform .12s}.press:active{transform:scale(.96)}
+.chip{transition:background .2s,color .2s,box-shadow .2s}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.rise{animation:rise .4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes draw{from{stroke-dashoffset:30}to{stroke-dashoffset:0}}
+.draw{stroke-dasharray:30;animation:draw .5s .15s both}
+a:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid #F4A23C;outline-offset:3px}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 1800px; position: relative; overflow: hidden; background: #FBF7F0; font-family: 'Noto Sans Thai Looped', system-ui, sans-serif; font-size: 18px; line-height: 1.65; color: #10242A;">
+
+  <header style="padding: 12px 12px 4px; display: flex; align-items: center; gap: 8px;">
+    <a href="StaffMobile.dc.html" class="press" style="height: 48px; padding: 0 16px 0 10px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; text-decoration: none; font-weight: 700; display: flex; gap: 4px; align-items: center;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>กลับ</a>
+    <span style="flex: 1;"></span>
+    <span style="display: flex; gap: 6px; align-items: center; font-size: 14px; color: #56696E;"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"></path></svg>บันทึกร่างแล้ว</span>
+  </header>
+
+  <sc-if value="{{notSent}}" hint-placeholder-val="{{ true }}">
+    <div style="padding: 8px 16px 140px; display: flex; flex-direction: column; gap: 20px;">
+      <div>
+        <h1 class="h" style="margin: 0; font-size: 32px; line-height: 1.25;">ยื่นใบลา</h1>
+        <p style="margin: 2px 0 0; color: #3B5157; font-size: 16px;">สมศรี ใจดี · รพ.สต.บ้านท่าเรือ</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
+        <div style="padding: 10px 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; line-height: 1.3;"><span style="display: block; font-size: 14px; color: #56696E;">ป่วย ใช้ไป</span><span class="h" style="font-size: 22px; font-weight: 700;">3</span><span style="font-size: 14px;"> / 60 วัน</span></div>
+        <div style="padding: 10px 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; line-height: 1.3;"><span style="display: block; font-size: 14px; color: #56696E;">พักผ่อน เหลือ</span><span class="h" style="font-size: 22px; font-weight: 700;">11</span><span style="font-size: 14px;"> วัน</span></div>
+        <div style="padding: 10px 12px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; line-height: 1.3;"><span style="display: block; font-size: 14px; color: #56696E;">กิจ ใช้ไป</span><span class="h" style="font-size: 22px; font-weight: 700;">1</span><span style="font-size: 14px;"> / 45 วัน</span></div>
+      </div>
+
+      <fieldset style="border: 0; margin: 0; padding: 0;">
+        <legend class="h" style="font-weight: 700; font-size: 20px; margin-bottom: 10px;">ลาเรื่องอะไร</legend>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;">
+          <sc-for list="{{types}}" as="t" hint-placeholder-count="4">
+            <sc-if value="{{t.isSel}}" hint-placeholder-val="{{ false }}"><button type="button" aria-pressed="true" class="chip press" onClick="{{t.pick}}" style="min-height: 60px; border-radius: 18px; border: 0; background: #10242A; color: #FFFFFF; font-size: 17px; font-weight: 700; cursor: pointer;">{{t.label}}</button></sc-if>
+            <sc-if value="{{t.notSel}}" hint-placeholder-val="{{ true }}"><button type="button" aria-pressed="false" class="chip press" onClick="{{t.pick}}" style="min-height: 60px; border-radius: 18px; border: 0; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; color: #10242A; font-size: 17px; font-weight: 600; cursor: pointer;">{{t.label}}</button></sc-if>
+          </sc-for>
+        </div>
+      </fieldset>
+
+      <fieldset style="border: 0; margin: 0; padding: 0;">
+        <legend class="h" style="font-weight: 700; font-size: 20px; margin-bottom: 10px;">วันไหน</legend>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
+          <sc-for list="{{days}}" as="d" hint-placeholder-count="3">
+            <sc-if value="{{d.isSel}}" hint-placeholder-val="{{ false }}"><button type="button" aria-pressed="true" class="chip press" onClick="{{d.pick}}" style="min-height: 64px; border-radius: 18px; border: 0; background: #0E6E7E; color: #FFFFFF; font-size: 16px; font-weight: 700; line-height: 1.25; cursor: pointer;">{{d.label}}<br><span style="font-size: 13px; font-weight: 500;">{{d.sub}}</span></button></sc-if>
+            <sc-if value="{{d.notSel}}" hint-placeholder-val="{{ true }}"><button type="button" aria-pressed="false" class="chip press" onClick="{{d.pick}}" style="min-height: 64px; border-radius: 18px; border: 0; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; color: #10242A; font-size: 16px; font-weight: 600; line-height: 1.25; cursor: pointer;">{{d.label}}<br><span style="font-size: 13px; font-weight: 500; color: #56696E;">{{d.sub}}</span></button></sc-if>
+          </sc-for>
+        </div>
+        <p role="status" style="margin: 10px 0 0; padding: 10px 14px; border-radius: 16px; background: #DDF1F1; color: #0A4B57; font-size: 16px;"><strong>{{dayText}}</strong> · นับ 1 วันทำการ</p>
+      </fieldset>
+
+      <section aria-labelledby="h-cert">
+        <h2 id="h-cert" class="h" style="margin: 0 0 4px; font-size: 20px;">ใบรับรองแพทย์</h2>
+        <p style="margin: 0 0 10px; font-size: 15px; color: #56696E;">{{certHint}}</p>
+        <sc-if value="{{noCert}}" hint-placeholder-val="{{ true }}">
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;">
+            <button type="button" class="press" onClick="{{attach}}" style="min-height: 92px; border-radius: 20px; border: 2px dashed #9FC6C9; background: #FFFFFF; color: #0A4B57; font-size: 16px; font-weight: 700; display: flex; flex-direction: column; gap: 4px; align-items: center; justify-content: center; cursor: pointer;"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>ถ่ายรูป</button>
+            <button type="button" class="press" onClick="{{attach}}" style="min-height: 92px; border-radius: 20px; border: 2px dashed #D8CFBF; background: #FFFFFF; color: #3B5157; font-size: 16px; font-weight: 700; display: flex; flex-direction: column; gap: 4px; align-items: center; justify-content: center; cursor: pointer;"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-5-5L5 21"></path></svg>เลือกจากเครื่อง</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{hasCert}}" hint-placeholder-val="{{ false }}">
+          <div class="rise" style="display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #9FD7B8;">
+            <span aria-hidden="true" style="width: 60px; height: 72px; flex: none; border-radius: 10px; background: #F3EDE2; display: flex; flex-direction: column; gap: 4px; padding: 10px 8px;"><span style="height: 4px; border-radius: 2px; background: #C9BFAE;"></span><span style="height: 4px; width: 70%; border-radius: 2px; background: #C9BFAE;"></span><span style="height: 4px; border-radius: 2px; background: #C9BFAE;"></span><span style="margin-top: auto; height: 10px; width: 50%; border-radius: 3px; background: #0E6E7E;"></span></span>
+            <span style="flex: 1; display: flex; flex-direction: column; line-height: 1.4;"><span style="font-weight: 700; font-size: 16px;">ใบรับรองแพทย์ รพ.ตราด</span><span style="font-size: 14px; color: #1A7A50; font-weight: 600;">แนบแล้ว · เห็นเฉพาะผู้อนุมัติและงานบุคคล</span></span>
+            <button type="button" class="press" onClick="{{detach}}" style="height: 40px; padding: 0 12px; border-radius: 12px; border: 0; background: #F3EDE2; font-size: 14px; font-weight: 700; color: #10242A;">ลบ</button>
+          </div>
+        </sc-if>
+      </section>
+
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label for="note" class="h" style="font-weight: 700; font-size: 20px;">หมายเหตุ <span style="font-weight: 500; font-size: 15px; color: #56696E;">ไม่ต้องกรอกก็ได้</span></label>
+        <textarea id="note" rows="2" style="padding: 14px 16px; font-size: 17px; border: 0; box-shadow: 0 0 0 1.5px #E8E1D4; border-radius: 18px; background: #FFFFFF; resize: vertical;">มีไข้ หมอให้พัก 1 วัน</textarea>
+      </div>
+
+      <div style="padding: 14px 16px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; display: flex; flex-direction: column; gap: 8px; font-size: 15px;">
+        <span class="h" style="font-weight: 700; font-size: 17px;">ส่งถึงใคร</span>
+        <span style="display: flex; gap: 10px; align-items: center;"><span style="width: 24px; height: 24px; border-radius: 50%; background: #10242A; color: #FFFFFF; font-size: 13px; display: flex; align-items: center; justify-content: center;">1</span>วันเพ็ญ ศรีสุข · ผอ.รพ.สต.บ้านท่าเรือ</span>
+        <span style="display: flex; gap: 10px; align-items: center;"><span style="width: 24px; height: 24px; border-radius: 50%; background: #E8E1D4; color: #10242A; font-size: 13px; display: flex; align-items: center; justify-content: center;">2</span>สสอ.เมืองตราด (รับทราบ)</span>
+        <span style="color: #56696E;">ผู้ปฏิบัติงานแทน: ณัฐวุฒิ แก้วมณี (ใช้คนเดิมจากครั้งก่อน)</span>
+      </div>
+    </div>
+
+    <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 16px 22px; background: #FFFFFF; border-radius: 28px 28px 0 0; box-shadow: 0 -12px 30px -16px rgba(10,54,64,.35);">
+      <button type="button" class="press" onClick="{{send}}" style="width: 100%; height: 64px; border-radius: 20px; border: 0; background: #0E6E7E; color: #FFFFFF; font-size: 20px; font-weight: 700; cursor: pointer;">ส่งใบลา{{typeLabel}} · 1 วัน</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{sent}}" hint-placeholder-val="{{ false }}">
+    <div role="status" style="padding: 60px 24px; display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center;">
+      <span aria-hidden="true" style="width: 112px; height: 112px; border-radius: 50%; background: #E3EFE6; display: flex; align-items: center; justify-content: center;"><span style="width: 72px; height: 72px; border-radius: 50%; background: #1A7A50; display: flex; align-items: center; justify-content: center;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path class="draw" d="m5 12 5 5L20 7"></path></svg></span></span>
+      <h2 class="h" style="margin: 0; font-size: 30px;">ส่งใบลาแล้ว</h2>
+      <p style="margin: 0; color: #3B5157;">ลา{{typeLabel}} {{dayText}} · 1 วันทำการ<br>แจ้ง ผอ.วันเพ็ญ แล้ว<br>จะแจ้งผลกลับมาที่มือถือของพี่</p>
+      <div style="width: 100%; padding: 12px 16px; border-radius: 18px; background: #FFF1DA; color: #7A4300; font-size: 15px; text-align: left;">ถ้าเน็ตหลุด ไม่ต้องกังวล ระบบเก็บไว้และส่งให้อัตโนมัติเมื่อกลับมาออนไลน์</div>
+      <a href="StaffMobile.dc.html" class="press" style="width: 100%; height: 60px; border-radius: 20px; background: #10242A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; text-decoration: none; font-weight: 700;">กลับหน้างานของฉัน</a>
+      <button type="button" class="press" onClick="{{reset}}" style="height: 48px; padding: 0 20px; border-radius: 999px; border: 0; background: transparent; font-size: 17px; font-weight: 700; color: #0E6E7E;">แก้ไขใบลานี้</button>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1800}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { type: 'sick', day: 'y', cert: false, sent: false };
+  }
+  renderVals() {
+    const tdefs = [['sick', 'ป่วย'], ['biz', 'กิจส่วนตัว'], ['vac', 'พักผ่อน'], ['other', 'อื่น ๆ']];
+    const types = tdefs.map(([k, label]) => ({ label: 'ลา' + label, isSel: this.state.type === k, notSel: this.state.type !== k, pick: () => this.setState({ type: k }) }));
+    const ddefs = [['y', 'เมื่อวาน', 'อ. 3 พ.ย.', 'อังคารที่ 3 พ.ย. 2569'], ['t', 'วันนี้', 'พ. 4 พ.ย.', 'พุธที่ 4 พ.ย. 2569'], ['c', 'เลือกวัน', 'เปิดปฏิทิน', 'พฤหัสที่ 5 พ.ย. 2569']];
+    const days = ddefs.map(([k, label, sub]) => ({ label, sub, isSel: this.state.day === k, notSel: this.state.day !== k, pick: () => this.setState({ day: k }) }));
+    const sick = this.state.type === 'sick';
+    return {
+      types, days,
+      dayText: ddefs.find((d) => d[0] === this.state.day)[3],
+      typeLabel: tdefs.find((t) => t[0] === this.state.type)[1],
+      certHint: sick ? 'ลาป่วยย้อนหลัง แนบใบรับรองแพทย์ช่วยให้อนุมัติเร็วขึ้น' : 'ไม่จำเป็นสำหรับการลาประเภทนี้',
+      hasCert: this.state.cert, noCert: !this.state.cert,
+      attach: () => this.setState({ cert: true }),
+      detach: () => this.setState({ cert: false }),
+      sent: this.state.sent, notSent: !this.state.sent,
+      send: () => this.setState({ sent: true }),
+      reset: () => this.setState({ sent: false })
+    };
+  }
+}
+</script>
+</body>
+</html>
