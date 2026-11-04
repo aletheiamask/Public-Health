@@ -64,7 +64,18 @@ a:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid #F
             <sc-if value="{{d.notSel}}" hint-placeholder-val="{{ true }}"><button type="button" aria-pressed="false" class="chip press" onClick="{{d.pick}}" style="min-height: 64px; border-radius: 18px; border: 0; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; color: #10242A; font-size: 16px; font-weight: 600; line-height: 1.25; cursor: pointer;">{{d.label}}<br><span style="font-size: 13px; font-weight: 500; color: #56696E;">{{d.sub}}</span></button></sc-if>
           </sc-for>
         </div>
-        <p role="status" style="margin: 10px 0 0; padding: 10px 14px; border-radius: 16px; background: #DDF1F1; color: #0A4B57; font-size: 16px;"><strong>{{dayText}}</strong> · นับ 1 วันทำการ</p>
+        <sc-if value="{{showCal}}" hint-placeholder-val="{{ false }}">
+          <div class="rise" style="margin-top: 10px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #E8E1D4; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;"><strong>พฤศจิกายน 2569</strong><span style="font-size: 15px; color: #56696E;">แตะวันเริ่ม แล้วแตะวันสุดท้าย</span></div>
+            <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; text-align: center; font-size: 14px; color: #56696E; margin-bottom: 4px;"><span>อา</span><span>จ</span><span>อ</span><span>พ</span><span>พฤ</span><span>ศ</span><span>ส</span></div>
+            <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px;">
+              <sc-for list="{{cells}}" as="c" hint-placeholder-count="35">
+                <button type="button" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}" aria-label="{{c.aria}}" style="height: 44px; border-radius: {{c.radius}}; border: 0; background: {{c.bg}}; color: {{c.fg}}; font-weight: {{c.weight}}; font-size: 16px; padding: 0; cursor: pointer; font-variant-numeric: tabular-nums;">{{c.day}}</button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+        <p role="status" style="margin: 10px 0 0; padding: 10px 14px; border-radius: 16px; background: #DDF1F1; color: #0A4B57; font-size: 16px;"><strong>{{dayText}}</strong> · นับ {{nDays}} วันทำการ</p>
       </fieldset>
 
       <section aria-labelledby="h-cert">
@@ -99,7 +110,7 @@ a:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid #F
     </div>
 
     <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 16px 22px; background: #FFFFFF; border-radius: 28px 28px 0 0; box-shadow: 0 -12px 30px -16px rgba(10,54,64,.35);">
-      <button type="button" class="press" onClick="{{send}}" style="width: 100%; height: 64px; border-radius: 20px; border: 0; background: #0E6E7E; color: #FFFFFF; font-size: 20px; font-weight: 700; cursor: pointer;">ส่งใบลา{{typeLabel}} · 1 วัน</button>
+      <button type="button" class="press" onClick="{{send}}" style="width: 100%; height: 64px; border-radius: 20px; border: 0; background: #0E6E7E; color: #FFFFFF; font-size: 20px; font-weight: 700; cursor: pointer;">ส่งใบลา{{typeLabel}} · {{nDays}} วัน</button>
     </div>
   </sc-if>
 
@@ -107,7 +118,7 @@ a:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid #F
     <div role="status" style="padding: 60px 24px; display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center;">
       <span aria-hidden="true" style="width: 112px; height: 112px; border-radius: 50%; background: #E3EFE6; display: flex; align-items: center; justify-content: center;"><span style="width: 72px; height: 72px; border-radius: 50%; background: #1A7A50; display: flex; align-items: center; justify-content: center;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path class="draw" d="m5 12 5 5L20 7"></path></svg></span></span>
       <h2 class="h" style="margin: 0; font-size: 30px;">ส่งใบลาแล้ว</h2>
-      <p style="margin: 0; color: #3B5157;">ลา{{typeLabel}} {{dayText}} · 1 วันทำการ<br>แจ้ง ผอ.วันเพ็ญ แล้ว<br>จะแจ้งผลกลับมาที่มือถือของพี่</p>
+      <p style="margin: 0; color: #3B5157;">ลา{{typeLabel}} {{dayText}} · {{nDays}} วันทำการ<br>แจ้ง ผอ.วันเพ็ญ แล้ว<br>จะแจ้งผลกลับมาที่มือถือของพี่</p>
       <div style="width: 100%; padding: 12px 16px; border-radius: 18px; background: #FFF1DA; color: #7A4300; font-size: 15px; text-align: left;">ถ้าเน็ตหลุด ไม่ต้องกังวล ระบบเก็บไว้และส่งให้อัตโนมัติเมื่อกลับมาออนไลน์</div>
       <a href="StaffMobile.dc.html" class="press" style="width: 100%; height: 60px; border-radius: 20px; background: #10242A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; text-decoration: none; font-weight: 700;">กลับหน้างานของฉัน</a>
       <button type="button" class="press" onClick="{{reset}}" style="height: 48px; padding: 0 20px; border-radius: 999px; border: 0; background: transparent; font-size: 17px; font-weight: 700; color: #0E6E7E;">แก้ไขใบลานี้</button>
@@ -119,17 +130,45 @@ a:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid #F
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { type: 'sick', day: 'y', cert: false, sent: false };
+    this.state = { type: 'sick', day: 'y', cert: false, sent: false, rs: 5, re: 6 };
   }
   renderVals() {
+    const rs = this.state.rs, re = this.state.re || this.state.rs;
+    const isWeekend = (d) => { const col = (d - 1) % 7; return col === 0 || col === 6; };
+    const cells = [];
+    for (let i = 0; i < 35; i++) {
+      const day = i + 1;
+      if (day > 30) { cells.push({ day: '', pick: () => {}, pressed: 'false', aria: 'ว่าง', bg: 'transparent', fg: '#10242A', weight: '400', radius: '12px' }); continue; }
+      const inR = day >= rs && day <= re, wk = isWeekend(day), past = day < 4;
+      cells.push({
+        day, pressed: inR ? 'true' : 'false', aria: day + ' พฤศจิกายน' + (wk ? ' วันหยุด' : ''),
+        bg: inR ? (wk ? '#9FC6C9' : '#0E6E7E') : day === 4 ? '#FFF1DA' : 'transparent',
+        fg: inR ? '#FFFFFF' : (wk || past) ? '#56696E' : '#10242A',
+        weight: inR || day === 4 ? '700' : '400',
+        radius: day === rs && day === re ? '14px' : day === rs ? '14px 4px 4px 14px' : day === re ? '4px 14px 14px 4px' : inR ? '4px' : '12px',
+        pick: () => {
+          const s = this.state;
+          if (s.re !== null && s.re !== undefined) this.setState({ rs: day, re: null });
+          else if (day < s.rs) this.setState({ rs: day, re: s.rs });
+          else this.setState({ re: day });
+        }
+      });
+    }
+    let custom = 0;
+    for (let d = rs; d <= re; d++) if (!isWeekend(d)) custom++;
+    const thDay = (d) => ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์'][(d - 1) % 7];
+    const customText = rs === re ? thDay(rs) + 'ที่ ' + rs + ' พ.ย. 2569' : rs + '–' + re + ' พ.ย. 2569';
     const tdefs = [['sick', 'ป่วย'], ['biz', 'กิจส่วนตัว'], ['vac', 'พักผ่อน'], ['other', 'อื่น ๆ']];
     const types = tdefs.map(([k, label]) => ({ label: 'ลา' + label, isSel: this.state.type === k, notSel: this.state.type !== k, pick: () => this.setState({ type: k }) }));
-    const ddefs = [['y', 'เมื่อวาน', 'อ. 3 พ.ย.', 'อังคารที่ 3 พ.ย. 2569'], ['t', 'วันนี้', 'พ. 4 พ.ย.', 'พุธที่ 4 พ.ย. 2569'], ['c', 'เลือกวัน', 'เปิดปฏิทิน', 'พฤหัสที่ 5 พ.ย. 2569']];
+    const ddefs = [['y', 'เมื่อวาน', 'อ. 3 พ.ย.', 'อังคารที่ 3 พ.ย. 2569'], ['t', 'วันนี้', 'พ. 4 พ.ย.', 'พุธที่ 4 พ.ย. 2569'], ['c', 'เลือกช่วงวัน', 'เปิดปฏิทิน', '']];
     const days = ddefs.map(([k, label, sub]) => ({ label, sub, isSel: this.state.day === k, notSel: this.state.day !== k, pick: () => this.setState({ day: k }) }));
     const sick = this.state.type === 'sick';
+    const isCustom = this.state.day === 'c';
     return {
-      types, days,
-      dayText: ddefs.find((d) => d[0] === this.state.day)[3],
+      types, days, cells,
+      showCal: isCustom,
+      nDays: isCustom ? custom : 1,
+      dayText: isCustom ? customText : ddefs.find((d) => d[0] === this.state.day)[3],
       typeLabel: tdefs.find((t) => t[0] === this.state.type)[1],
       certHint: sick ? 'ลาป่วยย้อนหลัง แนบใบรับรองแพทย์ช่วยให้อนุมัติเร็วขึ้น' : 'ไม่จำเป็นสำหรับการลาประเภทนี้',
       hasCert: this.state.cert, noCert: !this.state.cert,

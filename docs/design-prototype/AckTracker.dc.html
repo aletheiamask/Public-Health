@@ -33,7 +33,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #F4A23C;outline-offset:2p
         <h1 class="h" style="margin: 6px 0 0; font-size: 30px; line-height: 1.3;">ว 1287 แนวทางเฝ้าระวังไข้เลือดออก ช่วงฤดูฝน</h1>
       </div>
       <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-        <button type="button" class="press" style="height: 46px; padding: 0 16px; border-radius: 14px; border: 0; background: #FFFFFF; box-shadow: 0 0 0 1px #E8E1D4; font-size: 15px; font-weight: 700;">ส่งออก PDF ให้ผู้บริหาร</button>
+        <button type="button" class="press" onClick="{{exportPdf}}" style="height: 46px; padding: 0 16px; border-radius: 14px; border: 0; background: #FFFFFF; box-shadow: 0 0 0 1px #E8E1D4; font-size: 15px; font-weight: 700; color: #10242A; cursor: pointer;">{{pdfLabel}}</button>
         <button type="button" class="press" onClick="{{remindAll}}" style="height: 46px; padding: 0 18px; border-radius: 14px; border: 0; background: {{allBg}}; color: #FFFFFF; font-size: 15px; font-weight: 700; cursor: pointer;">{{allLabel}}</button>
       </div>
     </div>
@@ -94,7 +94,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #F4A23C;outline-offset:2p
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { reminded: [], all: false, auto: true };
+    this.state = { reminded: [], all: false, auto: true, pdf: false };
   }
   renderVals() {
     const d = [['เมืองตราด', 17, 21], ['คลองใหญ่', 4, 8], ['เขาสมิง', 11, 16], ['บ่อไร่', 8, 10], ['แหลมงอบ', 6, 7], ['เกาะช้าง', 4, 5], ['เกาะกูด', 2, 4]];
@@ -120,6 +120,8 @@ class Component extends DCLogic {
     const auto = this.state.auto;
     return {
       districts, units,
+      pdfLabel: this.state.pdf ? 'ดาวน์โหลดแล้ว ✓ ว1287-รายงาน.pdf' : 'ส่งออก PDF ให้ผู้บริหาร',
+      exportPdf: () => this.setState({ pdf: true }),
       allLabel: this.state.all ? 'เตือนแล้ว 19 แห่ง ✓' : 'เตือนซ้ำทั้ง 19 แห่ง',
       allBg: this.state.all ? '#1A7A50' : '#0E6E7E',
       remindAll: () => this.setState({ all: true }),
