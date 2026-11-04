@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>กล่องงานรวม หัวหน้ากลุ่มงาน</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@500;600;700&amp;family=Noto+Sans+Thai+Looped:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4EFE6}
+*{box-sizing:border-box}
+button,input,textarea{font-family:inherit}
+a{color:inherit}
+.h{font-family:'Anuphan','Noto Sans Thai Looped',sans-serif;letter-spacing:-0.01em}
+.press{transition:transform .12s}.press:active{transform:scale(.97)}
+.row{transition:background .15s}.row:hover{background:#FBF7F0}
+@keyframes slide{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+.slide{animation:slide .3s cubic-bezier(.2,.7,.2,1) both}
+@keyframes toast{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.toast{animation:toast .3s cubic-bezier(.2,.8,.2,1) both}
+@keyframes pal{from{opacity:0;transform:translateY(-8px) scale(.98)}to{opacity:1;transform:none}}
+.pal{animation:pal .2s cubic-bezier(.2,.8,.2,1) both}
+@keyframes fade{from{opacity:0}to{opacity:1}}.fade{animation:fade .2s both}
+kbd{font-family:inherit;font-size:12px;padding:1px 6px;border-radius:6px;background:#F3EDE2;box-shadow:inset 0 -1px 0 #D8CFBF;color:#3B5157}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #F4A23C;outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+<div style="font-family: 'Noto Sans Thai Looped', system-ui, sans-serif; font-size: 16px; line-height: 1.6; color: #10242A; background: #F4EFE6; min-height: 100vh; display: flex; flex-wrap: wrap; position: relative;">
+
+  <nav aria-label="เมนูระบบ" style="flex: 1 1 236px; max-width: 100%; padding: 20px 14px; display: flex; flex-direction: column; gap: 2px; font-size: 15px;">
+    <a href="Main.dc.html" style="display: flex; gap: 10px; align-items: center; padding: 0 8px 18px; text-decoration: none;">
+      <svg aria-hidden="true" width="38" height="38" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="#0E6E7E"></circle><path d="M8 36c5 0 5-4 10-4s5 4 10 4 5-4 10-4 5 4 10 4v6c-5 0-5-4-10-4s-5 4-10 4-5-4-10-4-5 4-10 4z" fill="#7FD3D6"></path><path d="M24 12h8v7h7v8h-7v6h-8v-6h-7v-8h7z" fill="#FFFFFF"></path><circle cx="41" cy="15" r="4" fill="#F4A23C"></circle></svg>
+      <span class="h" style="font-weight: 700; font-size: 17px; line-height: 1.2;">e-Office<br><span style="font-weight: 500; font-size: 13px; color: #56696E;">สสจ.ตราด</span></span>
+    </a>
+    <button type="button" class="press" onClick="{{openPal}}" style="margin: 0 4px 14px; height: 42px; padding: 0 12px; border-radius: 12px; border: 0; background: #FFFFFF; box-shadow: 0 0 0 1px #E8E1D4; color: #56696E; font-size: 14px; display: flex; gap: 8px; align-items: center; cursor: pointer;"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><span style="flex: 1; text-align: left;">ค้นหาหรือสั่งงาน</span><kbd>⌘K</kbd></button>
+    <span style="padding: 4px 12px; font-size: 12px; font-weight: 700; letter-spacing: .04em; color: #56696E;">งานของฉัน</span>
+    <a href="#" aria-current="page" style="padding: 8px 12px; border-radius: 12px; background: #FFFFFF; font-weight: 700; text-decoration: none; display: flex; justify-content: space-between; box-shadow: 0 0 0 1px #E8E1D4;">กล่องงานรวม <span style="padding: 0 8px; border-radius: 999px; background: #B3123F; color: #FFFFFF; font-size: 12px; line-height: 20px;">{{total}}</span></a>
+    <a href="#" style="padding: 8px 12px; border-radius: 12px; text-decoration: none;">ปฏิทินของฉัน</a>
+    <a href="#" style="padding: 8px 12px; border-radius: 12px; text-decoration: none;">คำขอของฉัน</a>
+    <span style="padding: 14px 12px 4px; font-size: 12px; font-weight: 700; letter-spacing: .04em; color: #56696E;">กลุ่มงานควบคุมโรคติดต่อ</span>
+    <a href="Composer.dc.html" style="padding: 8px 12px; border-radius: 12px; text-decoration: none;">ข่าวและหนังสือเวียน</a>
+    <a href="AckTracker.dc.html" style="padding: 8px 12px; border-radius: 12px; text-decoration: none;">ติดตามการรับทราบ</a>
+    <a href="#" style="padding: 8px 12px; border-radius: 12px; text-decoration: none;">สมาชิกและสิทธิ์</a>
+    <a href="#" style="padding: 8px 12px; border-radius: 12px; text-decoration: none;">รายงานจากหน่วยบริการ</a>
+    <span style="padding: 14px 12px 4px; font-size: 12px; font-weight: 700; letter-spacing: .04em; color: #56696E;">องค์กร</span>
+    <a href="#" style="padding: 8px 12px; border-radius: 12px; text-decoration: none;">ทำเนียบ · ห้อง · รถ</a>
+    <a href="#" style="padding: 8px 12px; border-radius: 12px; text-decoration: none;">คลังเอกสาร</a>
+    <span style="margin-top: auto; padding: 14px 8px 0; display: flex; gap: 10px; align-items: center; font-size: 14px;"><span aria-hidden="true" style="width: 36px; height: 36px; border-radius: 50%; background: #F4A23C; display: flex; align-items: center; justify-content: center; font-weight: 700;">พช</span><span style="line-height: 1.3;"><strong>พิมพ์ชนก แสงทอง</strong><br><span style="color: #56696E; font-size: 13px;">หัวหน้ากลุ่มงาน · Unit Admin</span></span></span>
+  </nav>
+
+  <main style="flex: 999 1 900px; min-width: 0; padding: 14px 14px 14px 0; display: flex;">
+    <div style="flex: 1; min-width: 0; border-radius: 26px; background: #FFFFFF; box-shadow: 0 0 0 1px #E8E1D4; display: flex; flex-wrap: wrap; overflow: hidden;">
+      <section aria-labelledby="h-in" style="flex: 1 1 440px; min-width: 0; border-right: 1px solid #F0EADF; display: flex; flex-direction: column;">
+        <div style="padding: 20px 22px 12px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px;">
+            <h1 id="h-in" class="h" style="margin: 0; font-size: 26px;">กล่องงานรวม</h1>
+            <span style="font-size: 13px; color: #56696E;"><kbd>J</kbd> <kbd>K</kbd> เลื่อน · <kbd>A</kbd> อนุมัติ · <kbd>R</kbd> ตีกลับ</span>
+          </div>
+          <div role="tablist" style="display: flex; gap: 4px; padding: 4px; border-radius: 14px; background: #F4EFE6;">
+            <button type="button" role="tab" aria-selected="true" style="flex: 1; height: 38px; border-radius: 10px; border: 0; background: #FFFFFF; box-shadow: 0 1px 2px rgba(0,0,0,.08); font-size: 14px; font-weight: 700;">อนุมัติ {{nApprove}}</button>
+            <button type="button" role="tab" aria-selected="false" style="flex: 1; height: 38px; border-radius: 10px; border: 0; background: transparent; font-size: 14px; font-weight: 600; color: #3B5157;">รับทราบ 1</button>
+            <button type="button" role="tab" aria-selected="false" style="flex: 1; height: 38px; border-radius: 10px; border: 0; background: transparent; font-size: 14px; font-weight: 600; color: #3B5157;">ติดตาม 2</button>
+          </div>
+        </div>
+        <sc-if value="{{hasChecked}}" hint-placeholder-val="{{ false }}">
+          <div class="fade" style="margin: 0 14px 8px; padding: 8px 8px 8px 14px; border-radius: 14px; background: #10242A; color: #FFFFFF; display: flex; gap: 8px; align-items: center; font-size: 14px;">
+            <span style="flex: 1; font-weight: 600;">{{bulkText}}</span>
+            <sc-if value="{{bulkOk}}" hint-placeholder-val="{{ true }}"><button type="button" class="press" onClick="{{approveChecked}}" style="height: 36px; padding: 0 14px; border-radius: 10px; border: 0; background: #5EE0A0; color: #0A2A1C; font-size: 14px; font-weight: 700; cursor: pointer;">อนุมัติใบลาทั้งหมด</button></sc-if>
+            <button type="button" class="press" onClick="{{clearChecked}}" style="height: 36px; padding: 0 12px; border-radius: 10px; border: 0; background: rgba(255,255,255,.14); color: #FFFFFF; font-size: 14px; font-weight: 600; cursor: pointer;">ยกเลิก</button>
+          </div>
+        </sc-if>
+        <ul style="list-style: none; margin: 0; padding: 0 8px 14px; display: flex; flex-direction: column; gap: 2px;">
+          <sc-for list="{{items}}" as="it" hint-placeholder-count="4">
+            <li class="row" style="border-radius: 16px; background: {{it.bg}}; box-shadow: inset 3px 0 0 {{it.bar}}; display: flex; gap: 10px; align-items: flex-start; padding: 12px 12px 12px 14px;">
+              <button type="button" role="checkbox" aria-checked="{{it.ariaChecked}}" aria-label="เลือก {{it.title}}" onClick="{{it.check}}" style="margin-top: 3px; width: 22px; height: 22px; flex: none; border-radius: 7px; border: 2px solid {{it.boxBorder}}; background: {{it.boxBg}}; color: #FFFFFF; font-size: 13px; line-height: 1; display: flex; align-items: center; justify-content: center; cursor: pointer;">{{it.tick}}</button>
+              <button type="button" onClick="{{it.open}}" style="flex: 1; min-width: 0; border: 0; background: transparent; padding: 0; text-align: left; color: #10242A; cursor: pointer; display: flex; flex-direction: column; gap: 2px;">
+                <span style="display: flex; gap: 8px; align-items: center; font-size: 12px; font-weight: 700;"><span style="padding: 0 8px; border-radius: 999px; background: {{it.tagBg}}; color: {{it.tagFg}};">{{it.kind}}</span><span style="color: #56696E; font-weight: 600;">{{it.time}}</span></span>
+                <span style="font-weight: 700; font-size: 15px; line-height: 1.45;">{{it.title}}</span>
+                <span style="font-size: 13px; color: #56696E;">{{it.meta}}</span>
+              </button>
+            </li>
+          </sc-for>
+        </ul>
+        <sc-if value="{{empty}}" hint-placeholder-val="{{ false }}">
+          <div class="fade" style="margin: 20px; padding: 30px; border-radius: 20px; background: #E3EFE6; color: #1F4D3A; text-align: center; font-weight: 700;">ไม่มีงานรออนุมัติแล้ว · เคลียร์เสร็จ 09:24 น.</div>
+        </sc-if>
+      </section>
+
+      <section aria-label="รายละเอียด" style="flex: 1.3 1 480px; min-width: 0; padding: 24px 28px; display: flex; flex-direction: column; gap: 16px; background: #FFFFFF;">
+        <sc-if value="{{hasSel}}" hint-placeholder-val="{{ true }}">
+          <div class="slide" style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px; font-weight: 700;">
+              <span style="padding: 2px 10px; border-radius: 999px; background: {{sel.tagBg}}; color: {{sel.tagFg}};">{{sel.kind}}</span>
+              <span style="padding: 2px 10px; border-radius: 999px; background: #F3EDE2; color: #3B5157;">{{sel.audience}}</span>
+              <span style="padding: 2px 10px; border-radius: 999px; background: #F3EDE2; color: #3B5157;">แก้ไขรอบที่ {{sel.rev}}</span>
+            </div>
+            <h2 class="h" style="margin: 0; font-size: 26px; line-height: 1.35;">{{sel.title}}</h2>
+            <sc-if value="{{sel.hasImg}}" hint-placeholder-val="{{ false }}">
+              <img src="{{sel.img}}" alt="ภาพประกอบข่าว" style="width: 100%; height: 220px; object-fit: cover; border-radius: 20px; display: block;">
+            </sc-if>
+            <p style="margin: 0; color: #3B5157; font-size: 16px; line-height: 1.75;">{{sel.body}}</p>
+            <div style="display: flex; gap: 10px; align-items: center; padding: 12px 14px; border-radius: 16px; background: #FBF7F0; font-size: 14px;"><span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 50%; background: #E3EDFA; color: #1A4C8C; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px;">{{sel.initials}}</span><span style="flex: 1;">ส่งโดย <strong>{{sel.who}}</strong> · {{sel.time}}</span><span style="color: #1A7A50; font-weight: 600;">{{sel.diff}}</span></div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <label for="cm" style="font-weight: 700; font-size: 15px;">ความเห็นถึงผู้ส่ง <span style="font-weight: 500; color: #56696E;">(จำเป็นเมื่อตีกลับ)</span></label>
+              <textarea id="cm" rows="2" placeholder="เช่น ขอเพิ่มเวลาและสถานที่ให้ชัดเจน" onChange="{{onComment}}" aria-invalid="{{cmInvalid}}" aria-describedby="cm-err" style="padding: 12px 14px; border-radius: 14px; border: 0; box-shadow: 0 0 0 {{cmRing}}; font-size: 16px; resize: vertical;"></textarea>
+              <sc-if value="{{cmError}}" hint-placeholder-val="{{ false }}"><span id="cm-err" role="alert" class="fade" style="font-size: 15px; color: #8C0E31; font-weight: 600;">ใส่ความเห็นก่อนตีกลับ เพื่อให้ผู้ส่งรู้ว่าต้องแก้อะไร</span></sc-if>
+            </div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button type="button" class="press" onClick="{{returnSel}}" style="height: 48px; padding: 0 18px; border-radius: 14px; border: 0; background: #FBE4EA; color: #8C0E31; font-size: 15px; font-weight: 700; cursor: pointer;">ตีกลับ <kbd style="background: rgba(255,255,255,.6);">R</kbd></button>
+              <button type="button" class="press" style="height: 48px; padding: 0 18px; border-radius: 14px; border: 0; background: #F3EDE2; color: #10242A; font-size: 15px; font-weight: 700;">แก้เองก่อนอนุมัติ</button>
+              <button type="button" class="press" onClick="{{approveSel}}" style="margin-left: auto; height: 48px; padding: 0 22px; border-radius: 14px; border: 0; background: #0E6E7E; color: #FFFFFF; font-size: 15px; font-weight: 700; cursor: pointer;">{{sel.cta}} <kbd style="background: rgba(255,255,255,.2); color: #FFFFFF; box-shadow: none;">A</kbd></button>
+            </div>
+          </div>
+        </sc-if>
+      </section>
+    </div>
+  </main>
+
+  <sc-if value="{{toast}}" hint-placeholder-val="{{ false }}">
+    <div role="status" class="toast" style="position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); padding: 10px 10px 10px 18px; border-radius: 16px; background: #10242A; color: #FFFFFF; display: flex; gap: 14px; align-items: center; font-size: 15px; box-shadow: 0 16px 40px -12px rgba(0,0,0,.4);">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5EE0A0" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg>{{toastText}}
+      <button type="button" class="press" onClick="{{undo}}" style="height: 36px; padding: 0 12px; border-radius: 10px; border: 0; background: rgba(255,255,255,.14); color: #FFFFFF; font-size: 14px; font-weight: 700; cursor: pointer;">เลิกทำ</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{pal}}" hint-placeholder-val="{{ false }}">
+    <div class="fade" onClick="{{closePal}}" style="position: absolute; inset: 0; background: rgba(16,36,42,.35);"></div>
+    <div role="dialog" aria-label="ค้นหาหรือสั่งงาน" class="pal" style="position: absolute; left: 50%; top: 90px; width: min(640px, calc(100% - 32px)); margin-left: calc(min(640px, calc(100% - 32px)) / -2); border-radius: 22px; background: #FFFFFF; box-shadow: 0 30px 80px -20px rgba(0,0,0,.45); overflow: hidden;">
+      <div style="display: flex; gap: 10px; align-items: center; padding: 16px 18px; border-bottom: 1px solid #F0EADF;">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#56696E" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <label for="pq" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">พิมพ์คำสั่ง</label>
+        <input id="pq" type="text" value="เตือน" style="flex: 1; border: 0; outline: none; font-size: 18px;">
+        <kbd>esc</kbd>
+      </div>
+      <ul style="list-style: none; margin: 0; padding: 8px;">
+        <li style="padding: 10px 12px; border-radius: 12px; background: #DDF1F1; display: flex; gap: 12px; align-items: center;"><span style="font-weight: 700; flex: 1;">เตือนซ้ำ รพ.สต. ที่ยังไม่รับทราบ ว 1287</span><span style="font-size: 13px; color: #0A4B57;">19 แห่ง · แจ้งเตือนมือถือ + อีเมล</span><kbd>↵</kbd></li>
+        <li style="padding: 10px 12px; border-radius: 12px; display: flex; gap: 12px; align-items: center;"><span style="flex: 1;">ตั้งเตือนอัตโนมัติก่อนครบกำหนด 1 วัน</span><span style="font-size: 13px; color: #56696E;">คำสั่ง</span></li>
+        <li style="padding: 10px 12px; border-radius: 12px; display: flex; gap: 12px; align-items: center;"><span style="flex: 1;">เขียนหนังสือเวียนด่วน</span><span style="font-size: 13px; color: #56696E;">คำสั่ง · <kbd>C</kbd></span></li>
+        <li style="padding: 10px 12px; border-radius: 12px; display: flex; gap: 12px; align-items: center;"><span style="flex: 1;">เตือนภัยไข้เลือดออก (ข่าว 4 พ.ย.)</span><span style="font-size: 13px; color: #56696E;">ข่าว</span></li>
+      </ul>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1150}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { removed: [], checked: [], sel: 'n1', toast: null, lastRemoved: [], pal: false, comment: '', cmError: false };
+  }
+  renderVals() {
+    const data = [
+      { id: 'n1', kind: 'อนุมัติข่าว', tagBg: '#DDF1F1', tagFg: '#0A4B57', bar: '#0E6E7E', time: '09:15', title: 'วันเบาหวานโลก ตรวจน้ำตาลฟรี 14 พ.ย.', meta: 'ศุภชัย มั่นคง · ข่าวสาธารณะ', audience: 'ประชาชนทั่วไป', rev: 2, who: 'ศุภชัย มั่นคง', initials: 'ศช', diff: 'เพิ่มเวลาและสถานที่ตามที่ขอ', img: '/_blob/9c7774222f58fc55f7808c40ff040db3', hasImg: true, body: 'ชวนประชาชนอายุ 35 ปีขึ้นไปตรวจคัดกรองเบาหวานฟรีที่ลานหน้าศาลากลางจังหวัดตราด วันเสาร์ที่ 14 พฤศจิกายน 2569 เวลา 08:30–12:00 น. งดอาหารก่อนตรวจ 8 ชั่วโมง พร้อมรับคำปรึกษาด้านอาหารจากนักโภชนาการ', cta: 'อนุมัติและเผยแพร่' },
+      { id: 'n2', kind: 'อนุมัติหนังสือเวียน', tagBg: '#E3EDFA', tagFg: '#1A4C8C', bar: '#B3123F', time: 'เมื่อวาน', title: 'ขอความร่วมมือรายงานโรคมือเท้าปากในศูนย์เด็กเล็ก', meta: 'กมลชนก ทองดี · ต้องรับทราบ · รพ.สต. 64 แห่ง', audience: 'รพ.สต. 64 แห่ง · ต้องรับทราบ', rev: 1, who: 'กมลชนก ทองดี', initials: 'กช', diff: 'ฉบับแรก', img: '', hasImg: false, body: 'พบผู้ป่วยโรคมือเท้าปาก 11 รายใน 2 สัปดาห์ ใน อ.เมือง และ อ.บ่อไร่ ขอให้ รพ.สต. ประสานศูนย์พัฒนาเด็กเล็กคัดกรองเด็กทุกเช้า และรายงานผู้ป่วยภายใน 24 ชั่วโมง', cta: 'อนุมัติและส่ง' },
+      { id: 'l1', kind: 'อนุมัติใบลา', tagBg: '#F1E8FB', tagFg: '#5B2C91', bar: '#E8E1D4', time: 'เมื่อวาน', title: 'ธีรวัฒน์ ใจงาม · ลาป่วย 3 พ.ย. (1 วัน)', meta: 'แนบใบรับรองแพทย์แล้ว · ป่วยใช้ไป 4/60 วัน', audience: 'ใบลา', rev: 1, who: 'ธีรวัฒน์ ใจงาม', initials: 'ธว', diff: 'ผู้ปฏิบัติแทน: ศุภชัย', img: '', hasImg: false, body: 'มีไข้และปวดศีรษะ แพทย์ รพ.ตราดให้พัก 1 วัน แนบใบรับรองแพทย์ (เห็นเฉพาะผู้อนุมัติ)', cta: 'อนุมัติใบลา' },
+      { id: 'l2', kind: 'อนุมัติใบลา', tagBg: '#F1E8FB', tagFg: '#5B2C91', bar: '#E8E1D4', time: 'เมื่อวาน', title: 'กมลชนก ทองดี · ลากิจ 9 พ.ย. (1 วัน)', meta: 'ไม่ชนกับงานของกลุ่ม · กิจใช้ไป 2/45 วัน', audience: 'ใบลา', rev: 1, who: 'กมลชนก ทองดี', initials: 'กช', diff: 'ผู้ปฏิบัติแทน: ธีรวัฒน์', img: '', hasImg: false, body: 'ไปทำธุระเรื่องโฉนดที่ดินที่สำนักงานที่ดินจังหวัด', cta: 'อนุมัติใบลา' }
+    ];
+    const left = data.filter((d) => this.state.removed.indexOf(d.id) < 0);
+    const remove = (ids, text) => this.setState({
+      removed: this.state.removed.concat(ids), lastRemoved: ids, checked: [], toast: text,
+      sel: (left.find((d) => ids.indexOf(d.id) < 0) || {}).id || null
+    });
+    const items = left.map((d) => {
+      const ck = this.state.checked.indexOf(d.id) >= 0;
+      const isSel = this.state.sel === d.id;
+      return Object.assign({}, d, {
+        bg: isSel ? '#F2FAFA' : 'transparent',
+        bar: isSel ? '#0E6E7E' : d.bar,
+        ariaChecked: ck ? 'true' : 'false', tick: ck ? '✓' : '',
+        boxBorder: ck ? '#0E6E7E' : '#C9BFAE', boxBg: ck ? '#0E6E7E' : '#FFFFFF',
+        check: () => this.setState({ checked: ck ? this.state.checked.filter((x) => x !== d.id) : this.state.checked.concat([d.id]) }),
+        open: () => this.setState({ sel: d.id })
+      });
+    });
+    const sel = left.find((d) => d.id === this.state.sel);
+    const checked = this.state.checked;
+    const bulkOk = checked.length > 0 && checked.every((id) => id.charAt(0) === 'l');
+    return {
+      bulkOk,
+      bulkText: bulkOk ? 'เลือกใบลา ' + checked.length + ' รายการ' : 'อนุมัติหลายรายการได้เฉพาะใบลา · ข่าวต้องเปิดตรวจทีละเรื่อง',
+      onComment: (e) => this.setState({ comment: e && e.target ? e.target.value : '', cmError: false }),
+      cmError: this.state.cmError,
+      cmInvalid: this.state.cmError ? 'true' : 'false',
+      cmRing: this.state.cmError ? '2px #B3123F' : '1px #E8E1D4',
+      returnSel: () => {
+        if (!sel) return;
+        if (!this.state.comment.trim()) { this.setState({ cmError: true }); return; }
+        remove([sel.id], 'ตีกลับแล้ว · ส่งความเห็นถึง ' + sel.who);
+      },
+      items,
+      total: left.length + 3,
+      nApprove: left.length,
+      empty: left.length === 0,
+      hasSel: !!sel,
+      sel: sel || data[0],
+      hasChecked: this.state.checked.length > 0,
+      nChecked: this.state.checked.length,
+      approveChecked: () => remove(this.state.checked.slice(), 'อนุมัติแล้ว ' + this.state.checked.length + ' รายการ'),
+      clearChecked: () => this.setState({ checked: [] }),
+      approveSel: () => sel && remove([sel.id], 'อนุมัติแล้ว · แจ้ง ' + sel.who + ' แล้ว'),
+      toast: !!this.state.toast,
+      toastText: this.state.toast || '',
+      undo: () => this.setState({ removed: this.state.removed.filter((r) => this.state.lastRemoved.indexOf(r) < 0), toast: null, sel: this.state.lastRemoved[0] }),
+      pal: this.state.pal,
+      openPal: () => this.setState({ pal: true }),
+      closePal: () => this.setState({ pal: false })
+    };
+  }
+}
+</script>
+</body>
+</html>
