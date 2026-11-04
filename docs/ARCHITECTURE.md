@@ -1,7 +1,7 @@
 # แผนออกแบบระบบใหม่: เว็บแอปเผยแพร่ข่าวสารสาธารณสุข (Go)
 
 > เอกสารเสนอแนวทางออกแบบใหม่ทั้งหมด แทนระบบ PHP เดิมใน `trat_health/`
-> สถานะ: **ร่าง v3 — ยืนยันข้อกำหนดหลักแล้ว** (ดูหัวข้อ 11)
+> สถานะ: **ร่าง v4 — ปรับปรุงหลังทบทวนด้านความทันสมัย ความปลอดภัย ประสิทธิภาพ** (ดู [`REVIEW.md`](REVIEW.md))
 > เอกสารคู่กัน: [`INTERNAL-SYSTEMS.md`](INTERNAL-SYSTEMS.md) — ระบบภายในสำหรับเจ้าหน้าที่ทำงานร่วมกัน (e-Office)
 >
 > สรุปการตัดสินใจ: ใช้ **เฉพาะ สสจ.ตราด จังหวัดเดียว** · **บังคับอนุมัติข่าวทุกกลุ่มงาน** · ติดตั้งบน **เซิร์ฟเวอร์ของหน่วยงานเอง** · LINE OA **ออกแบบไว้แต่ยังไม่เปิดใช้** · **สร้างใหม่ทั้งหมด ไม่ย้ายข้อมูลเดิม** · มี **ระบบเชื่อมและวิเคราะห์ข้อมูลจากระบบภายนอกของเราเอง**
@@ -197,8 +197,9 @@ flowchart TD
 2. **ห้ามข้ามขอบเขต** — แอดมินกลุ่มงาน A แก้ข่าวกลุ่มงาน B ไม่ได้ แม้รู้ ID (ตรวจที่ชั้น service ไม่ใช่แค่ซ่อนปุ่ม)
 3. **ส่งข่าวข้ามหน่วยงานได้ แต่เป็นเจ้าของไม่ได้** — กลุ่มงานควบคุมโรคส่งหนังสือเวียนถึง "ทุก รพ.สต." ได้ แต่ข่าวยังเป็นของกลุ่มงานควบคุมโรค
 4. **Super Admin ต้องมีอย่างน้อย 2 คน** และต้องใช้ 2FA/Passkey บังคับ
-5. **บังคับอนุมัติทุกกลุ่มงาน (ปิดไม่ได้)** — ข่าวทุกชิ้นต้องผ่าน `pending → approved` ก่อนเผยแพร่ และ **ห้ามอนุมัติข่าวที่ตัวเองเขียน** (แม้เป็น Unit Admin/Super Admin) ข่าวด่วน/เตือนภัยมีช่อง "อนุมัติด่วน" ที่แจ้งเตือน Approver ทุกคนในขอบเขตพร้อมกัน แต่ยังต้องมีคนที่ 2 กดอนุมัติ แก้ไขข่าวที่เผยแพร่แล้ว = สร้าง revision ใหม่ที่ต้องอนุมัติอีกครั้ง
-6. **ทุกการกระทำในหลังบ้านลง audit log** (append-only)
+5. **บังคับอนุมัติทุกกลุ่มงาน (ปิดไม่ได้)** — ข่าวทุกชิ้นต้องผ่าน `pending → approved` ก่อนเผยแพร่ และ **ห้ามอนุมัติข่าวที่ตัวเองเขียน** (แม้เป็น Unit Admin/Super Admin) ข่าวด่วน/เตือนภัยมีช่อง "อนุมัติด่วน" ที่แจ้งเตือน Approver ทุกคนในขอบเขตพร้อมกัน แต่ยังต้องมีคนที่ 2 กดอนุมัติ แก้ไขข่าวที่เผยแพร่แล้ว = สร้าง revision ใหม่ที่ต้องอนุมัติอีกครั้ง — ถ้าในหน่วยงานไม่มี Approver คนอื่น (เช่น รพ.สต. ที่มีเจ้าหน้าที่น้อย) งานจะ **ส่งขึ้นหน่วยงานแม่อัตโนมัติ** (รพ.สต. → สสอ.) ไม่ให้ข่าวค้าง
+6. **การกระทำเสี่ยงต้องยืนยันตัวตนซ้ำ (step-up)** — มอบบทบาท, ลบ, เปลี่ยนตั้งค่า, ลงนาม ต้องยืนยัน Passkey/OTP อีกครั้งแม้ล็อกอินอยู่
+7. **ทุกการกระทำในหลังบ้านลง audit log** (append-only)
 
 ### 4.3 สิทธิ์ละเอียด (Permissions)
 
@@ -256,7 +257,7 @@ func (s *NewsService) Update(ctx context.Context, id uuid.UUID, in UpdateInput) 
 | 10 | **ITA / OIT** | ผูกเนื้อหาเข้าตัวชี้วัดรายปี ทำหน้า `/ita` อัตโนมัติ | 2 |
 | 11 | **ร้องเรียน/ติดต่อ** | แบบฟอร์ม + เลขติดตาม + มอบหมายกลุ่มงาน | 2 |
 | 12 | **สถิติ** | ยอดอ่าน (ไม่เก็บข้อมูลส่วนบุคคลของผู้อ่านสาธารณะ), ยอดดาวน์โหลด, อัตรารับทราบ | 2 |
-| 13 | **Audit Log** | append-only, ค้นหาได้, เก็บ ≥ 1 ปี | 1 |
+| 13 | **Audit Log** | append-only + hash chain, ค้นหาได้, เก็บ ≥ 2 ปี | 1 |
 | 14 | **หน้าเว็บ/เมนู/แบนเนอร์** | จัดการหน้า static และลิงก์ระบบภายนอกจากหลังบ้าน (ไม่ต้องแก้โค้ด) | 1 |
 | 15 | **API สาธารณะ + RSS** | `/api/v1/*` JSON, RSS/Atom ต่อกลุ่มงาน — รองรับแอปมือถือ/หน่วยงานอื่นดึงข่าว | 3 |
 | 16 | **ฟังข่าว (TTS)** | ปุ่มอ่านออกเสียง (Web Speech API ฝั่งเบราว์เซอร์ ไม่มีค่าใช้จ่าย) สำหรับผู้สูงอายุ | 2 |
@@ -277,46 +278,52 @@ func (s *NewsService) Update(ctx context.Context, id uuid.UUID, in UpdateInput) 
 
 | ชั้น | เลือกใช้ | เหตุผล |
 |---|---|---|
-| ภาษา | **Go** (เวอร์ชันเสถียรล่าสุด) | เร็ว, ใช้หน่วยความจำน้อย, ไบนารีเดียว, concurrency ดีสำหรับส่งแจ้งเตือนจำนวนมาก |
+| ภาษา | **Go 1.25+** (ตามเวอร์ชันเสถียรล่าสุดเสมอ) — ใช้ของใหม่ในไลบรารีมาตรฐาน: `http.CrossOriginProtection` (กัน CSRF), `os.Root` (กัน path traversal ตอนอ่าน/เขียนไฟล์), `go tool` ใน `go.mod` (ล็อกเวอร์ชัน templ/sqlc/goose), `testing/synctest` (ทดสอบงานตั้งเวลา) | เร็ว, ใช้หน่วยความจำน้อย, ไบนารีเดียว, concurrency ดีสำหรับส่งแจ้งเตือนจำนวนมาก |
 | HTTP router | `net/http` (ServeMux แบบมี method/pattern) + middleware เล็กๆ | ไม่ต้องพึ่ง framework ใหญ่; ถ้าต้องการ group route ใช้ `chi` |
 | Template | **templ** | type-safe, compile-time check, เป็นคอมโพเนนต์ได้ |
-| Interactivity | **htmx** + **Alpine.js** (เล็กน้อย) | ไม่ต้องมี SPA/Node build; รวม JS < 30 KB |
+| Interactivity | **htmx 2** (ปิด `allowEval`, ไม่ใช้ `hx-on`) + **Alpine.js รุ่น CSP** (`@alpinejs/csp`) | ใช้ CSP เข้มงวดได้ (ไม่ต้องเปิด `unsafe-eval`); ไม่ต้องมี SPA; รวม JS < 40 KB; ใช้ View Transitions API ให้เปลี่ยนหน้าลื่น |
 | CSS | **Tailwind CSS v4** (standalone CLI) | ไม่ต้องใช้ Node, ได้ design token, CSS สุดท้ายเล็ก |
-| ตัวแก้ไขข่าว (หลังบ้าน) | Tiptap หรือ Editor.js (เกาะเฉพาะหน้า editor) | เก็บเป็น JSON บล็อก → เรนเดอร์ HTML ที่ sanitize แล้ว |
+| ตัวแก้ไขข่าว (หลังบ้าน) | **Tiptap** โหลดเฉพาะหน้า editor, bundle ด้วย **esbuild ผ่าน Go API** ตอน build (esbuild เขียนด้วย Go — ไม่ต้องติดตั้ง Node) | เก็บเป็น JSON บล็อก → เรนเดอร์ HTML ฝั่ง Go จาก whitelist ของบล็อก (ไม่เก็บ HTML ดิบ) |
 | ฐานข้อมูล | **PostgreSQL** | JSONB, ltree (ต้นไม้หน่วยงาน), full-text, เสถียร |
 | Data access | **sqlc** + **pgx/v5** | SQL ตรงๆ แต่ type-safe, ไม่มี ORM magic |
 | Migration | **goose** (หรือ golang-migrate) | ฝัง migration ในไบนารี |
 | Job queue | **River** (คิวบน Postgres) | ส่งแจ้งเตือน, ย่อรูป, เผยแพร่ตามเวลา — ไม่ต้องมี Redis/RabbitMQ เพิ่ม |
-| ค้นหาภาษาไทย | เริ่ม: Postgres + `pg_trgm` / ตัดคำไทยฝั่ง Go ก่อนบันทึก; ขยาย: **Meilisearch** (รองรับการตัดคำไทย) | ภาษาไทยไม่มีช่องว่างระหว่างคำ — FTS ปกติของ Postgres ใช้ไม่ได้ดี |
+| ค้นหาภาษาไทย | **Meilisearch ตั้งแต่ระยะ 1** (ไบนารีเดียว ตัดคำไทยได้ ทนพิมพ์ผิด) — Postgres `pg_trgm` เป็นทางสำรองเมื่อ Meilisearch ล่ม; ระยะ 4 เพิ่ม **ค้นหาตามความหมาย** (pgvector + โมเดล embedding รันบน CPU ในเครื่อง) | ภาษาไทยไม่มีช่องว่างระหว่างคำ — FTS ของ Postgres ใช้ไม่ได้ดี และการค้นหาเป็นหัวใจของเว็บข่าว/เอกสาร จึงไม่ควรรอถึงระยะ 3 |
 | ไฟล์ | S3-compatible object storage ติดตั้งบนเซิร์ฟเวอร์เอง (**SeaweedFS** หรือ **Garage**) — เริ่มเล็กสุดใช้ดิสก์ในเครื่องผ่าน interface เดียวกัน | แยกไฟล์ออกจาก DB, ย้ายไปที่เก็บอื่นได้โดยไม่แก้โค้ด |
-| ย่อรูป | `govips` (libvips) | เร็ว ใช้ RAM น้อย, สร้าง WebP/AVIF หลายขนาด |
+| ย่อรูป | `govips` (libvips) **รันเฉพาะใน worker** | เร็ว ใช้ RAM น้อย, สร้าง WebP/AVIF หลายขนาด, **ลบ EXIF/GPS** ออกจากรูป (PDPA); แยกจาก web เพื่อให้ไบนารีเว็บ build แบบ CGO-free และรูปที่ประกอบมาร้ายไม่กระทบ web |
+| สแกนไวรัส | **ClamAV** (clamd) container แยก | ทุกไฟล์ที่อัปโหลดถูกสแกนก่อนเปิดให้ดาวน์โหลด (สถานะ `pending_scan → clean/quarantined`) |
+| สร้าง PDF | **Gotenberg** (Chromium) container แยก, จำกัดงานพร้อมกัน | ตัดคำ/จัดรูปภาษาไทยถูกต้อง; แยกออกเพราะ Chromium กิน RAM และมีพื้นที่โจมตีกว้าง |
 | Session | Cookie + ตาราง session ใน Postgres (`scs` + pgxstore) | ยกเลิก session ได้ทันที (ต่างจาก JWT) |
 | Auth | รหัสผ่าน (argon2id) + **Passkey (WebAuthn)** + TOTP; ออกแบบ identity provider แบบเสียบเพิ่มได้ (OIDC) เพื่อรองรับ **Provider ID** ภายหลัง (หัวข้อ 9.2) | ผู้สูงอายุใช้ Passkey ง่ายกว่าจำรหัส |
 | แจ้งเตือน | LINE Messaging API, Web Push (VAPID), SMTP | |
-| Observability | `log/slog` (JSON), OpenTelemetry, Prometheus `/metrics`, Grafana | |
-| Reverse proxy | **Caddy** | HTTPS อัตโนมัติ, HTTP/3, บีบอัด |
+| Observability | `log/slog` (JSON), OpenTelemetry, Prometheus `/metrics`, Grafana | เริ่มจาก Prometheus + Grafana + แจ้งเตือนก่อน, tracing/Loki เพิ่มเมื่อจำเป็น (ทีมเล็กไม่ต้องดูแลหลายระบบตั้งแต่วันแรก) |
+| Reverse proxy | **Caddy** (+ ปลั๊กอิน Coraza WAF + OWASP CRS เป็นทางเลือก) | HTTPS อัตโนมัติ, HTTP/2–3, บีบอัด zstd/br; Caddy ไม่มีแคชในตัว — แคชทำในแอป (หัวข้อ 6.7) |
 | Deploy | **เซิร์ฟเวอร์ของหน่วยงานเอง**: Docker Compose (หรือ systemd + ไบนารีเดียว) — ดูหัวข้อ 6.8 | ไม่ผูกกับ cloud รายใด |
-| CI/CD | GitHub Actions: `go vet`, `staticcheck`, `golangci-lint`, `govulncheck`, test, build image | |
+| CI/CD | GitHub Actions: `go vet`, `golangci-lint`, `govulncheck`, test (+ `-race`), **SBOM** (syft), **สแกน image** (Trivy/Grype), **ลงนาม image** (cosign), Renovate อัปเดต dependency อัตโนมัติ | ป้องกัน supply-chain และรู้ทันทีเมื่อไลบรารีมีช่องโหว่ |
 
 ### 6.3 ภาพรวมระบบ
 
 ```mermaid
 flowchart LR
-  U[ผู้ใช้ มือถือ/คอม] -->|HTTPS| C[Caddy<br/>TLS, gzip/br, cache static]
-  C --> APP[Go App - ไบนารีเดียว<br/>web + admin + api]
-  APP --> PG[(PostgreSQL<br/>ข้อมูล + session + คิว River)]
+  U[ผู้ใช้ มือถือ/คอม] -->|HTTPS / HTTP3| C[Caddy<br/>TLS, zstd/br, WAF ทางเลือก]
+  C --> APP[app serve<br/>web + admin + api<br/>CGO-free, stateless]
+  APP --> PG[(PostgreSQL<br/>ข้อมูล + session + คิว River<br/>LISTEN/NOTIFY ล้างแคช)]
   APP --> OS[(Object Storage<br/>รูป/ไฟล์)]
-  APP --> MS[(Meilisearch<br/>ระยะ 2)]
-  W[Go Worker<br/>ไบนารีเดียวกัน โหมด worker] --> PG
-  W --> LINE[LINE Messaging API]
+  APP --> MS[(Meilisearch<br/>ค้นหาภาษาไทย)]
+  W[app worker<br/>โค้ดชุดเดียวกัน + libvips] --> PG
+  W --> OS
+  W --> AV[ClamAV<br/>สแกนไฟล์]
+  W --> PDF[Gotenberg<br/>สร้าง PDF]
+  W --> MS
   W --> PUSH[Web Push]
   W --> MAIL[SMTP]
-  W --> OS
-  APP -.metrics/traces.-> OBS[Prometheus / Grafana]
+  W -.ปิดไว้ก่อน.-> LINE[LINE Messaging API]
+  APP -.metrics.-> OBS[Prometheus / Grafana]
 ```
 
-- `app serve` = เว็บ, `app worker` = งานเบื้องหลัง, `app migrate` = migration — ไบนารีเดียวหลายโหมด
+- โค้ดชุดเดียว (monorepo) build เป็น 2 image: `app serve` (เว็บ, ไม่มี CGO, image เล็ก) และ `app worker` (งานเบื้องหลัง + libvips) — `app migrate` รันก่อน deploy
 - Static assets ฝังด้วย `embed` + ชื่อไฟล์มี hash → แคช 1 ปี
+- ClamAV, Gotenberg, Meilisearch, DB, storage อยู่ในเครือข่ายภายในของ Docker เท่านั้น ไม่เปิดพอร์ตออกนอกเครื่อง
 
 ### 6.4 โครงสร้างโปรเจกต์
 
@@ -373,8 +380,8 @@ erDiagram
   POSTS ||--o{ POST_AUDIENCES : "ส่งถึง"
   POSTS ||--o{ POST_ATTACHMENTS : ""
   FILES ||--o{ POST_ATTACHMENTS : ""
-  POSTS ||--o{ ACKNOWLEDGEMENTS : ""
-  USERS ||--o{ ACKNOWLEDGEMENTS : ""
+  POSTS ||--o{ POST_RECIPIENTS : "ผู้รับ + รับทราบ"
+  USERS ||--o{ POST_RECIPIENTS : ""
   POSTS ||--o| PROCUREMENTS : "ข้อมูลเพิ่ม"
   USERS ||--o{ AUDIT_LOGS : actor
 ```
@@ -385,40 +392,82 @@ erDiagram
 | `users` | id, org_id, email, phone, name, position, status (`pending`/`active`/`suspended`), password_hash, line_user_id, prefs (jsonb) |
 | `roles` / `role_permissions` | บทบาท และชุด permission |
 | `role_assignments` | user_id, role_id, org_id (null = ทั้งระบบ), include_children, granted_by, expires_at |
-| `posts` | id, type, status, owner_org_id, author_id, title, slug, summary, body (jsonb), cover_file_id, visibility (`public`/`internal`), requires_ack, ack_deadline, publish_at, expire_at, pinned_until, search_vector |
+| `posts` | id (UUIDv7 — เรียงตามเวลา, index ดีกว่า UUIDv4), type, status, owner_org_id, author_id, title, slug, summary, body (jsonb), cover_file_id, visibility (`public`/`internal`), requires_ack, ack_deadline, publish_at, expire_at, pinned_until, workflow_instance_id |
 | `post_audiences` | post_id, target_type (`all_staff`/`org`/`org_tree`/`org_type`/`position`), target_value |
+| `post_recipients` | post_id, user_id, delivered_at, read_at, acked_at — **สร้างรายชื่อผู้รับ ณ เวลาเผยแพร่** (snapshot) ทำให้รายงาน "ใครยังไม่รับทราบ" ถูกต้องแม้ภายหลังมีคนย้ายหน่วยงาน และ query เร็ว (index ตรง) |
 | `post_revisions` | post_id, version, body, edited_by, created_at |
 | `files` | id, owner_org_id, storage_key, mime, size, sha256, variants (jsonb), visibility |
-| `acknowledgements` | post_id, user_id, acked_at (PK คู่) |
 | `procurements` | post_id, ref_no, budget, method, submit_deadline, egp_url, result, winner |
 | `events`, `documents`, `complaints`, `ita_items` | ตามโมดูล |
-| `audit_logs` | id, actor_id, action, entity, entity_id, org_id, diff (jsonb), ip, ua, at — **ไม่มี UPDATE/DELETE** (บังคับด้วย DB permission) |
+| `audit_logs` | id, actor_id, action, entity, entity_id, org_id, diff (jsonb), ip, ua, at, prev_hash, hash — **ไม่มี UPDATE/DELETE** (บังคับด้วย DB permission) + **hash chain** ตรวจได้ว่าถูกแก้ย้อนหลังหรือไม่; แบ่ง partition รายเดือน |
+| `page_views_daily` | entity, entity_id, day, count — นับยอดอ่านแบบรวมในหน่วยความจำแล้ว flush ทุก 1 นาที (ไม่ UPDATE แถวเดียวทุกครั้งที่มีคนอ่าน ซึ่งทำให้ DB คอขวดตอนข่าวด่วน) |
 
 ลบข้อมูลใช้ **soft delete** (`deleted_at`) — Super Admin กู้คืนได้ภายใน 30 วัน
 
 ### 6.6 ความปลอดภัย
 
-- Query ผ่าน sqlc เท่านั้น (parameterized) → ปิด SQL injection ทั้งระบบ
-- ทุก action ที่เปลี่ยนข้อมูลเป็น POST/PUT/DELETE + **CSRF token** (ไม่ลบด้วย GET แบบเดิม)
-- Cookie: `HttpOnly`, `Secure`, `SameSite=Lax`; session หมดอายุเมื่อไม่ใช้งาน
-- Security headers: CSP (nonce), HSTS, X-Content-Type-Options, Referrer-Policy, Permissions-Policy
-- Sanitize HTML ของข่าวด้วย `bluemonday`
-- ไฟล์อัปโหลด: ตรวจ magic bytes, จำกัดขนาด, เปลี่ยนชื่อเป็น UUID, เสิร์ฟจาก storage ด้วย `Content-Disposition` ที่เหมาะสม
-- Rate limit การล็อกอิน + ล็อกบัญชีชั่วคราว; บังคับ 2FA สำหรับ Admin ทุกระดับ
-- Secrets ผ่าน environment variables / secret manager — ไม่อยู่ในโค้ด
-- Backup Postgres + storage ทุกวัน, ทดสอบกู้คืนทุกเดือน
-- PDPA: แจ้งวัตถุประสงค์, cookie banner เฉพาะเมื่อใช้ analytics, ไม่เก็บ IP ผู้อ่านสาธารณะเกินจำเป็น
-- `govulncheck` ใน CI
+ออกแบบตามแนว **OWASP ASVS ระดับ 2** และหลัก "ป้องกันหลายชั้น" — ถ้าชั้นหนึ่งพลาด ชั้นถัดไปยังกันได้
+
+**ก. ตัวตนและ session**
+- รหัสผ่าน argon2id, ความยาวขั้นต่ำ 12 ตัว (ไม่บังคับอักขระพิเศษแบบเก่า — ตามแนว NIST 800-63B), ตรวจกับรายการรหัสผ่านที่รั่วแบบ offline
+- **Passkey เป็นทางหลัก**, TOTP สำรอง; **บังคับ 2 ชั้นสำหรับทุกบทบาทที่มีสิทธิ์เขียน**
+- Session: cookie `__Host-` + `HttpOnly` + `Secure` + `SameSite=Lax`, **เปลี่ยน session ID ทุกครั้งที่ล็อกอิน/ยกระดับสิทธิ์**, หมดอายุเมื่อไม่ใช้งาน 30 นาที (หลังบ้าน) / 8 ชม. (ทั่วไป) และหมดอายุสูงสุด 7 วัน, ผู้ใช้ดูและสั่งออกจากระบบทุกอุปกรณ์ได้
+- **Step-up**: การกระทำเสี่ยงต้องยืนยันตัวตนซ้ำ (หัวข้อ 4.2)
+- ข้อความล็อกอินผิดเหมือนกันทุกกรณี (กันการเดาว่ามีบัญชีหรือไม่), rate limit ต่อ IP และต่อบัญชี
+- บัญชีฉุกเฉิน (break-glass) 1 บัญชี เก็บรหัสในซองปิดผนึก ใช้เมื่อ Super Admin ทุกคนเข้าไม่ได้ — ใช้แล้วแจ้งเตือนทุกคน
+
+**ข. สิทธิ์ (กัน IDOR / ข้ามขอบเขต)**
+- ฟังก์ชัน repo ที่คืนข้อมูลหลายแถว **ต้องรับพารามิเตอร์ `authz.Scope`** (type ของ Go) — ลืมกรองขอบเขตแล้วโค้ด compile ไม่ผ่าน
+- ทดสอบอัตโนมัติ: ทุก endpoint ถูกยิงด้วยผู้ใช้ต่างขอบเขต ต้องได้ 403/404 ทุกครั้ง (ตาราง test สร้างจากรายการ route อัตโนมัติ)
+
+**ค. คำขอ HTTP**
+- Query ผ่าน sqlc เท่านั้น (parameterized) → ปิด SQL injection
+- CSRF: `http.CrossOriginProtection` ของ Go (ตรวจ `Sec-Fetch-Site`/`Origin`) + token สำรองสำหรับเบราว์เซอร์เก่า; เปลี่ยนข้อมูลด้วย POST/PUT/DELETE เท่านั้น
+- **CSP เข้มงวด** แบบ nonce, ไม่มี `unsafe-inline`/`unsafe-eval` (จึงเลือก Alpine รุ่น CSP), `frame-ancestors 'none'`; HSTS (preload), `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `Cross-Origin-Opener-Policy`
+- เนื้อหาข่าวเก็บเป็น JSON บล็อกแล้วเรนเดอร์จาก whitelist + `bluemonday` อีกชั้น
+- จำกัดขนาด body, timeout ทุก handler (`http.Server` ReadHeaderTimeout ฯลฯ) กัน Slowloris
+
+**ง. ไฟล์**
+- ตรวจ magic bytes + whitelist ชนิด (**ไม่รับ SVG/HTML** — ฝังสคริปต์ได้), จำกัดขนาด, ชื่อเป็น UUID, **สแกน ClamAV ก่อนเปิดให้ดาวน์โหลด**, รูปถูกเข้ารหัสใหม่และลบ EXIF
+- ไฟล์ภายในไม่มี URL ถาวร: ผ่าน handler ที่ตรวจสิทธิ์ หรือ URL ลงลายเซ็นอายุสั้น (5 นาที)
+- เสิร์ฟไฟล์ผู้ใช้จากโดเมนย่อยแยก (`files.`) + `Content-Disposition: attachment` สำหรับชนิดที่ไม่ใช่รูป/PDF + `CSP: sandbox`
+- อ่าน/เขียนดิสก์ผ่าน `os.Root` กัน path traversal
+
+**จ. ข้อมูลและความลับ**
+- TLS ทุกการเชื่อมต่อภายนอก; ดิสก์เซิร์ฟเวอร์เข้ารหัส (LUKS); backup เข้ารหัส (pgBackRest encryption)
+- ความลับเก็บด้วย Docker secrets / systemd credentials; ไฟล์ตั้งค่าใน git เข้ารหัสด้วย SOPS + age — ไม่มีรหัสผ่านใน repo
+- ฟิลด์อ่อนไหว (เบอร์โทร, เลขบัตร, ใบรับรองแพทย์) เข้ารหัสระดับคอลัมน์ด้วยกุญแจแยก
+
+**ฉ. Log และกฎหมาย**
+- **พ.ร.บ.คอมพิวเตอร์ฯ กำหนดให้ผู้ให้บริการเก็บข้อมูลจราจรคอมพิวเตอร์ไม่น้อยกว่า 90 วัน** → เก็บ access log (รวม IP) 90 วันแบบจำกัดสิทธิ์อ่าน แยกจากระบบสถิติ (สถิติไม่เก็บ IP/ตัวตนผู้อ่านสาธารณะ)
+- Audit log แบบ hash chain แก้ย้อนหลังไม่ได้ เก็บ ≥ 2 ปี
+- **PDPA**: บันทึกรายการกิจกรรมการประมวลผล (ROPA), ประกาศความเป็นส่วนตัว, กำหนดระยะเก็บข้อมูลทุกตาราง + งานลบอัตโนมัติ, ช่องทางใช้สิทธิ์เจ้าของข้อมูล, แผนรับมือข้อมูลรั่ว (แจ้งภายใน 72 ชม.)
+
+**ช. Supply chain และการดำเนินงาน**
+- `govulncheck` + สแกน image + SBOM + ลงนาม image ใน CI; Renovate เปิด PR อัปเดต dependency; container รันแบบ non-root, read-only filesystem, image แบบ distroless
+- **ทดสอบเจาะระบบ (pentest) ก่อนเปิดใช้จริงทุกระยะ** และทุกปี
+- แผนรับมือเหตุ (incident response) และ **backup แบบแก้ไขไม่ได้ (immutable/offline)** กัน ransomware ซึ่งเป็นภัยหลักของหน่วยงานสาธารณสุข
 
 ### 6.7 ประสิทธิภาพ
 
-| เป้าหมาย | วิธี |
+**เป้าหมาย (วัดจริงด้วย k6 + Lighthouse ก่อนเปิดใช้)**
+
+| ตัวชี้วัด | เป้าหมาย |
 |---|---|
-| TTFB < 200 ms | SSR ด้วย Go, query ผ่าน index, แคชหน้าสาธารณะในหน่วยความจำ (invalidate เมื่อเผยแพร่) |
-| หน้าแรก < 300 KB รวมรูป | WebP/AVIF + `srcset`, lazy-load, ฟอนต์ subset ภาษาไทย + `font-display: swap` |
-| LCP < 2.5 s บน 4G | preload รูปข่าวเด่น, ไม่มี JS บล็อกการเรนเดอร์ |
-| รองรับข่าวด่วนคนเข้าพร้อมกัน | HTTP cache headers + Caddy cache; Go app รับได้หลายพัน req/s บนเครื่องเดียว |
-| ส่งแจ้งเตือนหลายพันคน | River worker กระจายงานพร้อม retry/backoff |
+| TTFB หน้าสาธารณะ (แคช) / หน้าเจ้าหน้าที่ | p95 < 50 ms / p95 < 200 ms |
+| LCP บนมือถือ 4G ระดับกลาง | < 2.0 s |
+| INP (ความไวต่อการกด) | < 200 ms |
+| น้ำหนักหน้าแรก | < 250 KB รวมรูป, JS < 40 KB |
+| รองรับข่าวด่วน | 2,000 req/s ต่อเนื่อง 10 นาทีบนเครื่องเดียว โดย p95 ไม่เกินเป้า |
+
+**วิธี**
+- **แคชในแอป**: หน้าสาธารณะเก็บ HTML ที่เรนเดอร์แล้วในหน่วยความจำ (เช่น `otter`) + `ETag`/`Cache-Control: stale-while-revalidate`; ล้างแคชด้วย **PostgreSQL LISTEN/NOTIFY** เมื่อเผยแพร่/แก้ข่าว (ทุก instance ได้รับพร้อมกัน); `singleflight` กันคำขอซ้ำพร้อมกันทะลุไปที่ DB
+- **ฐานข้อมูล**: pgxpool แยก pool เว็บกับ worker; index ตาม query จริง (ตรวจด้วย `pg_stat_statements` ทุกสัปดาห์); `post_recipients` ทำให้ "ข่าวถึงฉัน/ยังไม่รับทราบ" เป็น index scan; partition `audit_logs` และ log อื่นรายเดือน; นับยอดอ่านแบบรวมแล้ว flush เป็นช่วง
+- **งานหนักออกจาก request**: ย่อรูป, สแกนไวรัส, สร้าง PDF, กระจายแจ้งเตือน ทำใน worker ผ่าน River — ผู้ใช้ไม่ต้องรอ
+- **ส่งแจ้งเตือน**: สร้าง recipient ครั้งเดียวด้วย `INSERT … SELECT`, ส่ง Web Push เป็นชุด (batch) พร้อม concurrency จำกัดและ retry
+- **ฝั่งเบราว์เซอร์**: ฟอนต์ **ตระกูลเดียว** แบบ variable + subset ไทย/ละติน (`woff2`) + preload; รูป AVIF/WebP + `srcset` + `loading=lazy` (ยกเว้นรูปข่าวเด่นใช้ `fetchpriority=high`); `hx-boost` + preload ลิงก์เมื่อชี้/แตะ; static asset มี hash ในชื่อ แคช 1 ปี (`immutable`)
+- **Real-time**: SSE ผ่าน HTTP/2 (หลายแท็บไม่ติดเพดาน 6 การเชื่อมต่อ), heartbeat 30 วินาที; Go รับการเชื่อมต่อค้างหลายพันได้สบาย
+- **วัดผลต่อเนื่อง**: metric RED (rate/errors/duration) ต่อ route, แจ้งเตือนเมื่อ p95 เกินเป้า; load test ซ้ำทุกครั้งก่อนออกเวอร์ชันใหญ่
 
 ### 6.8 การติดตั้งบนเซิร์ฟเวอร์ของหน่วยงานเอง (On-premise)
 
@@ -441,10 +490,12 @@ flowchart LR
 
 | หัวข้อ | ข้อเสนอ |
 |---|---|
-| สเปกเริ่มต้น (จังหวัดเดียว ~1,500–2,000 ผู้ใช้ รวมระบบภายใน) | 4–8 vCPU, 16 GB RAM, SSD 500 GB (DB) + 2 TB (ไฟล์), Ubuntu Server LTS |
+| สเปกเริ่มต้น (จังหวัดเดียว ~1,500–2,000 ผู้ใช้ รวมระบบภายใน) | 8 vCPU, 32 GB RAM (เผื่อ Meilisearch, ClamAV, Gotenberg), SSD NVMe 500 GB (DB + index) + 2 TB (ไฟล์), Ubuntu Server LTS |
+| **สภาพแวดล้อม** | **production** + **staging** (เครื่องเล็กหรือ VM แยก ใช้ข้อมูลจำลอง) — ทดสอบทุกเวอร์ชันบน staging ก่อนขึ้นจริงเสมอ |
+| **เป้าหมายกู้คืน** | **RPO ≤ 15 นาที** (ข้อมูลหายไม่เกิน 15 นาที ด้วย WAL ต่อเนื่อง), **RTO ≤ 4 ชม.** (กลับมาให้บริการภายใน 4 ชม.); ระยะ 2 เพิ่มเครื่อง standby (streaming replica) ลด RTO เหลือ < 30 นาที |
 | ขยาย | แยกเครื่อง DB ออก, รัน `app serve` หลายตัวหลัง Caddy (แอป stateless อยู่แล้ว), เพิ่ม Postgres replica สำหรับอ่าน |
 | HTTPS | Caddy ออกใบรับรองอัตโนมัติ (ถ้าโดเมนเข้าถึงจากภายนอก) หรือใช้ใบรับรองของหน่วยงาน |
-| Backup | pgBackRest: full รายสัปดาห์ + incremental รายวัน + WAL ต่อเนื่อง; ไฟล์ sync รายวัน; **เก็บนอกสถานที่อย่างน้อย 1 ชุด** (กฎ 3-2-1); ทดสอบกู้คืนทุกเดือน |
+| Backup | pgBackRest: full รายสัปดาห์ + incremental รายวัน + WAL ต่อเนื่อง; ไฟล์ sync รายวัน; **เก็บนอกสถานที่อย่างน้อย 1 ชุด และ 1 ชุดแบบแก้ไข/ลบไม่ได้ (immutable หรือ offline)** (กฎ 3-2-1-1) กัน ransomware; backup เข้ารหัส; ทดสอบกู้คืนทุกเดือนลง staging |
 | Monitoring | Prometheus + Grafana + Alertmanager บนเครื่องเดียวกันหรือเครื่องแยก; แจ้งเตือนดิสก์เต็ม/บริการล่ม ทางอีเมล |
 | Log | slog JSON → Loki (ไม่บังคับ) เก็บ 90 วัน; audit log อยู่ใน DB |
 | อัปเดต | build image ใน CI → push ไป registry ภายใน → `docker compose pull && up -d`; migration รันอัตโนมัติก่อนเปิดบริการ; rollback ด้วย tag เดิม |
@@ -471,7 +522,7 @@ flowchart LR
 | สีรอง | น้ำเงิน `#1D4ED8` | ลิงก์ |
 | สีเตือน | ส้ม `#B45309` / แดง `#B91C1C` | ข่าวด่วน / เตือนภัยโรค |
 | พื้นหลัง | `#FFFFFF` / `#F8FAFC` | โหมดมืด: `#0B1220` |
-| ฟอนต์ | **Noto Sans Thai Looped** (เนื้อหา, มีหัว อ่านง่ายสำหรับผู้สูงอายุ) + **Noto Sans Thai** หรือ IBM Plex Sans Thai (หัวข้อ) | ฟรี, รองรับครบ |
+| ฟอนต์ | **Noto Sans Thai Looped** ตระกูลเดียว แบบ variable (ใช้น้ำหนักต่างกันแยกหัวข้อ/เนื้อหา) | ฟรี, มีหัว อ่านง่ายสำหรับผู้สูงอายุ, โหลดไฟล์เดียว เร็วกว่าใช้ 2 ตระกูล |
 | ขนาดตัวอักษร | 16 / **18** / 20 / 24 / 30 / 36 | |
 | มุมโค้ง | 12px การ์ด, 999px ปุ่มป้าย | |
 | เงา | น้อย ใช้เส้นขอบแทน | ดูสะอาด พิมพ์ได้ |
@@ -617,13 +668,15 @@ flowchart LR
 
 | ระยะ | ระยะเวลา (ประมาณ) | ส่งมอบ |
 |---|---|---|
-| **0. เตรียม** | 2–3 สัปดาห์ | ออกแบบ UI ใน Figma (หน้าแรก, รายการข่าว, อ่านข่าว, หน้าของฉัน, หลังบ้าน), เตรียมเซิร์ฟเวอร์ + backup, ตั้ง repo/CI, โครง Go + templ + Tailwind |
-| **1. แกนหลัก (MVP)** | 8–10 สัปดาห์ | Auth + Passkey, ต้นไม้หน่วยงาน, **Scoped RBAC**, CMS ข่าว + **อนุมัติบังคับ**, กลุ่มเป้าหมาย, **รับทราบ**, คลังไฟล์, ประกวดราคา, ค้นหาภาษาไทย, หน้า static/เมนู, audit log, หน้าสาธารณะทั้งหมด, redirect URL เดิม — **เปิดใช้งานจริง** |
-| **2. สื่อสาร + e-Office ชุดแรก** | 6–8 สัปดาห์ | Web Push/PWA, อีเมล, เตือนซ้ำอัตโนมัติ, ปฏิทิน, ITA, ร้องเรียน, สถิติ/รายงาน, ฟังข่าว + **Workflow engine, ระบบลา, จองห้องประชุม, จองรถ, งานของฉัน** (ดู INTERNAL-SYSTEMS.md) |
-| **3. เชื่อมต่อ & e-Office ชุดสอง** | 8–12 สัปดาห์ | **Provider ID SSO**, สารบรรณอิเล็กทรอนิกส์ + ลงนามอิเล็กทรอนิกส์, e-Meeting, สั่งการ-ติดตามงาน, Data Hub + แดชบอร์ด (เริ่มจากระบบ KPI), เปิด LINE OA, API สาธารณะ/RSS, Meilisearch |
-| **4. ครบวงจร** | ต่อเนื่อง | พัสดุ/ครุภัณฑ์, โครงการ/งบประมาณ, รายงานจากหน่วยบริการ, KM/e-Learning, IT Helpdesk, ผู้ช่วย AI (ไม่บังคับ), แอปมือถือ |
+| **0. เตรียม** | 3–4 สัปดาห์ | ออกแบบ UI ใน Figma + **ทดสอบต้นแบบกับผู้ใช้จริง (รวมผู้สูงอายุ)**, เตรียมเซิร์ฟเวอร์ production + staging + backup, ตั้ง repo/CI (สแกนความปลอดภัยครบ), โครง Go + templ + Tailwind, ร่าง ROPA/PDPA |
+| **1. แกนหลัก (MVP)** | 10–12 สัปดาห์ | Auth + Passkey, ต้นไม้หน่วยงาน, **Scoped RBAC**, **แกน Workflow (ใช้กับการอนุมัติข่าวตั้งแต่แรก — ไม่ต้องเขียนใหม่ในระยะ 2)**, CMS ข่าว + อนุมัติบังคับ, กลุ่มเป้าหมาย, **รับทราบ**, คลังไฟล์ + ClamAV, ประกวดราคา, **ค้นหา Meilisearch**, หน้า static/เมนู, audit log, หน้าสาธารณะทั้งหมด, redirect URL เดิม → **pentest + load test** → **เปิดใช้งานจริง** |
+| **2. สื่อสาร + e-Office ชุดแรก** | 8–10 สัปดาห์ | Web Push/PWA, อีเมล, เตือนซ้ำอัตโนมัติ, ปฏิทิน, ITA, ร้องเรียน, สถิติ/รายงาน, ฟังข่าว + **ระบบลา, ขอไปราชการ, จองห้องประชุม, จองรถ, งานของฉัน, ปฏิทินรวม, ทำเนียบ** (ดู INTERNAL-SYSTEMS.md), เครื่อง standby |
+| **3. เชื่อมต่อ & e-Office ชุดสอง** | 10–14 สัปดาห์ | **Provider ID SSO**, สารบรรณภายใน + ลงนามอิเล็กทรอนิกส์, e-Meeting, สั่งการ-ติดตามงาน, รายงานจากหน่วยบริการ (Form Builder เต็มรูปแบบ), แจ้งซ่อม/IT, Data Hub + แดชบอร์ด (เริ่มจากระบบ KPI), เปิด LINE OA, API สาธารณะ/RSS (มี OpenAPI spec) |
+| **4. ครบวงจร** | ต่อเนื่อง | พัสดุ/ครุภัณฑ์, เบิกวัสดุ, โครงการ/งบประมาณ, ตารางเวร, KM/e-Learning, กระดานถาม-ตอบ, ค้นหาตามความหมาย, ผู้ช่วย AI (ไม่บังคับ — ดู INTERNAL-SYSTEMS.md หัวข้อ 10) |
 
-เกณฑ์ "เสร็จ" ทุกระยะ: ผ่าน test (unit + integration กับ Postgres จริงด้วย testcontainers), ผ่านตรวจ accessibility อัตโนมัติ (axe) + ทดสอบกับผู้ใช้จริงอย่างน้อย 5 คน (รวมผู้สูงอายุ), Lighthouse ≥ 90 ทุกหมวด, **ทดสอบสิทธิ์ข้ามขอบเขต (ต้องถูกปฏิเสธทุกกรณี)**, ทดสอบกู้คืนจาก backup ได้จริง
+> ระยะเวลาประเมินสำหรับทีมพัฒนา 3–4 คน (Go 2, UI/UX 1, DevOps/QA 1) — ถ้าทีมเล็กกว่านี้ ให้ตัดขอบเขตแต่ละระยะ ไม่ใช่ลดการทดสอบ
+
+เกณฑ์ "เสร็จ" ทุกระยะ: ผ่าน test (unit + integration กับ Postgres จริงด้วย testcontainers, `-race`), ผ่านตรวจ accessibility อัตโนมัติ (axe) + ทดสอบกับผู้ใช้จริงอย่างน้อย 5 คน (รวมผู้สูงอายุ), Lighthouse ≥ 90 ทุกหมวด, **ทดสอบสิทธิ์ข้ามขอบเขต (ต้องถูกปฏิเสธทุกกรณี)**, ทดสอบกู้คืนจาก backup ได้จริง, ผ่าน load test ตามเป้าหัวข้อ 6.7, ไม่มีช่องโหว่ระดับสูงค้างจาก pentest/สแกน
 
 ---
 
